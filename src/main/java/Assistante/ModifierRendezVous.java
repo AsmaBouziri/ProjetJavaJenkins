@@ -180,7 +180,7 @@ public class ModifierRendezVous extends JFrame {
 		panel.add(lblNewLabel_4_1);
 		
 
-		JButton btnNewButton = new JButton("Modifier");
+		final JButton btnNewButton = new JButton("Modifier");
 		btnNewButton.setBounds(147, 307, 139, 40);
 		panel.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {

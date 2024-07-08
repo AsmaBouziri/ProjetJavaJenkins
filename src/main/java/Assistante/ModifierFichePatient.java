@@ -62,7 +62,7 @@ public class ModifierFichePatient extends JFrame  {
 		lblNewLabel_1.setBounds(52, 106, 147, 14);
 		panel.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		textArea.setBounds(33, 146, 371, 160);
 		panel.add(textArea);
 		

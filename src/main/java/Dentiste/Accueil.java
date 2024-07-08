@@ -27,7 +27,7 @@ public class Accueil extends JFrame {
         panel_1.setLayout(null);
         
        
-        JButton btnNewButton = new JButton("Planning RDV");
+        final JButton btnNewButton = new JButton("Planning RDV");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ListeRDV listeRDVFrame = new ListeRDV();

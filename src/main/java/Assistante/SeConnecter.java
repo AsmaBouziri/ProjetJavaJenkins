@@ -93,7 +93,7 @@ public class SeConnecter extends JFrame{
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Se Connecter");
+		final JButton btnNewButton = new JButton("Se Connecter");
 		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

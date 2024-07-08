@@ -23,7 +23,7 @@ public class Acceuil extends JFrame {
         panel_1.setLayout(null);
         
        
-        JButton btnNewButton = new JButton("Ajouter Patient");
+        finalJButton btnNewButton = new JButton("Ajouter Patient");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		AjouterPatient ajouterFrame = new AjouterPatient();

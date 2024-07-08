@@ -54,7 +54,7 @@ public class SupprimerPatient extends JFrame {
 		prenomtextField.setBounds(191, 182, 185, 35);
 		panel.add(prenomtextField);
 		
-		JButton btnNewButton = new JButton("Supprimer");
+		final JButton btnNewButton = new JButton("Supprimer");
 		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.setBounds(162, 272, 147, 41);
 		btnNewButton.addActionListener(new ActionListener() {
