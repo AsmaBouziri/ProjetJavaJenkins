@@ -61,7 +61,7 @@ public class ListePatients extends JFrame  {
 	        listScrollPane.setSize(397, 230);
 	        panel.add(listScrollPane, BorderLayout.CENTER);
 			
-			JButton btnNewButton = new JButton("Afficher Détails");
+			final JButton btnNewButton = new JButton("Afficher Détails");
 			btnNewButton.setBounds(250, 307, 139, 40);
 			panel.add(btnNewButton);
 			btnNewButton.addActionListener(new ActionListener() {
