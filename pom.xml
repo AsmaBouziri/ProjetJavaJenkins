@@ -15,7 +15,7 @@
 
 
 <profiles>
-        <profile>
+        <!-- <profile>
             <id>sonar</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -25,7 +25,7 @@
                     http://18.191.154.53:9000/
                 </sonar.host.url>
             </properties>
-        </profile>
+        </profile> -->
         <profile>
             <id>coverage</id>
             <activation>

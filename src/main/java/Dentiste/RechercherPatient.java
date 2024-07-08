@@ -84,10 +84,10 @@ public class RechercherPatient extends JFrame  {
 		ModifierButton.setBounds(200, 142, 147, 41);
 		ModifierButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 String nom = champNom.getText().trim();
-		            String prenom = champPrenom.getText().trim();
-		            String fichier = nom + "_" + prenom + ".txt";
-		            JPanel panelModifier= new JPanel(new GridLayout(3, 2));
+				String nom = champNom.getText().trim();
+		        String prenom = champPrenom.getText().trim();
+		        String fichier = nom + "_" + prenom + ".txt";
+		        JPanel panelModifier= new JPanel(new GridLayout(3, 2));
 		            
 		            try {
 		                BufferedReader lecteur = new BufferedReader(new FileReader("fiches_patients/" +fichier));

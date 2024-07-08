@@ -63,7 +63,7 @@ public class RechercherPatient extends JFrame  {
 		lblNewLabel_1.setBounds(52, 117, 147, 14);
 		panel.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 213, 538, 240);
 		panel.add(textArea);
 		
