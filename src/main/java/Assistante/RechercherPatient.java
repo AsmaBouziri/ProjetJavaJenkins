@@ -73,7 +73,7 @@ public class RechercherPatient extends JFrame  {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel labelResultat = new JLabel("Resultat :");
+		final JLabel labelResultat = new JLabel("Resultat :");
 		labelResultat.setBounds(10, 0, 411, 25);
 		labelResultat.setForeground(SystemColor.text);
 		labelResultat.setBackground(SystemColor.text);
