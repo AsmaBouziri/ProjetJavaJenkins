@@ -79,7 +79,7 @@ public class RechercherPatient extends JFrame  {
 		labelResultat.setBackground(SystemColor.text);
 		panel_1.add(labelResultat);
 		
-		JButton ModifierButton = new JButton("Rechercher");
+		final JButton ModifierButton = new JButton("Rechercher");
 		ModifierButton.setBackground(SystemColor.activeCaption);
 		ModifierButton.setBounds(250, 142, 147, 41);
 		ModifierButton.addActionListener(new ActionListener() {
