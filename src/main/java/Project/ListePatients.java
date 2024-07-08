@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-importmain.java. Project.RechercherPatient;
+import main.java. Project.RechercherPatient;
 
 public class ListePatients extends JFrame implements ActionListener {
     
