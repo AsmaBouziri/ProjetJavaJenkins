@@ -116,7 +116,7 @@
 				      <archive>
               <index>true</index>
 					    <manifest>
-						      <mainClass>Acceuil</mainClass>
+						      <mainClass> main.java.Assistante</mainClass>
 					    </manifest>
 				      </archive>
 			    </configuration>
