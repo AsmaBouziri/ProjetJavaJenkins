@@ -63,7 +63,7 @@ public class RechercherPatient extends JFrame  {
 		lblNewLabel_1.setBounds(52, 117, 147, 14);
 		panel.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 188, 411, 140);
 		panel.add(textArea);
 		
@@ -73,13 +73,13 @@ public class RechercherPatient extends JFrame  {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel labelResultat = new JLabel("Resultat :");
+		final JLabel labelResultat = new JLabel("Resultat :");
 		labelResultat.setBounds(10, 0, 411, 25);
 		labelResultat.setForeground(SystemColor.text);
 		labelResultat.setBackground(SystemColor.text);
 		panel_1.add(labelResultat);
 		
-		JButton ModifierButton = new JButton("Rechercher");
+		final JButton ModifierButton = new JButton("Rechercher");
 		ModifierButton.setBackground(SystemColor.activeCaption);
 		ModifierButton.setBounds(200, 142, 147, 41);
 		ModifierButton.addActionListener(new ActionListener() {

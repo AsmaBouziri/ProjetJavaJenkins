@@ -87,7 +87,7 @@ public class ListePatients extends JFrame  {
 			});
 			
 			
-			JButton ModifierSoinBtn = new JButton("Modifier Soin");
+			final JButton ModifierSoinBtn = new JButton("Modifier Soin");
 			ModifierSoinBtn.setBounds(80, 307, 139, 40);
 			panel.add(ModifierSoinBtn);
 			ModifierSoinBtn.addActionListener(new ActionListener() {
