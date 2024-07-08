@@ -66,7 +66,7 @@ public class ModifierFichePatient extends JFrame  {
 		textArea.setBounds(33, 146, 371, 160);
 		panel.add(textArea);
 		
-		JButton btnNewButton = new JButton("Modifier");
+		final JButton btnNewButton = new JButton("Modifier");
 		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.setBounds(239, 317, 147, 30);
 		panel.add(btnNewButton);
