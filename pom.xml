@@ -116,7 +116,7 @@
 				      <archive>
               <index>true</index>
 					    <manifest>
-						      <mainClass> main.java.Assitante.Accueil</mainClass>
+						      <mainClass> main.java.Assitante.SeConnecter</mainClass>
 					    </manifest>
 				      </archive>
 			    </configuration> 
