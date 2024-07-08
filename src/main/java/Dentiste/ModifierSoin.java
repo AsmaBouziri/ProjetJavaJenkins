@@ -106,21 +106,21 @@ public class ModifierSoin extends JFrame {
 		lblNewLabel_3.setBounds(68, 208, 133, 14);
 		panel.add(lblNewLabel_3);
 		
-		JComboBox jourComboBox = new JComboBox();
+		final JComboBox jourComboBox = new JComboBox();
 		jourComboBox.setBounds(202, 204, 50, 22);
 		panel.add(jourComboBox);
 		for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         
-		JComboBox moisComboBox = new JComboBox();
+		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(301, 204, 100, 22);
 		panel.add(moisComboBox);
 		for (int i = currentYear - 2 ; i <= currentYear + 5; i++) {
 			moisComboBox.addItem(i);
         }
 
-		JComboBox annneeComboBox = new JComboBox();
+		final JComboBox annneeComboBox = new JComboBox();
 		annneeComboBox.setBounds(251, 204, 50, 22);
 		panel.add(annneeComboBox);
 		for (int i = 1; i <= 12; i++) {
@@ -128,7 +128,7 @@ public class ModifierSoin extends JFrame {
         }
 		
 	
-		JComboBox<String> comboBox = new JComboBox<String>();
+		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("**Soins**");
         comboBox.addItem("détartrage");
         comboBox.addItem("plombage");
@@ -155,28 +155,28 @@ public class ModifierSoin extends JFrame {
 		lblNewLabel_3_1.setBounds(68, 308, 133, 14);
 		panel.add(lblNewLabel_3_1);
 		
-		JComboBox jourComboBox_1 = new JComboBox();
+		final JComboBox jourComboBox_1 = new JComboBox();
 		jourComboBox_1.setBounds(202, 304, 50, 22);
 		panel.add(jourComboBox_1);
 		for (int i = 1; i <= 31; i++) {
 			jourComboBox_1.addItem(i);
         }
 		
-		JComboBox annneeComboBox_1 = new JComboBox();
+		final JComboBox annneeComboBox_1 = new JComboBox();
 		annneeComboBox_1.setBounds(251, 304, 50, 22);
 		panel.add(annneeComboBox_1);
 		for (int i = 1; i <= 12; i++) {
 			annneeComboBox_1.addItem(i);
         }
 		
-		JComboBox moisComboBox_1 = new JComboBox();
+		final JComboBox moisComboBox_1 = new JComboBox();
 		moisComboBox_1.setBounds(301, 304, 100, 22);
 		panel.add(moisComboBox_1);
 		for (int i = currentYear - 2 ; i <= currentYear + 5; i++) {
 			moisComboBox_1.addItem(i);
 		}
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		final JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(202, 242, 199, 28);
 		comboBox_1.addItem("**Soins**");
 		comboBox_1.addItem("détartrage");

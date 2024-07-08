@@ -101,14 +101,14 @@ public class AjouterSoins extends JFrame {
 		Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         
-		JComboBox jourComboBox = new JComboBox();
+		final JComboBox jourComboBox = new JComboBox();
 		jourComboBox.setBounds(202, 186, 50, 22);
 		panel.add(jourComboBox);
 		for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         
-		JComboBox moisComboBox = new JComboBox();
+		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(301, 186, 100, 22);
 		panel.add(moisComboBox);
 		for (int i = currentYear - 2 ; i <= currentYear + 5; i++) {
@@ -117,7 +117,7 @@ public class AjouterSoins extends JFrame {
 
 		
 
-		JComboBox annneeComboBox = new JComboBox();
+		final JComboBox annneeComboBox = new JComboBox();
 		annneeComboBox.setBounds(251, 186, 50, 22);
 		panel.add(annneeComboBox);
 		

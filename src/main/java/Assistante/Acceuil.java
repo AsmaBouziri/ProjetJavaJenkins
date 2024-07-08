@@ -45,7 +45,7 @@ public class Acceuil extends JFrame {
         panel.add(panel_1_1);
         panel_1_1.setLayout(null);
         
-        JButton btnRechercherPatient = new JButton("Rechercher Patient");
+        final JButton btnRechercherPatient = new JButton("Rechercher Patient");
         btnRechercherPatient.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		RechercherPatient rechFrame = new RechercherPatient();

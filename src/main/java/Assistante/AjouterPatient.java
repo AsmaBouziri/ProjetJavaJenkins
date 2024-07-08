@@ -67,7 +67,7 @@ public class AjouterPatient extends JFrame  {
 		cinTextField.setColumns(10);
 		
  		
-		JRadioButton hommeRadioButton = new JRadioButton("Homme");
+		final JRadioButton hommeRadioButton = new JRadioButton("Homme");
 		hommeRadioButton.setBounds(227, 184, 109, 28);
 		panel.add(hommeRadioButton);
 		JRadioButton femmeRadioButton = new JRadioButton("Femme");
@@ -124,14 +124,14 @@ public class AjouterPatient extends JFrame  {
 		Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         
-		JComboBox jourComboBox = new JComboBox();
+		final JComboBox jourComboBox = new JComboBox();
 		jourComboBox.setBounds(237, 160, 50, 22);
 		panel.add(jourComboBox);
 		for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         
-		JComboBox moisComboBox = new JComboBox();
+		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(336, 160, 100, 22);
 		panel.add(moisComboBox);
 		for (int i = currentYear - 100; i <= currentYear; i++) {
@@ -140,7 +140,7 @@ public class AjouterPatient extends JFrame  {
 
 		
 
-		JComboBox annneeComboBox = new JComboBox();
+		final JComboBox annneeComboBox = new JComboBox();
 		annneeComboBox.setBounds(286, 160, 50, 22);
 		panel.add(annneeComboBox);
 		for (int i = 1; i <= 12; i++) {
@@ -161,7 +161,7 @@ public class AjouterPatient extends JFrame  {
             }
         }
 		
-		JButton EnregistrerBtn = new JButton("Enregistrer");
+		final JButton EnregistrerBtn = new JButton("Enregistrer");
 		EnregistrerBtn.setBackground(SystemColor.activeCaption);
 		EnregistrerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -209,7 +209,7 @@ public class AjouterPatient extends JFrame  {
 		panel.add(EnregistrerBtn);
 		
 		
-		JButton AnnulerBtn = new JButton("Annuler");
+		final JButton AnnulerBtn = new JButton("Annuler");
 		AnnulerBtn.setBackground(SystemColor.activeCaption);
 		AnnulerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -229,7 +229,7 @@ public class AjouterPatient extends JFrame  {
 		
 		
 		
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);

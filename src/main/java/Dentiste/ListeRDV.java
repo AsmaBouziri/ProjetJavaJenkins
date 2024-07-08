@@ -105,7 +105,7 @@ public class ListeRDV extends JFrame  {
             e1.printStackTrace();
         };
  
-        JComboBox comboBox = new JComboBox();
+        final JComboBox comboBox = new JComboBox();
         comboBox.addItem("détartrage");
         comboBox.addItem("plombage");
         comboBox.addItem("dévitalisation dentaire");

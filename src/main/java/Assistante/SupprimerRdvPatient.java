@@ -58,14 +58,14 @@ public class SupprimerRdvPatient extends JFrame  {
 		Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         
-		JComboBox jourComboBox = new JComboBox();
+		final JComboBox jourComboBox = new JComboBox();
 		jourComboBox.setBounds(191, 164, 50, 22);
 		panel.add(jourComboBox);
 		for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         
-		JComboBox moisComboBox = new JComboBox();
+		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(290, 164, 100, 22);
 		panel.add(moisComboBox);
 		for (int i = currentYear - 100; i <= currentYear; i++) {
@@ -74,21 +74,21 @@ public class SupprimerRdvPatient extends JFrame  {
 
 		
 
-		JComboBox annneeComboBox = new JComboBox();
+		final JComboBox annneeComboBox = new JComboBox();
 		annneeComboBox.setBounds(240, 164, 50, 22);
 		panel.add(annneeComboBox);
 		for (int i = 1; i <= 12; i++) {
 			annneeComboBox.addItem(i);
         }
 		
-		JComboBox 	HeurComboBox = new JComboBox();
+		final JComboBox 	HeurComboBox = new JComboBox();
 		HeurComboBox.setBounds(191, 197, 50, 22);
 		panel.add(HeurComboBox);
 		for (int i = 9; i <= 15; i++) {
 			HeurComboBox.addItem(i);
         }
 		
-		JComboBox MinComboBox = new JComboBox();
+		final JComboBox MinComboBox = new JComboBox();
 		MinComboBox.setBounds(271, 197, 50, 22);
 		panel.add(MinComboBox);
 		for (int i = 0; i <= 59; i=i+15) {

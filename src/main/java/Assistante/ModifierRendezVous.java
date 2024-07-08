@@ -77,14 +77,14 @@ public class ModifierRendezVous extends JFrame {
 		Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         
-		JComboBox jourAncComboBox = new JComboBox();
+		final JComboBox jourAncComboBox = new JComboBox();
 		jourAncComboBox.setBounds(47, 217, 50, 22);
 		panel.add(jourAncComboBox);
 		for (int i = 1; i <= 31; i++) {
 			jourAncComboBox.addItem(i);
         }
         
-		JComboBox moisAncComboBox = new JComboBox();
+		final JComboBox moisAncComboBox = new JComboBox();
 		moisAncComboBox.setBounds(142, 217, 67, 22);
 		panel.add(moisAncComboBox);
 		for (int i = currentYear - 2; i <= currentYear + 10; i++) {
@@ -92,21 +92,21 @@ public class ModifierRendezVous extends JFrame {
         }
 
 		
-		JComboBox annneeAncComboBox = new JComboBox();
+		final JComboBox annneeAncComboBox = new JComboBox();
 		annneeAncComboBox.setBounds(93, 217, 50, 22);;
 		panel.add(annneeAncComboBox);
 		for (int i = 1; i <= 12; i++) {
 			annneeAncComboBox.addItem(i);
         }
 		
-		JComboBox 	HeurAncComboBox = new JComboBox();
+		final JComboBox 	HeurAncComboBox = new JComboBox();
 		HeurAncComboBox.setBounds(47, 250, 50, 22);
 		panel.add(HeurAncComboBox);
 		for (int i = 9; i <= 15; i++) {
 			HeurAncComboBox.addItem(i);
         }
 		
-		JComboBox MinAncComboBox = new JComboBox();
+		final JComboBox MinAncComboBox = new JComboBox();
 		MinAncComboBox.setBounds(127, 250, 50, 22);
 		panel.add(MinAncComboBox);
 		for (int i = 0; i <= 59; i=i+15) {
@@ -130,14 +130,14 @@ public class ModifierRendezVous extends JFrame {
 		panel.add(lblNewLabel_3);
 
         
-		JComboBox jourComboBox = new JComboBox();
+		final JComboBox jourComboBox = new JComboBox();
 		jourComboBox.setBounds(242, 217, 50, 22);
 		panel.add(jourComboBox);
 		for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         
-		JComboBox moisComboBox = new JComboBox();
+		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(340, 217, 67, 22);
 		panel.add(moisComboBox);
 		for (int i = currentYear - 2; i <= currentYear+10; i++) {
@@ -146,21 +146,21 @@ public class ModifierRendezVous extends JFrame {
 
 		
 
-		JComboBox annneeComboBox = new JComboBox();
+		final JComboBox annneeComboBox = new JComboBox();
 		annneeComboBox.setBounds(292, 217, 50, 22);
 		panel.add(annneeComboBox);
 		for (int i = 1; i <= 12; i++) {
 			annneeComboBox.addItem(i);
         }
 		
-		JComboBox 	HeurComboBox = new JComboBox();
+		final JComboBox 	HeurComboBox = new JComboBox();
 		HeurComboBox.setBounds(242, 250, 50, 22);
 		panel.add(HeurComboBox);
 		for (int i = 9; i <= 15; i++) {
 			HeurComboBox.addItem(i);
         }
 		
-		JComboBox MinComboBox = new JComboBox();
+		final JComboBox MinComboBox = new JComboBox();
 		MinComboBox.setBounds(322, 250, 50, 22);
 		panel.add(MinComboBox);
 		for (int i = 0; i <= 59; i=i+15) {
