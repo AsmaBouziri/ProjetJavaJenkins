@@ -81,7 +81,7 @@ public class AjouterSoins extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("**Soins**");
         comboBox.addItem("détartrage");
         comboBox.addItem("plombage");
@@ -129,7 +129,7 @@ public class AjouterSoins extends JFrame {
         }
 
  
-        JButton EnregistrerButton = new JButton("Enregistrer");
+        final JButton EnregistrerButton = new JButton("Enregistrer");
 		EnregistrerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 String nom = NomText.getText();
@@ -153,12 +153,12 @@ public class AjouterSoins extends JFrame {
 		EnregistrerButton.setBounds(154, 251, 139, 40);
 		panel.add(EnregistrerButton);
 		
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(Accueil.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);
 		
-		JButton 	RetourBtn = new JButton("");
+		final JButton 	RetourBtn = new JButton("");
 		RetourBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListeRDV LRDV = new ListeRDV();

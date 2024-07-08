@@ -189,7 +189,7 @@ public class ModifierSoin extends JFrame {
 		panel.add(comboBox_1);
 		
 		
-		JButton EnregistrerButton = new JButton("Modifier");
+		final JButton EnregistrerButton = new JButton("Modifier");
 		EnregistrerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				String fileName = "Soins/"+ nomtextField.getText()+"_"+prenomtextField.getText()+".txt";
@@ -247,7 +247,7 @@ public class ModifierSoin extends JFrame {
 		panel.add(EnregistrerButton);
 		
 		
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);

@@ -111,7 +111,7 @@ public class RechercherPatient extends JFrame  {
 		
 		
 		
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(Accueil.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);

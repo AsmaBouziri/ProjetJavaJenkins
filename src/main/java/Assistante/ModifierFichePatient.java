@@ -91,7 +91,7 @@ public class ModifierFichePatient extends JFrame  {
 	            }});
 		
 		
-		JButton ModifierButton = new JButton("Ouvrir");
+		final JButton ModifierButton = new JButton("Ouvrir");
 		ModifierButton.setBackground(SystemColor.activeCaption);
 		ModifierButton.setBounds(61, 317, 147, 30);
 		panel.add(ModifierButton);

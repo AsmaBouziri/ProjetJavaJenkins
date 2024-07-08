@@ -50,7 +50,7 @@ public class Accueil extends JFrame {
         panel.add(panel_1_1_1);
         panel_1_1_1.setLayout(null);
         
-        JButton btnAjouterRdv = new JButton("Ajouter Soins");
+        final JButton btnAjouterRdv = new JButton("Ajouter Soins");
         btnAjouterRdv.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		AjouterSoins AjouterSFrame = new AjouterSoins();
@@ -78,7 +78,7 @@ public class Accueil extends JFrame {
         panel_1_2.add(lblNewLabel_2);
         lblNewLabel_2.setIcon(new ImageIcon(Accueil.class.getResource("/images/icons8-todo-list-48.png")));
         
-        JButton btnListePatients = new JButton("Liste Patients");
+        final JButton btnListePatients = new JButton("Liste Patients");
         btnListePatients.setBounds(-16, 138, 180, 104);
         panel_1_2.add(btnListePatients);
         btnListePatients.addActionListener(new ActionListener() {
@@ -100,7 +100,7 @@ public class Accueil extends JFrame {
         panel_1_3.add(lblNewLabel_4);
         lblNewLabel_4.setIcon(new ImageIcon(Accueil.class.getResource("/images/icons8-find-user-male-skin-type-7-48.png")));
         
-        JButton btnRechercherPatient = new JButton("Rechercher Patient");
+        final JButton btnRechercherPatient = new JButton("Rechercher Patient");
         btnRechercherPatient.setBounds(-11, 139, 180, 103);
         panel_1_3.add(btnRechercherPatient);
         btnRechercherPatient.addActionListener(new ActionListener() {
@@ -119,7 +119,7 @@ public class Accueil extends JFrame {
         panel.add(lblNewLabel_8);
         
         
-        JButton CButton = new JButton("");
+        final JButton CButton = new JButton("");
         CButton.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-logout-25.png")));
         CButton.setBounds(679, 11, 48, 41);
 		panel.add(CButton);

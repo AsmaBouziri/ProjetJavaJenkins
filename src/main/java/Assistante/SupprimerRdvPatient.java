@@ -112,7 +112,7 @@ public class SupprimerRdvPatient extends JFrame  {
 		panel.add(lblNewLabel_3);
 		
 
-		JButton EnregistrerButton = new JButton("Annuler");
+		final JButton EnregistrerButton = new JButton("Annuler");
 		EnregistrerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -211,7 +211,7 @@ public class SupprimerRdvPatient extends JFrame  {
 		
 		
 		
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);

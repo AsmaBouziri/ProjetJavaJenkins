@@ -123,7 +123,7 @@ public class ListeRDV extends JFrame  {
         panel_1.add(appointmentTable);
         appointmentTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         
-        JButton btnOuvrir = new JButton("Ouvrir");
+        final JButton btnOuvrir = new JButton("Ouvrir");
         btnOuvrir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		int selectedRow = appointmentTable.getSelectedRow();
@@ -140,7 +140,7 @@ public class ListeRDV extends JFrame  {
         btnOuvrir.setBounds(143, 276, 139, 28);
         panel.add(btnOuvrir);
         
-        JButton btnAjouter = new JButton("Ajouter");
+        final JButton btnAjouter = new JButton("Ajouter");
         btnAjouter.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
             	
@@ -153,7 +153,7 @@ public class ListeRDV extends JFrame  {
         btnAjouter.setBounds(252, 313, 139, 28);
         panel.add(btnAjouter);
         
-        JButton btnModifier = new JButton("Modifier");
+        final JButton btnModifier = new JButton("Modifier");
         btnModifier.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
             	
@@ -168,7 +168,7 @@ public class ListeRDV extends JFrame  {
         
         
         
-		JButton HomeButton = new JButton("");
+		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(Accueil.class.getResource("/images/home.png")));
 		HomeButton.setBounds(679, 11, 48, 41);
 		contentPane.add(HomeButton);
