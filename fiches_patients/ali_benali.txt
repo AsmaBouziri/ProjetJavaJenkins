@@ -1,0 +1,8 @@
+Nom : ali
+Prénom : benali
+Numéro CIN :12345678
+Date de naissance : 1/1923/1
+Sexe : Femme
+Adresse: oiuyt
+Profession : ety
+Télephone : 12345678

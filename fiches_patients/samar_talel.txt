@@ -1,0 +1,9 @@
+Nom : samar
+Prénom : talel
+Numéro CIN :07127131
+Date de naissance : 1/1930/5
+Sexe : Femme
+Adresse: Rades
+Profession : etudiant
+Télephone : 20202020
+Date RDV : 1/1/2021 , Heur : 9h0

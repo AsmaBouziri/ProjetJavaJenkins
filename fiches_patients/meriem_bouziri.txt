@@ -1,0 +1,10 @@
+Nom : meriem
+Prénom : bouziri
+Numéro CIN :12345678
+Date de naissance : 24/2004/1
+Sexe : Femme
+Adresse: Ben Arous
+Profession : Etudiant
+Télephone : 87654321
+Date RDV : 27/5/2023 , Heur : 12h30
+Date RDV : 17/6/2023 , Heur : 13h0

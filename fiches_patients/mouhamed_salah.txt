@@ -1,0 +1,9 @@
+Nom : mouhamed
+Prénom : salah
+Numéro CIN :12345678
+Date de naissance : 1/1923/1
+Sexe : Homme
+Adresse: Ariana
+Profession : etudiant
+Télephone : 12345678
+Date RDV : 4/1/2021 , Heur : 9h0
