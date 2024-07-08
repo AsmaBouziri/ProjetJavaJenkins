@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import main.java.Project.RechercherPatient;
+//import main.java.Project.RechercherPatient;
 
 public class ListePatients extends JFrame  {
 	  private JList<String> list;
