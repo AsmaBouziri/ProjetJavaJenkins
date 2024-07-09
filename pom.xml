@@ -18,7 +18,7 @@
         <!-- Configuration des profiles désactivée pour simplification -->
     </profiles>
 
-    <dependencies>
+    <!-- <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -35,7 +35,7 @@
                 <version>3.3.0</version>
             </plugin>
         </plugins>
-    </reporting>
+    </reporting> -->
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Assitante.SeConnecter</mainClass> <!-- Assurez-vous que c'est correct -->
+                            <mainClass>Assitante.SeConnecter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
