@@ -1,29 +1,35 @@
-package main.java.Assistante;
+package main.java;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 
-public class SupprimerRdvPatient extends JFrame  {
+public class AjouterRDV extends JFrame  {
+
 	private JPanel contentPane;
 	private JTextField nomtextField;
 	private JTextField prenomtextField;
 
 	public static void main(String[] args) {
-		SupprimerRdvPatient frame = new SupprimerRdvPatient();
+		AjouterRDV frame = new AjouterRDV();
 		frame.setVisible(true);
 		frame.setSize(800, 600);
-		
+
 	}
 
-	public SupprimerRdvPatient() {
+	public AjouterRDV() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 753, 419);setTitle("Annuler Rendez-Vous");
+		setBounds(100, 100, 753, 419);
+		setTitle("Ajouter Rendez-Vous");
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -37,7 +43,7 @@ public class SupprimerRdvPatient extends JFrame  {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel Titre = new JLabel("Annuler RDV");
+		JLabel Titre = new JLabel("Ajouter RDV");
 		Titre.setForeground(SystemColor.windowBorder);
 		Titre.setBackground(SystemColor.windowBorder);
 		Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -68,7 +74,7 @@ public class SupprimerRdvPatient extends JFrame  {
 		final JComboBox moisComboBox = new JComboBox();
 		moisComboBox.setBounds(290, 164, 100, 22);
 		panel.add(moisComboBox);
-		for (int i = currentYear - 100; i <= currentYear; i++) {
+		for (int i = currentYear - 2 ; i <= currentYear + 5; i++) {
 			moisComboBox.addItem(i);
         }
 
@@ -112,7 +118,7 @@ public class SupprimerRdvPatient extends JFrame  {
 		panel.add(lblNewLabel_3);
 		
 
-		final JButton EnregistrerButton = new JButton("Annuler");
+		final JButton EnregistrerButton = new JButton("Enregistrer");
 		EnregistrerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -121,95 +127,42 @@ public class SupprimerRdvPatient extends JFrame  {
 		panel.add(EnregistrerButton);
 		EnregistrerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String nom = nomtextField.getText();
-		        String prenom = prenomtextField.getText();
-		        String fileName ="RDVS.txt";
-		        int jour = (int) jourComboBox.getSelectedItem();
+	            String prenom = prenomtextField.getText();
+	            int jour = (int) jourComboBox.getSelectedItem();
 	            int mois = (int) moisComboBox.getSelectedItem();
 	            int annee= (int) annneeComboBox.getSelectedItem();
 	            int heur = (int) HeurComboBox.getSelectedItem();
 	            int min= (int) MinComboBox.getSelectedItem();
-			
+	            String nomFichier = nom + "_" + prenom + ".txt";
 	            
-	            //Pour supprimer de RDV.txt
-				try {
-				    FileReader reader = new FileReader(fileName);
-				    FileWriter writer = new FileWriter("temp.txt");
-				    BufferedReader bufferedReader = new BufferedReader(reader);
-				    BufferedWriter bufferedWriter = new BufferedWriter(writer);
-				    String line;
-				    
-				    while ((line = bufferedReader.readLine()) != null) {
-				    	System.out.println("Date RDV : "+ annee +"/" + jour  +"/"+mois + " , " + "Heur : "+ heur + "h" + min);
-				    	System.out.println("nom :"+nom);
-				    	System.out.println("prenom :"+prenom);
-				    	System.out.println("annee :"+annee);
-				    	System.out.println("jour :"+jour);
-				    	System.out.println("mois :"+mois);
-				        if (line.contains(nom) && line.contains(prenom)&& line.contains("Date RDV : "+ jour +"/" +annee   +"/"+ mois+ " , " + "Heur : "+ heur + "h" + min) )
-				        {
-				            continue;
-				        }
-				        bufferedWriter.write(line);
-				        bufferedWriter.newLine();
-				    }
-				    bufferedReader.close();
-				    bufferedWriter.close();
-				    
-				    File oldFile = new File(fileName);
-				    oldFile.delete();
+	            if (nom.isEmpty() || prenom.isEmpty()) {
+	                JOptionPane.showMessageDialog(EnregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
+	             
+	            } else {
+	                try (FileWriter writer = new FileWriter("RDVS.txt", true) ) {
+	                    writer.write("Nom : " +nom + " , " + "Prénom : "+ prenom +" , " + "Date RDV : "+ jour +"/" + annee  +"/"+ mois
+	                            + " , " + "Heur : "+ heur + "h" + min + "\n" );
+	                    try (FileWriter fw = new FileWriter("fiches_patients/"+nomFichier, true))
+	                    {
+	                    	fw.write("Date RDV : "+ jour +"/" + annee  +"/"+ mois + " , " + "Heur : "+ heur + "h" + min + "\n" );
+		                    JOptionPane.showMessageDialog(EnregistrerButton, "La fiche a été enregistrée avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+	                    } catch (IOException ex) {
+		                    JOptionPane.showMessageDialog(EnregistrerButton, "Impossible d'enregistrer la fiche.", "Erreur", JOptionPane.ERROR_MESSAGE);
+		                }
 
-				    File newFile = new File("temp.txt");
-				    newFile.renameTo(oldFile);
-				
+	                    
+	                } catch (IOException ex) {
+	                    JOptionPane.showMessageDialog(EnregistrerButton, "Impossible d'enregistrer la fiche.", "Erreur", JOptionPane.ERROR_MESSAGE);
+	                }
 
-				    // Affichez un message de confirmation de la suppression de la ligne contenant "asma"
-				    JOptionPane.showMessageDialog(EnregistrerButton, "supprimée avec succès!");
-				} catch (IOException er) {
-				    // Gérer les erreurs de lecture/écriture ici
-				    er.printStackTrace();
-				}
-				
-				
-				//Pour supprimer de nom_prenom.txt
-				 String filee ="fiches_patients/"+nom + "_" + prenom + ".txt";
-				try {
-				    FileReader reader1 = new FileReader(filee);
-				    FileWriter writer1 = new FileWriter("temp1.txt");
-				    BufferedReader bufferedReader1 = new BufferedReader(reader1);
-				    BufferedWriter bufferedWriter1 = new BufferedWriter(writer1);
-				    String line;
-				    
-				    while ((line = bufferedReader1.readLine()) != null) {
-				        if (line.contains("Date RDV : "+ jour +"/" +annee   +"/"+ mois+ " , " + "Heur : "+ heur + "h" + min) )
-				        {
-				            continue;
-				        }
-				        bufferedWriter1.write(line);
-				        bufferedWriter1.newLine();
-				    }
-				    bufferedReader1.close();
-				    bufferedWriter1.close();
-				    
-				    File oldFile = new File(filee);
-				    oldFile.delete();
-
-				    File newFile = new File("temp1.txt");
-				    newFile.renameTo(oldFile);
-				
-
-				    // Affichez un message de confirmation de la suppression de la ligne contenant "asma"
-				    JOptionPane.showMessageDialog(EnregistrerButton, "supprimée avec succès!");
-				} catch (IOException er) {
-				    // Gérer les erreurs de lecture/écriture ici
-				    er.printStackTrace();
-				}
-				
-				
+	                // Effacement des champs de saisie
+	                nomtextField.setText("");
+	                prenomtextField.setText("");
+	
+	            }
+	            
 			}});
-		
-		
 		
 		final JButton HomeButton = new JButton("");
 		HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("/images/home.png")));

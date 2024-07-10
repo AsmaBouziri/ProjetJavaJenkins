@@ -1,4 +1,4 @@
-package main.java.Assistante;
+package main.java;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,4 +1,4 @@
-package main.java.Assistante;
+package main.java;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
