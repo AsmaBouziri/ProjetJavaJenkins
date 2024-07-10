@@ -61,6 +61,12 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-util</artifactId>
+                <version>...</version>
+        </dependency>
     </dependencies>
 
     <reporting>
@@ -145,11 +151,7 @@
                 <version>2.2</version>
             </plugin> -->
 
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-util</artifactId>
-                <version>...</version>
-            </dependency>
+
 
              <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
