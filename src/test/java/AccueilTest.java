@@ -9,7 +9,6 @@ class AccueilTest {
 
 	@Test
 	void contextLoads() {
-		
 		assertTrue(true); 
 	}
 
