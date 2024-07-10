@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import main.java.Dentiste.Accueil;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
@@ -114,8 +114,6 @@ public class SeConnecter extends JFrame{
 		                        Acceuil dentiste = new Acceuil();
 		                        dentiste.setVisible(true);
 		                    } else if (username.equals("dentiste")) {
-		                        Accueil assistant = new Accueil();
-		                        assistant.setVisible(true);
 		                    }
 		                    else {
 		                    	JOptionPane.showMessageDialog(btnNewButton, "Non connu !");
