@@ -36,7 +36,7 @@ public class Acceuil extends JFrame {
         panel_1.add(btnNewButton);
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-add-user-group-woman-man-skin-type-7-48.png")));
+        lblNewLabel.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-add-user-group-woman-man-skin-type-7-48.png")));
         lblNewLabel.setBounds(40, 0, 108, 148);
         panel_1.add(lblNewLabel);
         
@@ -58,7 +58,7 @@ public class Acceuil extends JFrame {
         panel_1_1.add(btnRechercherPatient);
         
         JLabel lblNewLabel_4 = new JLabel("");
-        lblNewLabel_4.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-find-user-male-skin-type-7-48.png")));
+        lblNewLabel_4.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-find-user-male-skin-type-7-48.png")));
         lblNewLabel_4.setBounds(48, 0, 80, 142);
         panel_1_1.add(lblNewLabel_4);
         
@@ -80,7 +80,7 @@ public class Acceuil extends JFrame {
         panel_1_1_1.add(btnAjouterRdv);
         
         JLabel lblNewLabel_5 = new JLabel("");
-        lblNewLabel_5.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-add-receipt-48.png")));
+        lblNewLabel_5.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-add-receipt-48.png")));
         lblNewLabel_5.setBounds(39, 0, 81, 141);
         panel_1_1_1.add(lblNewLabel_5);
         
@@ -102,7 +102,7 @@ public class Acceuil extends JFrame {
         panel_1_2.add(btnModifierPatient);
         
         JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-edit-profile-skin-type-7-48.png")));
+        lblNewLabel_1.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-edit-profile-skin-type-7-48.png")));
         lblNewLabel_1.setBounds(52, 0, 80, 141);
         panel_1_2.add(lblNewLabel_1);
         
@@ -124,7 +124,7 @@ public class Acceuil extends JFrame {
         panel_1_1_2.add(btnModifierRdv);
         
         JLabel lblNewLabel_6 = new JLabel("");
-        lblNewLabel_6.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-edit-property-64.png")));
+        lblNewLabel_6.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-edit-property-64.png")));
         lblNewLabel_6.setBounds(40, 0, 87, 142);
         panel_1_1_2.add(lblNewLabel_6);
         
@@ -146,7 +146,7 @@ public class Acceuil extends JFrame {
         panel_1_3.add(btnListePatients);
         
         JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-todo-list-48.png")));
+        lblNewLabel_2.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-todo-list-48.png")));
         lblNewLabel_2.setBounds(53, 0, 82, 140);
         panel_1_3.add(lblNewLabel_2);
         
@@ -168,7 +168,7 @@ public class Acceuil extends JFrame {
         panel_1_1_2_1.add(btnAnnulerRdv);
         
         JLabel lblNewLabel_7 = new JLabel("");
-        lblNewLabel_7.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-delete-document-48.png")));
+        lblNewLabel_7.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-delete-document-48.png")));
         lblNewLabel_7.setBounds(54, 0, 75, 142);
         panel_1_1_2_1.add(lblNewLabel_7);
         
@@ -190,7 +190,7 @@ public class Acceuil extends JFrame {
         panel_1_3_1.add(btnSupprimerPatient);
         
         JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-unfriend-skin-type-7-48.png")));
+        lblNewLabel_3.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-unfriend-skin-type-7-48.png")));
         lblNewLabel_3.setBounds(53, 0, 82, 141);
         panel_1_3_1.add(lblNewLabel_3);
         
@@ -203,7 +203,7 @@ public class Acceuil extends JFrame {
         
         
         JButton CButton = new JButton("");
-        CButton.setIcon(new ImageIcon(Acceuil.class.getResource("/images/icons8-logout-25.png")));
+        CButton.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-logout-25.png")));
         CButton.setBounds(679, 11, 48, 41);
 		panel.add(CButton);
 		CButton.addActionListener(new ActionListener() {
