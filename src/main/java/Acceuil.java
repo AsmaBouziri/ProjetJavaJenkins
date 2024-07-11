@@ -36,6 +36,7 @@ public class Acceuil extends JFrame {
         panel_1.add(btnNewButton);
         
         JLabel lblNewLabel = new JLabel("");
+        
         lblNewLabel.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-add-user-group-woman-man-skin-type-7-48.png")));
         lblNewLabel.setBounds(40, 0, 108, 148);
         panel_1.add(lblNewLabel);
