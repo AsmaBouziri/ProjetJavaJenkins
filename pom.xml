@@ -62,6 +62,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-java-driver</artifactId>
+            <version>3.11.2</version>
+        </dependency>
+
 
     </dependencies>
 

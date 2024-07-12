@@ -1,6 +1,8 @@
 package main.java;
 
 import java.awt.Color;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,14 @@ public class SeConnecter extends JFrame{
 	private JTextField textField;
 
 	public static void main(String[] args) {
+		
+		 String uri = "mongodb://localhost:27017"; 
+
+	        try (MongoClient mongoClient = MongoClients.create(uri)) {
+	            // Use the MongoClient to interact with MongoDB
+	            System.out.println("Connected to MongoDB!");
+	           
+	        }
 		SeConnecter frame = new SeConnecter();
 		frame.setVisible(true);
 		frame.setSize(800, 450);
