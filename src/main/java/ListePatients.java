@@ -1,102 +1,77 @@
 package main.java;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.table.DefaultTableModel;
+import org.bson.Document;
+import com.mongodb.client.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-//import main.java.Project.RechercherPatient;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ListePatients extends JFrame  {
-	  private JList<String> list;
-		private JPanel contentPane;
-		private DefaultListModel<String> listModel;
-		  
-		public static void main(String[] args) {
-			ListePatients frame = new ListePatients();
-			frame.setVisible(true);
-			frame.setSize(800, 600);
-			
-		}
-		public ListePatients() {
-			setBackground(new Color(255, 255, 255));
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 753, 419);
-			setTitle("Liste des Patients");
-			contentPane = new JPanel();
-			contentPane.setBackground(SystemColor.activeCaption);
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+public class ListePatients extends JFrame {
+    private JTable table;
+    private DefaultTableModel model;
+    private MongoDatabase database;
 
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
-			
+    public static void main(String[] args) {
+        ListePatients frame = new ListePatients();
+        frame.setVisible(true);
+        frame.setSize(800, 600);
+    }
 
-			JPanel panel = new JPanel();
-			panel.setBackground(new Color(240, 240, 240));
-			panel.setBounds(133, 11, 431, 358);
-			contentPane.add(panel);
-			panel.setLayout(null);
-			
-			JLabel lblNewLabel_7 = new JLabel("Liste Des Patients");
-			lblNewLabel_7.setForeground(SystemColor.windowBorder);
-			lblNewLabel_7.setBackground(SystemColor.windowBorder);
-			lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 25));
-			lblNewLabel_7.setBounds(102, 11, 319, 28);
-			panel.add(lblNewLabel_7);
-		
-			 
-	        listModel = new DefaultListModel<String>();
-	        File folder = new File("fiches_patients/");
-	        File[] listOfFiles = folder.listFiles();
-	        for (File file : listOfFiles) {
-	            if (file.isFile()) {
-	                listModel.addElement(file.getName());
-	            }
-	        }
-	        
-	        list = new JList<String>(listModel);
-	        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	        JScrollPane listScrollPane = new JScrollPane(list);
-	        listScrollPane.setLocation(18, 70);
-	        listScrollPane.setSize(397, 230);
-	        panel.add(listScrollPane, BorderLayout.CENTER);
-			
-			final JButton btnNewButton = new JButton("Afficher Détails");
-			btnNewButton.setBounds(147, 307, 139, 40);
-			panel.add(btnNewButton);
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String selectedFile = (String) list.getSelectedValue();
-		            if (selectedFile != null) {
-		                try {
-		                    BufferedReader reader = new BufferedReader(new FileReader("fiches_patients/" + selectedFile));
-		                    String line;
-		                    String content = "";
-		                    while ((line = reader.readLine()) != null) {
-		                        content += line + "\n";
-		                    }
-		                    JOptionPane.showMessageDialog(btnNewButton, content, "Contenu du fichier " + selectedFile, JOptionPane.PLAIN_MESSAGE);
-		                } catch (IOException ex) {
-		                    ex.printStackTrace();
-		                    JOptionPane.showMessageDialog(btnNewButton, "Erreur lors de la lecture du fichier " + selectedFile, "Erreur", JOptionPane.ERROR_MESSAGE);
-		                }
-		            } else {
-		                JOptionPane.showMessageDialog(btnNewButton, "Aucun fichier sélectionné", "Erreur", JOptionPane.ERROR_MESSAGE);
-		            }
-		        }
-			});
-			
-			final JButton HomeButton = new JButton("");
-			HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-			HomeButton.setBounds(679, 11, 48, 41);
-			contentPane.add(HomeButton);
-			HomeButton.addActionListener(new ActionListener() {
-	        	public void actionPerformed(ActionEvent e) {
-	        		Acceuil acc = new Acceuil();
-	        		setVisible(false);
-	        		acc.setVisible(true);
-	        	}
-	        });
-		}
-	}
+    public ListePatients() {
+        this.database = MongoDBUtil.getDatabase("CabinetDent");
+        MongoCollection<Document> collection = database.getCollection("Patient");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Liste des Patients");
+
+        JPanel contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout());
+
+        model = new DefaultTableModel();
+        model.addColumn("Nom");
+        model.addColumn("Prénom");
+        model.addColumn("CIN");
+        model.addColumn("Adresse");
+        model.addColumn("Profession");
+        model.addColumn("Téléphone");
+
+        FindIterable<Document> patients = collection.find();
+        for (Document patient : patients) {
+            String nom = patient.getString("nom");
+            String prenom = patient.getString("prenom");
+            String cin = patient.getString("cin");
+            String adresse = patient.getString("adresse");
+            String profession = patient.getString("profession");
+            String tel = patient.getString("tel");
+
+            model.addRow(new Object[]{nom, prenom, cin, adresse, profession, tel});
+        }
+
+        table = new JTable(model);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane scrollPane = new JScrollPane(table);
+        contentPane.add(scrollPane, BorderLayout.CENTER);
+
+        // Création d'un JPanel pour contenir le bouton Home avec un FlowLayout aligné à droite
+        JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelButtons.setBackground(SystemColor.activeCaption);
+
+        JButton HomeButton = new JButton("");
+        HomeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
+        panelButtons.add(HomeButton);
+        HomeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Acceuil acc = new Acceuil();
+                setVisible(false);
+                acc.setVisible(true);
+            }
+        });
+
+        contentPane.add(panelButtons, BorderLayout.NORTH);
+    }
+}

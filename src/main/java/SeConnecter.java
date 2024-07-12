@@ -1,8 +1,6 @@
 package main.java;
 
 import java.awt.Color;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -21,28 +19,25 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.bson.Document;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+import main.java.Acceuil;
+
+
 
 
 public class SeConnecter extends JFrame{
 	private JPanel contentPane;
 	private JTextField txtEmail;
 	private JTextField textField;
+	private MongoDatabase database;
+
 
 	public static void main(String[] args) {
 		
-		 String uri = "mongodb://localhost:27017"; 
-
-	        try (MongoClient mongoClient = MongoClients.create(uri)) {
-	            // Use the MongoClient to interact with MongoDB
-	            System.out.println("Connected to MongoDB!");
-	           
-	        }
 		SeConnecter frame = new SeConnecter();
 		frame.setVisible(true);
 		frame.setSize(800, 450);
@@ -51,6 +46,12 @@ public class SeConnecter extends JFrame{
 	}
 
 	public SeConnecter() {
+		this.database = MongoDBUtil.getDatabase("CabinetDent");
+		MongoCollection<Document> collection = database.getCollection("LogIn");
+		
+        Document filter = new Document("login", collection);
+		
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 753, 419);
@@ -105,46 +106,40 @@ public class SeConnecter extends JFrame{
 		
 		final JButton btnNewButton = new JButton("Se Connecter");
 		btnNewButton.setBackground(SystemColor.activeCaption);
+
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String email = txtEmail.getText();
+		    public void actionPerformed(ActionEvent e) {
+		        String email = txtEmail.getText();
 		        String mdp = textField.getText();
-		        try (BufferedReader br = new BufferedReader(new FileReader("login.txt"))) {
-		            String line;
-		            while ((line = br.readLine()) != null) {
-		                String[] parts = line.split(":");
-		                String username = parts[0];
-		                String password = parts[1];
-		                // Check if the username and password match
-		                if (username.equals(email) && password.equals(mdp)) {
-		                    JOptionPane.showMessageDialog(btnNewButton, "Connexion réussie!", "Succès", JOptionPane.INFORMATION_MESSAGE);
-		                    
-		                    // Redirect based on the username
-		                    if (username.equals("assistant")) {
-		                        Acceuil dentiste = new Acceuil();
-		                        dentiste.setVisible(true);
-		                    } else if (username.equals("dentiste")) {
-		                    }
-		                    else {
-		                    	JOptionPane.showMessageDialog(btnNewButton, "Non connu !");
-		                    }
-		                    
-		                    dispose(); // Close the current login window
-		                    return;
-		                }
-		            }
-		            JOptionPane.showMessageDialog(btnNewButton, "Nom d'utilisateur ou mot de passe incorrect");
-		        } catch (IOException e1) {
-		            e1.printStackTrace();
-		        }
+		       System.out.print(email);
+
+		        // Créer un filtre pour le nom d'utilisateur et le mot de passe
+		        Document filter = new Document("user", email).append("pwd", mdp);
+		        // Rechercher le document correspondant au filtre
+		        Document found = collection.find(filter).first();
+
+		        if (found != null) {
+		            JOptionPane.showMessageDialog(btnNewButton, "Connexion réussie!", "Succès", JOptionPane.INFORMATION_MESSAGE);
+
+		            // Redirect based on the username
+		            if (email.equals("assistante")) {
+		                Acceuil dentiste = new Acceuil();
+		               // dentiste.setVisible(true);
+		            } else if (mdp.equals("dentiste")) {
+
+		            } 
+		            dispose(); // Close the current login window
+		            return;
+		        }else {
+	                JOptionPane.showMessageDialog(btnNewButton, "Nom d'utilisateur ou mot de passe incorrect");
+	            }
+
 		    }
 		});
+	
 		btnNewButton.setBounds(412, 232, 119, 38);
 		panel.add(btnNewButton);
-		
-		
-		
+	
 	}
-
 
 }

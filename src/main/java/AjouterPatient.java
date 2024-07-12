@@ -3,6 +3,11 @@ package main.java;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import org.bson.Document;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -17,6 +22,7 @@ public class AjouterPatient extends JFrame  {
     private JButton enregistrerButton, annulerButton;
     private JList<String> list;
     private DefaultListModel<String> listModel;
+	private MongoDatabase database;
     
 	public static void main(String[] args) {
 		AjouterPatient frame = new AjouterPatient();
@@ -26,6 +32,9 @@ public class AjouterPatient extends JFrame  {
 	}
 
 	public AjouterPatient() {
+		this.database = MongoDBUtil.getDatabase("CabinetDent");
+		MongoCollection<Document> collection = database.getCollection("Patient");
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 753, 419);
@@ -186,15 +195,18 @@ public class AjouterPatient extends JFrame  {
 	                JOptionPane.showMessageDialog(EnregistrerBtn, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
 	            } else {
 	                // Enregistrement des données dans un fichier texte
-	            	String filename = nom + "_" + prenom + ".txt";
-	                try (FileWriter writer = new FileWriter("fiches_patients/" +filename, true)) {
-	                    writer.write("Nom : " +nom + "\n" + "Prénom : "+ prenom + "\n" + "Numéro CIN :" + cin + "\n" + "Date de naissance : "+ jourNaissance +"/" + moisNaissance  +"/"+ anneeNaissance
-	                            + "\n" + "Sexe : "+ sexe + "\n" + "Adresse: "+ adresse + "\n" + "Profession : "+ profession + "\n" + "Télephone : "+telephone + "\n");
-	                    JOptionPane.showMessageDialog(EnregistrerBtn, "La fiche a été enregistrée avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
-	                } catch (IOException ex) {
-	                    JOptionPane.showMessageDialog(EnregistrerBtn, "Impossible d'enregistrer la fiche.", "Erreur", JOptionPane.ERROR_MESSAGE);
-	                }
+	            	String DataNaiss = jourNaissance +"/" + moisNaissance  +"/"+ anneeNaissance;
+	            	
+	            	Document document = new Document("nom", nom)
+	                        .append("prenom", prenom)
+	                        .append("cin", cin)
+	            			.append("sexe", sexe)
+	            			.append("adresse", adresse)
+	            			.append("telephone", telephone)
+	            			.append("dataNaiss", DataNaiss)
+	            			.append("profession", profession);
 
+	            	collection.insertOne(document);
 	                // Effacement des champs de saisie
 	                nomTextField.setText("");
 	                prenomTextField.setText("");
