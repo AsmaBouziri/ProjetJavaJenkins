@@ -84,18 +84,18 @@ public class AjouterRDV extends JFrame {
             anneeComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> HeurComboBox = new JComboBox<>();
-        HeurComboBox.setBounds(191, 197, 50, 22);
-        panel.add(HeurComboBox);
+        final JComboBox<Integer> heurComboBox = new JComboBox<>();
+        heurComboBox.setBounds(191, 197, 50, 22);
+        panel.add(heurComboBox);
         for (int i = 9; i <= 15; i++) {
-            HeurComboBox.addItem(i);
+            heurComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> MinComboBox = new JComboBox<>();
-        MinComboBox.setBounds(271, 197, 50, 22);
-        panel.add(MinComboBox);
+        final JComboBox<Integer> minComboBox = new JComboBox<>();
+        minComboBox.setBounds(271, 197, 50, 22);
+        panel.add(minComboBox);
         for (int i = 0; i <= 59; i = i + 15) {
-            MinComboBox.addItem(i);
+            minComboBox.addItem(i);
         }
 
         JLabel lblNewLabel = new JLabel("Nom");
@@ -124,8 +124,8 @@ public class AjouterRDV extends JFrame {
                 int jour = (int) jourComboBox.getSelectedItem();
                 int mois = (int) moisComboBox.getSelectedItem();
                 int annee = (int) anneeComboBox.getSelectedItem();
-                int heure = (int) HeurComboBox.getSelectedItem();
-                int minute = (int) MinComboBox.getSelectedItem();
+                int heure = (int) heurComboBox.getSelectedItem();
+                int minute = (int) minComboBox.getSelectedItem();
 
                 if (nom.isEmpty() || prenom.isEmpty()) {
                     JOptionPane.showMessageDialog(EnregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);

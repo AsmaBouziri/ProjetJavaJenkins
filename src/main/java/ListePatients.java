@@ -26,7 +26,7 @@ public class ListePatients extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Liste des Patients");
 
-        JPanel contentPane = new JPanel();
+        var contentPane = new JPanel();
         contentPane.setBackground(SystemColor.activeCaption);
         contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         setContentPane(contentPane);
@@ -42,19 +42,19 @@ public class ListePatients extends JFrame {
 
         FindIterable<Document> patients = collection.find();
         for (Document patient : patients) {
-            String nom = patient.getString("nom");
-            String prenom = patient.getString("prenom");
-            String cin = patient.getString("cin");
-            String adresse = patient.getString("adresse");
-            String profession = patient.getString("profession");
-            String tel = patient.getString("tel");
+            var nom = patient.getString("nom");
+            var prenom = patient.getString("prenom");
+            var cin = patient.getString("cin");
+            var adresse = patient.getString("adresse");
+            var profession = patient.getString("profession");
+            var tel = patient.getString("tel");
 
             model.addRow(new Object[]{nom, prenom, cin, adresse, profession, tel});
         }
 
         table = new JTable(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        JScrollPane scrollPane = new JScrollPane(table);
+        var scrollPane = new JScrollPane(table);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         // Création d'un JPanel pour contenir le bouton Home avec un FlowLayout aligné à droite

@@ -3,8 +3,6 @@ package main.java;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import org.bson.Document;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import java.awt.*;
@@ -116,7 +114,7 @@ public class AjouterPatient extends JFrame {
         gbc.gridy = 8;
         panel.add(new JLabel("Date de Naissance :"), gbc);
 
-        JPanel datePanel = new JPanel();
+        var datePanel = new JPanel();
         JComboBox<Integer> jourComboBox = new JComboBox<>();
         JComboBox<Integer> moisComboBox = new JComboBox<>();
         JComboBox<Integer> anneeComboBox = new JComboBox<>();
@@ -150,7 +148,7 @@ public class AjouterPatient extends JFrame {
 
         contentPane.add(panel, new GridBagConstraints());
 
-        JButton homeButton = new JButton("");
+        var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
         homeButton.setBounds(679, 11, 48, 41);
         contentPane.add(homeButton);

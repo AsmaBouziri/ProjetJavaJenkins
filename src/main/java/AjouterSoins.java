@@ -31,14 +31,14 @@ import com.mongodb.client.model.Updates;
 
 public class AjouterSoins extends JFrame {
     private JPanel contentPane;
-    private JTextField NomText;
-    private JTextField PrenomText;
+    private JTextField nomText;
+    private JTextField prenomText;
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> patientsCollection;
 
     public static void main(String[] args) {
-        AjouterSoins frame = new AjouterSoins();
+        var frame = new AjouterSoins();
         frame.setVisible(true);
     }
 
@@ -58,21 +58,21 @@ public class AjouterSoins extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new GridBagLayout());
 
-        JPanel panel = new JPanel();
+        var panel = new JPanel();
         panel.setBackground(new Color(240, 240, 240));
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        var gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        JLabel Titre = new JLabel("Ajouter Soins");
-        Titre.setForeground(SystemColor.windowBorder);
-        Titre.setBackground(SystemColor.windowBorder);
-        Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
-        panel.add(Titre, gbc);
+        JLabel titre = new JLabel("Ajouter Soins");
+        titre.setForeground(SystemColor.windowBorder);
+        titre.setBackground(SystemColor.windowBorder);
+        titre.setFont(new Font("Tahoma", Font.BOLD, 25));
+        panel.add(titre, gbc);
 
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -83,25 +83,25 @@ public class AjouterSoins extends JFrame {
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
-        NomText = new JTextField(20);
-        panel.add(NomText, gbc);
+        nomText = new JTextField(20);
+        panel.add(nomText, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel_1 = new JLabel("Prénom : ");
-        panel.add(lblNewLabel_1, gbc);
+        JLabel lblNewLabel1 = new JLabel("Prénom : ");
+        panel.add(lblNewLabel1, gbc);
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
-        PrenomText = new JTextField(20);
-        panel.add(PrenomText, gbc);
+        prenomText = new JTextField(20);
+        panel.add(prenomText, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel_2 = new JLabel("Soins Réalisé :");
-        panel.add(lblNewLabel_2, gbc);
+        JLabel lblNewLabel2 = new JLabel("Soins Réalisé :");
+        panel.add(lblNewLabel2, gbc);
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
@@ -118,22 +118,22 @@ public class AjouterSoins extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel_3 = new JLabel("Date soin :");
-        panel.add(lblNewLabel_3, gbc);
+        JLabel lblNewLabel3 = new JLabel("Date soin :");
+        panel.add(lblNewLabel3, gbc);
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
-        JPanel datePanel = new JPanel();
+        var datePanel = new JPanel();
         datePanel.add(new JLabel("Jour"));
         JComboBox<Integer> jourComboBox = new JComboBox<>();
-        for (int i = 1; i <= 31; i++) {
+        for (var i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         datePanel.add(jourComboBox);
 
         datePanel.add(new JLabel("Mois"));
         JComboBox<Integer> moisComboBox = new JComboBox<>();
-        for (int i = 1; i <= 12; i++) {
+        for (var i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
         datePanel.add(moisComboBox);
@@ -152,11 +152,11 @@ public class AjouterSoins extends JFrame {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        JButton EnregistrerButton = new JButton("Enregistrer");
-        EnregistrerButton.addActionListener(new ActionListener() {
+        JButton enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String nom = NomText.getText();
-                String prenom = PrenomText.getText();
+                String nom = nomText.getText();
+                String prenom = prenomText.getText();
                 String soin = (String) comboBox.getSelectedItem();
                 int jour = (int) jourComboBox.getSelectedItem();
                 int mois = (int) moisComboBox.getSelectedItem();
@@ -164,7 +164,7 @@ public class AjouterSoins extends JFrame {
                 String dateSoin = jour + "/" + mois + "/" + annee;
 
                 // Création d'un document de soin
-                Document soinDocument = new Document("soin", soin)
+                var soinDocument = new Document("soin", soin)
                         .append("date", dateSoin);
 
                 // Recherche du patient par nom et prénom
@@ -183,23 +183,23 @@ public class AjouterSoins extends JFrame {
                     patientsCollection.updateOne(Filters.eq("nom", nom), Updates.push("soins", soinDocument));
                 }
 
-                JOptionPane.showMessageDialog(EnregistrerButton, "Soin ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(enregistrerButton, "Soin ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        panel.add(EnregistrerButton, gbc);
+        panel.add(enregistrerButton, gbc);
 
         contentPane.add(panel, new GridBagConstraints());
 
-        final JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
+        final JButton homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
         GridBagConstraints gbc_home = new GridBagConstraints();
         gbc_home.gridx = 2;
         gbc_home.gridy = 0;
         gbc_home.anchor = GridBagConstraints.NORTHEAST;
-        contentPane.add(HomeButton, gbc_home);
-        HomeButton.addActionListener(new ActionListener() {
+        contentPane.add(homeButton, gbc_home);
+        homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
+                var acc = new Acceuil();
                 setVisible(false);
                 acc.setVisible(true);
             }
