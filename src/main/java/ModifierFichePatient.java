@@ -1,141 +1,272 @@
 package main.java;
 
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import org.bson.Document;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
-public class ModifierFichePatient extends JFrame  {
-	private JPanel contentPane;
-	private JTextField fieldNom;
-	private JTextField fieldPrenom;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Calendar;
 
-	public static void main(String[] args) {
-		ModifierFichePatient frame = new ModifierFichePatient();
-		frame.setVisible(true);
-		frame.setSize(800, 600);
-		
-	}
+public class ModifierFichePatient extends JFrame {
+    private JPanel contentPane;
+    private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
+    private JRadioButton hommeRadioButton, femmeRadioButton;
+    private JButton rechercherButton, modifierButton, annulerButton;
+    private JComboBox<Integer> jourComboBox, moisComboBox, anneeComboBox;
+    private MongoDatabase database;
+    private MongoCollection<Document> collection;
 
-	public ModifierFichePatient() {
-		setBackground(new Color(255, 255, 255));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 753, 419);
-		setTitle("Modifier fiche patient");
-		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+    public static void main(String[] args) {
+        ModifierFichePatient frame = new ModifierFichePatient();
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(133, 11, 431, 358);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel_7 = new JLabel("Modifier Patient");
-		lblNewLabel_7.setForeground(SystemColor.windowBorder);
-		lblNewLabel_7.setBackground(SystemColor.windowBorder);
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblNewLabel_7.setBounds(112, 11, 235, 28);
-		panel.add(lblNewLabel_7);
-		
-		fieldNom = new JTextField();
-		fieldNom.setBounds(223, 50, 185, 35);
-		panel.add(fieldNom);
-		fieldNom.setColumns(10);
-		
-		fieldPrenom = new JTextField();
-		fieldPrenom.setColumns(10);
-		fieldPrenom.setBounds(223, 96, 185, 35);
-		panel.add(fieldPrenom);
-		
-		JLabel lblNewLabel = new JLabel("Nom :");
-		lblNewLabel.setBounds(52, 60, 147, 14);
-		panel.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Prénom :");
-		lblNewLabel_1.setBounds(52, 106, 147, 14);
-		panel.add(lblNewLabel_1);
-		
-		final JTextArea textArea = new JTextArea();
-		textArea.setBounds(33, 146, 371, 160);
-		panel.add(textArea);
-		
-		final JButton btnNewButton = new JButton("Modifier");
-		btnNewButton.setBackground(SystemColor.activeCaption);
-		btnNewButton.setBounds(239, 317, 147, 30);
-		panel.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-	            String nom = fieldNom.getText();
-	            String prenom = fieldPrenom.getText();
-	            String nomFichier = nom + "_" + prenom + ".txt";
-	            try {
-	                BufferedWriter writer = new BufferedWriter(new FileWriter("fiches_patients/" +nomFichier));
-	                textArea.write(writer);
-	                writer.close();
-	                
-	                JOptionPane.showMessageDialog(btnNewButton, "La fiche a été modifiée avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
-	            } catch (IOException ex) {
-	                ex.printStackTrace();
-	            }
-				
-	            fieldNom.setText("");
-	            fieldPrenom.setText("");
-				
-	            textArea.setText("");
-	            }});
-		
-		
-		final JButton ModifierButton = new JButton("Ouvrir");
-		ModifierButton.setBackground(SystemColor.activeCaption);
-		ModifierButton.setBounds(61, 317, 147, 30);
-		panel.add(ModifierButton);
-		ModifierButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 String nom = fieldNom.getText();
-		            String prenom = fieldPrenom.getText();
-		            String nomFichier = nom + "_" + prenom + ".txt";
-		            try {
-		                BufferedReader reader = new BufferedReader(new FileReader("fiches_patients/" +nomFichier));
-		                textArea.read(reader, null);
-		                reader.close();
-		            } catch (IOException ex) {
-		                ex.printStackTrace();
-		            }
-				
-			}});
-		final JButton HomeButton = new JButton("");
-		HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-		HomeButton.setBounds(679, 11, 48, 41);
-		contentPane.add(HomeButton);
-		HomeButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		Acceuil acc = new Acceuil();
-        		setVisible(false);
-        		acc.setVisible(true);
-        	}
+    public ModifierFichePatient() {
+        this.database = MongoDBUtil.getDatabase("CabinetDent");
+        this.collection = database.getCollection("Patient");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 753, 419);
+        setTitle("Modifier Patient");
+        contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(new GridBagLayout()); // Utilisation de GridBagLayout
+
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(568, 358)); // Dimensions du panel
+        GridBagConstraints gbcPanel = new GridBagConstraints();
+        gbcPanel.insets = new Insets(0, 0, 0, 0);
+        gbcPanel.gridx = 0;
+        gbcPanel.gridy = 0;
+        contentPane.add(panel, gbcPanel);
+        panel.setLayout(null);
+
+        JLabel Titre = new JLabel("Modifier Patient");
+        Titre.setForeground(SystemColor.windowBorder);
+        Titre.setBackground(SystemColor.windowBorder);
+        Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
+        Titre.setBounds(165, 11, 235, 28);
+        panel.add(Titre);
+
+        JLabel lblNomPrenom = new JLabel("Nom et Prénom :");
+        lblNomPrenom.setBounds(53, 50, 164, 14);
+        panel.add(lblNomPrenom);
+
+        nomTextField = new JTextField();
+        nomTextField.setColumns(10);
+        nomTextField.setBounds(238, 50, 217, 28);
+        panel.add(nomTextField);
+
+        prenomTextField = new JTextField();
+        prenomTextField.setBounds(238, 82, 217, 28);
+        panel.add(prenomTextField);
+        prenomTextField.setColumns(10);
+
+        JLabel lblNewLabel = new JLabel("CIN :");
+        lblNewLabel.setBounds(53, 111, 164, 14);
+        panel.add(lblNewLabel);
+
+        cinTextField = new JTextField();
+        cinTextField.setBounds(238, 113, 217, 28);
+        panel.add(cinTextField);
+        cinTextField.setColumns(10);
+
+        JLabel lblNewLabel_3 = new JLabel("Sexe :");
+        lblNewLabel_3.setBounds(53, 182, 168, 14);
+        panel.add(lblNewLabel_3);
+
+        hommeRadioButton = new JRadioButton("Homme");
+        hommeRadioButton.setBounds(240, 184, 109, 28);
+        panel.add(hommeRadioButton);
+
+        femmeRadioButton = new JRadioButton("Femme");
+        femmeRadioButton.setBounds(370, 184, 89, 28);
+        panel.add(femmeRadioButton);
+
+        ButtonGroup buttonGroupSexe = new ButtonGroup();
+        buttonGroupSexe.add(hommeRadioButton);
+        buttonGroupSexe.add(femmeRadioButton);
+
+        JLabel lblNewLabel_4 = new JLabel("Adresse :");
+        lblNewLabel_4.setBounds(53, 217, 175, 14);
+        panel.add(lblNewLabel_4);
+
+        adresseTextField = new JTextField();
+        adresseTextField.setBounds(238, 219, 217, 28);
+        panel.add(adresseTextField);
+        adresseTextField.setColumns(10);
+
+        JLabel lblNewLabel_5 = new JLabel("Profession :");
+        lblNewLabel_5.setBounds(53, 256, 175, 14);
+        panel.add(lblNewLabel_5);
+
+        professionTextField = new JTextField();
+        professionTextField.setBounds(238, 258, 217, 28);
+        panel.add(professionTextField);
+        professionTextField.setColumns(10);
+
+        JLabel lblNewLabel_6 = new JLabel("Numéro de téléphone :");
+        lblNewLabel_6.setBounds(53, 293, 180, 14);
+        panel.add(lblNewLabel_6);
+
+        telTextField = new JTextField();
+        telTextField.setBounds(238, 297, 217, 25);
+        panel.add(telTextField);
+        telTextField.setColumns(10);
+
+        JLabel lblNewLabel_8 = new JLabel("Date De Naissance :");
+        lblNewLabel_8.setBounds(53, 157, 168, 14);
+        panel.add(lblNewLabel_8);
+
+        jourComboBox = new JComboBox<>();
+        jourComboBox.setBounds(237, 160, 50, 22);
+        panel.add(jourComboBox);
+        for (int i = 1; i <= 31; i++) {
+            jourComboBox.addItem(i);
+        }
+
+        moisComboBox = new JComboBox<>();
+        moisComboBox.setBounds(290, 160, 50, 22);
+        panel.add(moisComboBox);
+        for (int i = 1; i <= 12; i++) {
+            moisComboBox.addItem(i);
+        }
+
+        anneeComboBox = new JComboBox<>();
+        anneeComboBox.setBounds(340, 160, 115, 22);
+        panel.add(anneeComboBox);
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        for (int i = currentYear - 100; i <= currentYear; i++) {
+            anneeComboBox.addItem(i);
+        }
+
+        rechercherButton = new JButton("Rechercher");
+        rechercherButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nom = nomTextField.getText();
+                String prenom = prenomTextField.getText();
+
+                // Recherche du patient dans la base de données
+                Document query = new Document("nom", nom).append("prenom", prenom);
+                Document patient = collection.find(query).first();
+
+                if (patient != null) {
+                    // Remplir les champs avec les données existantes
+                    cinTextField.setText(patient.getString("cin"));
+                    adresseTextField.setText(patient.getString("adresse"));
+                    professionTextField.setText(patient.getString("profession"));
+                    telTextField.setText(patient.getString("telephone"));
+
+                    String sexe = patient.getString("sexe");
+                    if (sexe.equals("Homme")) {
+                        hommeRadioButton.setSelected(true);
+                    } else {
+                        femmeRadioButton.setSelected(true);
+                    }
+
+                    // Traitement de la date de naissance
+                    String dateNaissance = patient.getString("dataNaiss");
+                    if (dateNaissance != null && !dateNaissance.isEmpty()) {
+                        String[] parts = dateNaissance.split("/");
+                        if (parts.length == 3) {
+                            jourComboBox.setSelectedItem(Integer.parseInt(parts[0]));
+                            moisComboBox.setSelectedItem(Integer.parseInt(parts[1]));
+                            anneeComboBox.setSelectedItem(Integer.parseInt(parts[2]));
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rechercherButton, "Patient non trouvé.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        rechercherButton.setBounds(465, 50, 100, 28);
+        panel.add(rechercherButton);
+
+        modifierButton = new JButton("Modifier");
+        modifierButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nom = nomTextField.getText();
+                String prenom = prenomTextField.getText();
+                String cin = cinTextField.getText();
+                int jourNaissance = (int) jourComboBox.getSelectedItem();
+                int moisNaissance = (int) moisComboBox.getSelectedItem();
+                int anneeNaissance = (int) anneeComboBox.getSelectedItem();
+                String sexe = hommeRadioButton.isSelected() ? "Homme" : "Femme";
+                String adresse = adresseTextField.getText();
+                String profession = professionTextField.getText();
+                String telephone = telTextField.getText();
+
+                // Vérification de la validité des champs de saisie
+                if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || adresse.isEmpty() || profession.isEmpty() || telephone.isEmpty()) {
+                    JOptionPane.showMessageDialog(modifierButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else if (telephone.length() != 8) {
+                    JOptionPane.showMessageDialog(modifierButton, "Le numéro de téléphone doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else if (cin.length() != 8) {
+                    JOptionPane.showMessageDialog(modifierButton, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    // Mise à jour des données dans la base de données MongoDB
+                    String dateNaissance = jourNaissance + "/" + moisNaissance + "/" + anneeNaissance;
+                    Document query = new Document("nom", nom).append("prenom", prenom);
+                    Document update = new Document("$set", new Document("cin", cin)
+                            .append("sexe", sexe)
+                            .append("adresse", adresse)
+                            .append("telephone", telephone)
+                            .append("dataNaiss", dateNaissance)
+                            .append("profession", profession));
+                    collection.updateOne(query, update);
+                    
+                    // Affichage d'un message de succès
+                    JOptionPane.showMessageDialog(modifierButton, "Les informations ont été modifiées avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        modifierButton.setBounds(465, 113, 100, 28);
+        panel.add(modifierButton);
+
+        annulerButton = new JButton("Annuler");
+        annulerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Effacer tous les champs
+                nomTextField.setText("");
+                prenomTextField.setText("");
+                cinTextField.setText("");
+                hommeRadioButton.setSelected(true);
+                adresseTextField.setText("");
+                professionTextField.setText("");
+                telTextField.setText("");
+                jourComboBox.setSelectedIndex(0);
+                moisComboBox.setSelectedIndex(0);
+                anneeComboBox.setSelectedIndex(0);
+            }
+        });
+        annulerButton.setBounds(465, 160, 100, 28);
+        panel.add(annulerButton);
+
+        JButton homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(ModifierFichePatient.class.getResource("./images/home.png")));
+        GridBagConstraints gbcHomeButton = new GridBagConstraints();
+        gbcHomeButton.anchor = GridBagConstraints.NORTHEAST; // Ancrage en haut à droite
+        gbcHomeButton.insets = new Insets(10, 10, 10, 10); // Marges autour du bouton
+        gbcHomeButton.gridx = 1; // Colonne 1
+        gbcHomeButton.gridy = 0; // Ligne 0
+        contentPane.add(homeButton, gbcHomeButton);
+
+        homeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Acceuil acc = new Acceuil();
+                setVisible(false);
+                acc.setVisible(true);
+            }
         });
 
-	}
+        pack(); // Ajuste la taille de la fenêtre en fonction du contenu
+    }
 }

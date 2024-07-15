@@ -1,9 +1,0 @@
-Nom : Ali
-Prénom : Ahmed
-Numéro CIN :12345678
-Date de naissance : 1/2001/1
-Sexe : Homme
-Adresse: Tunis
-Profession : Prof
-Télephone : 12345678
-Date RDV : 1/1/2023 , Heur : 9h0
