@@ -17,8 +17,7 @@ public class AjouterPatient extends JFrame {
     private JRadioButton hommeRadioButton, femmeRadioButton;;
     private JButton enregistrerButton, annulerButton;
     private JList<String> list;
-    private DefaultListModel<String> listModel;
-    private MongoDatabase database;
+    private  MongoDatabase database;
 
     public static void main(String[] args) {
         AjouterPatient frame = new AjouterPatient();
@@ -29,7 +28,7 @@ public class AjouterPatient extends JFrame {
 
     public AjouterPatient() {
         this.database = MongoDBUtil.getDatabase("CabinetDent");
-        MongoCollection<Document> collection = database.getCollection("Patient");
+         database.getCollection("Patient");
 
         setBackground(new Color(255, 255, 255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +42,7 @@ public class AjouterPatient extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        var gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Marges entre les composants
 
         JLabel Titre = new JLabel("Ajouter Patient");
@@ -59,26 +58,29 @@ public class AjouterPatient extends JFrame {
         gbc.gridy = 1;
         panel.add(new JLabel("Nom :"), gbc);
         gbc.gridx = 1;
-        panel.add(nomTextField = new JTextField(20), gbc);
+        nomTextField = new JTextField(20);
+        panel.add(nomTextField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(new JLabel("Prénom :"), gbc);
         gbc.gridx = 1;
-        panel.add(prenomTextField = new JTextField(20), gbc);
+        prenomTextField = new JTextField(20);
+        panel.add(prenomTextField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
         panel.add(new JLabel("CIN :"), gbc);
         gbc.gridx = 1;
-        panel.add(cinTextField = new JTextField(20), gbc);
+        cinTextField = new JTextField(20);
+        panel.add(cinTextField, gbc);
 
         // Radio buttons
         gbc.gridx = 0;
         gbc.gridy = 4;
         panel.add(new JLabel("Sexe :"), gbc);
 
-        JPanel radioPanel = new JPanel();
+        var radioPanel = new JPanel();
         ButtonGroup buttonGroupSexe = new ButtonGroup();
         hommeRadioButton = new JRadioButton("Homme");
         femmeRadioButton = new JRadioButton("Femme");
@@ -93,19 +95,22 @@ public class AjouterPatient extends JFrame {
         gbc.gridy = 5;
         panel.add(new JLabel("Adresse :"), gbc);
         gbc.gridx = 1;
-        panel.add(adresseTextField = new JTextField(20), gbc);
+        adresseTextField = new JTextField(20);
+        panel.add(adresseTextField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 6;
         panel.add(new JLabel("Profession :"), gbc);
         gbc.gridx = 1;
-        panel.add(professionTextField = new JTextField(20), gbc);
+        professionTextField = new JTextField(20);
+        panel.add(professionTextField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 7;
         panel.add(new JLabel("Numéro de téléphone :"), gbc);
         gbc.gridx = 1;
-        panel.add(telTextField = new JTextField(20), gbc);
+        telTextField = new JTextField(20);
+        panel.add(telTextField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 8;

@@ -143,14 +143,14 @@ public class Acceuil extends JFrame {
         panel.setLayout(new GridBagLayout());
         var gbc = new GridBagConstraints();
 
-        JLabel iconLabel = new JLabel();
+        var iconLabel = new JLabel();
         iconLabel.setIcon(new ImageIcon(Acceuil.class.getResource(iconPath)));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         panel.add(iconLabel, gbc);
 
-        JButton button = new JButton(buttonText);
+        var button = new JButton(buttonText);
         button.setFont(new Font("Tahoma", Font.ITALIC, 18));
         button.addActionListener(actionListener);
         gbc.gridx = 0;
