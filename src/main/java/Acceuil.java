@@ -16,7 +16,7 @@ public class Acceuil extends JFrame {
         panel.setBackground(SystemColor.activeCaption);
         getContentPane().add(panel);
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        var gbc = new GridBagConstraints();
 
         JLabel lblNewLabel_8 = new JLabel("Cabinet dentaire");
         lblNewLabel_8.setForeground(SystemColor.windowBorder);
@@ -47,7 +47,7 @@ public class Acceuil extends JFrame {
         gbc.weightx = 1;
         gbc.weighty = 1;
 
-        JPanel panel_1 = createButtonPanel("Ajouter Patient", "./images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
+        JPanel panel1 = createButtonPanel("Ajouter Patient", "./images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterPatient ajouterFrame = new AjouterPatient();
                 ajouterFrame.setVisible(true);
@@ -56,7 +56,7 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(panel_1, gbc);
+        panel.add(panel1, gbc);
 
         JPanel panel_1_1 = createButtonPanel("Rechercher Patient", "./images/icons8-find-user-male-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +69,7 @@ public class Acceuil extends JFrame {
         gbc.gridy = 1;
         panel.add(panel_1_1, gbc);
 
-        JPanel panel_1_2 = createButtonPanel("Modifier Patient", "./images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
+        JPanel panel12 = createButtonPanel("Modifier Patient", "./images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ModifierFichePatient modifierFrame = new ModifierFichePatient();
                 modifierFrame.setVisible(true);
@@ -78,9 +78,9 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 2;
         gbc.gridy = 1;
-        panel.add(panel_1_2, gbc);
+        panel.add(panel12, gbc);
 
-        JPanel panel_1_3 = createButtonPanel("Ajouter RDV", "./images/icons8-add-receipt-48.png", new ActionListener() {
+        JPanel panel13 = createButtonPanel("Ajouter RDV", "./images/icons8-add-receipt-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterRDV ajouterRDVframe = new AjouterRDV();
                 ajouterRDVframe.setVisible(true);
@@ -89,9 +89,9 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 3;
         gbc.gridy = 1;
-        panel.add(panel_1_3, gbc);
+        panel.add(panel13, gbc);
 
-        JPanel panel_1_4 = createButtonPanel("Modifier RDV", "./images/icons8-edit-property-64.png", new ActionListener() {
+        JPanel panel14 = createButtonPanel("Modifier RDV", "./images/icons8-edit-property-64.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ModifierRendezVous modifierRDVFrame = new ModifierRendezVous();
                 modifierRDVFrame.setVisible(true);
@@ -100,9 +100,9 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(panel_1_4, gbc);
+        panel.add(panel14, gbc);
 
-        JPanel panel_1_5 = createButtonPanel("Liste Patients", "./images/icons8-todo-list-48.png", new ActionListener() {
+        JPanel panel15 = createButtonPanel("Liste Patients", "./images/icons8-todo-list-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ListePatients listeFrame = new ListePatients();
                 listeFrame.setVisible(true);
@@ -111,9 +111,9 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 1;
         gbc.gridy = 2;
-        panel.add(panel_1_5, gbc);
+        panel.add(panel15, gbc);
 
-        JPanel panel_1_6 = createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
+        JPanel panel16 = createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
                 suppRDVFrame.setVisible(true);
@@ -122,9 +122,9 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 2;
         gbc.gridy = 2;
-        panel.add(panel_1_6, gbc);
+        panel.add(panel16, gbc);
 
-        JPanel panel_1_7 = createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
+        JPanel panel17 = createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerPatient suppFrame = new SupprimerPatient();
                 suppFrame.setVisible(true);
@@ -133,15 +133,15 @@ public class Acceuil extends JFrame {
         });
         gbc.gridx = 3;
         gbc.gridy = 2;
-        panel.add(panel_1_7, gbc);
+        panel.add(panel17, gbc);
 
         setVisible(true);
     }
 
     private JPanel createButtonPanel(String buttonText, String iconPath, ActionListener actionListener) {
-        JPanel panel = new JPanel();
+        var panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        var gbc = new GridBagConstraints();
 
         JLabel iconLabel = new JLabel();
         iconLabel.setIcon(new ImageIcon(Acceuil.class.getResource(iconPath)));
