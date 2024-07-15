@@ -64,9 +64,10 @@
 
         <dependency>
             <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-java-driver</artifactId>
+            <artifactId>mongo-java-driver</artifactId>
             <version>3.11.2</version>
         </dependency>
+
 
 
     </dependencies>
