@@ -13,13 +13,10 @@ public class MongoDBUtil {
 
     public static MongoDatabase getDatabase(String dbName) {
         if (mongoClient == null) {
-            synchronized (MongoDBUtil.class) {
-                if (mongoClient == null) {
                     MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017");
                     mongoClient = new MongoClient(uri);
                 }
-            }
-        }
+            
         if (database == null) {
             database = mongoClient.getDatabase(dbName);
         }
