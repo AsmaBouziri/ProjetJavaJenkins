@@ -1,17 +1,12 @@
 package test.java;
 
 import org.junit.jupiter.api.*;
-
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
 import main.java.AjouterPatient;
-
 import org.bson.Document;
-
 import org.mockito.Mockito;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,9 +27,11 @@ public class AjouterPatientTest {
         Mockito.when(mockMongoClient.getDatabase("CabinetDent")).thenReturn(database);
         Mockito.when(database.getCollection("Patient")).thenReturn(patientsCollection);
 
+        frame.setDatabase(database);
+
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
-        Assertions.assertNotNull(frame.enregistrerButton, "Le bouton enregistrer n'est pas initialisé.");
-        frame.enregistrerButton.addActionListener(mockActionListener);
+        Assertions.assertNotNull(frame.getEnregistrerButton(), "Le bouton enregistrer n'est pas initialisé.");
+        frame.getEnregistrerButton().addActionListener(mockActionListener);
     }
 
     @AfterEach
@@ -52,8 +49,10 @@ public class AjouterPatientTest {
         frame.getTelTextField().setText("0123456789");
         frame.getHommeRadioButton().setSelected(true);
 
-        ActionEvent event = new ActionEvent(frame.enregistrerButton, ActionEvent.ACTION_PERFORMED, "");
-        frame.enregistrerButton.dispatchEvent(event);
+        ActionEvent event = new ActionEvent(frame.getEnregistrerButton(), ActionEvent.ACTION_PERFORMED, "");
+        for (ActionListener listener : frame.getEnregistrerButton().getActionListeners()) {
+            listener.actionPerformed(event);
+        }
 
         Document expectedPatientDocument = new Document()
                 .append("nom", "Dupont")
@@ -77,10 +76,11 @@ public class AjouterPatientTest {
         frame.getTelTextField().setText("0123456789");
         frame.getHommeRadioButton().setSelected(true);
 
-        ActionEvent event = new ActionEvent(frame.enregistrerButton, ActionEvent.ACTION_PERFORMED, "");
-        frame.enregistrerButton.dispatchEvent(event);
+        ActionEvent event = new ActionEvent(frame.getEnregistrerButton(), ActionEvent.ACTION_PERFORMED, "");
+        for (ActionListener listener : frame.getEnregistrerButton().getActionListeners()) {
+            listener.actionPerformed(event);
+        }
 
         Mockito.verifyNoInteractions(patientsCollection);
     }
-
 }
