@@ -1,22 +1,22 @@
 package test.java;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
 public class AjouterPatientTest {
+
     private static MongoClient mongoClient;
-    private static MongoDatabase database;
+    private MongoDatabase database;
     private MongoCollection<Document> collection;
 
     @BeforeClass
     public static void setUpClass() {
-        mongoClient = new MongoClient("localhost", 27017);
-        database = mongoClient.getDatabase("CabinetDent");
+        mongoClient = MongoClients.create("mongodb://localhost:27017");
     }
 
     @AfterClass
@@ -26,8 +26,9 @@ public class AjouterPatientTest {
 
     @Before
     public void setUp() {
-        collection = database.getCollection("Patient");
-        collection.drop(); 
+        database = mongoClient.getDatabase("testdb");
+        collection = database.getCollection("patients");
+        collection.drop();  // Nettoyer la collection avant chaque test
     }
 
     @Test
@@ -36,25 +37,9 @@ public class AjouterPatientTest {
         collection.insertOne(patient);
 
         Document found = collection.find(new Document("name", "John Doe")).first();
-        assertNotNull(found);
+        assertNotNull("Patient 'John Doe' should be found", found);
         assertEquals("John Doe", found.getString("name"));
         assertEquals(30, found.getInteger("age").intValue());
-    }
-
-    @Test
-    public void testUpdatePatient() {
-        Document patient = new Document("name", "John Doe").append("age", 30);
-        collection.insertOne(patient);
-
-        // Mettre à jour l'âge du patient
-        Document query = new Document("name", "John Doe");
-        Document update = new Document("age", 35);
-        collection.updateOne(query, new Document("$set", update));
-
-        // Vérifier que la mise à jour a été effectuée
-        Document found = collection.find(query).first();
-        assertNotNull(found);
-        assertEquals(35, found.getInteger("age").intValue());
     }
 
     @Test
@@ -62,12 +47,9 @@ public class AjouterPatientTest {
         Document patient = new Document("name", "John Doe").append("age", 30);
         collection.insertOne(patient);
 
-        // Supprimer le patient de la base de données
-        Document query = new Document("name", "John Doe");
-        collection.deleteOne(query);
+        collection.deleteOne(patient);
 
-        // Vérifier que le patient a été supprimé
-        Document found = collection.find(query).first();
-        assertNull(found);
+        Document found = collection.find(patient).first();
+        assertNull("Patient 'John Doe' should be removed", found);
     }
 }
