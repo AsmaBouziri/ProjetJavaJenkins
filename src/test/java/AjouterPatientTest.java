@@ -46,7 +46,7 @@ public class AjouterPatientTest {
 
         Document found = collection.find(new Document("nom", "test")).first();
         assertNotNull(found, "Patient 'test' should be found");
-        assertEquals("test", found.getString("name"));
+        assertEquals("test", found.getString("nom"));
         //assertEquals(30, found.getInteger("age"));
     }
 
