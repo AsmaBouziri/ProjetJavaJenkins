@@ -27,25 +27,39 @@ public class AjouterPatientTest {
 
     @BeforeEach
     public void setUp() {
-        database = mongoClient.getDatabase("testdb");
-        collection = database.getCollection("patients");
+        database = mongoClient.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
         collection.drop();  // Nettoyer la collection avant chaque test
     }
 
     @Test
     public void testAddPatient() {
-        Document patient = new Document("name", "John Doe").append("age", 30);
+        Document patient = new Document("nom", "test")
+                .append("prenom", "")
+                .append("cin", "")
+    			.append("sexe", "")
+    			.append("adresse", "")
+    			.append("telephone", "")
+    			.append("dataNaiss", "")
+    			.append("profession", "");
         collection.insertOne(patient);
 
-        Document found = collection.find(new Document("name", "John Doe")).first();
-        assertNotNull(found, "Patient 'John Doe' should be found");
-        assertEquals("John Doe", found.getString("name"));
-        assertEquals(30, found.getInteger("age"));
+        Document found = collection.find(new Document("nom", "test")).first();
+        assertNotNull(found, "Patient 'test' should be found");
+        assertEquals("test", found.getString("name"));
+        //assertEquals(30, found.getInteger("age"));
     }
 
     @Test
     public void testRemovePatient() {
-        Document patient = new Document("name", "John Doe").append("age", 30);
+        Document patient = new Document("nom", "test")
+        		.append("prenom", "")
+                .append("cin", "")
+    			.append("sexe", "")
+    			.append("adresse", "")
+    			.append("telephone", "")
+    			.append("dataNaiss", "")
+    			.append("profession", "");
         collection.insertOne(patient);
 
         collection.deleteOne(patient);
