@@ -5,8 +5,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AjouterPatientTest {
 
@@ -14,17 +15,17 @@ public class AjouterPatientTest {
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         mongoClient = MongoClients.create("mongodb://localhost:27017");
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         mongoClient.close();
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         database = mongoClient.getDatabase("testdb");
         collection = database.getCollection("patients");
@@ -37,9 +38,9 @@ public class AjouterPatientTest {
         collection.insertOne(patient);
 
         Document found = collection.find(new Document("name", "John Doe")).first();
-        assertNotNull("Patient 'John Doe' should be found", found);
+        assertNotNull(found, "Patient 'John Doe' should be found");
         assertEquals("John Doe", found.getString("name"));
-        assertEquals(30, found.getInteger("age").intValue());
+        assertEquals(30, found.getInteger("age"));
     }
 
     @Test
@@ -50,6 +51,6 @@ public class AjouterPatientTest {
         collection.deleteOne(patient);
 
         Document found = collection.find(patient).first();
-        assertNull("Patient 'John Doe' should be removed", found);
+        assertNull(found, "Patient 'John Doe' should be removed");
     }
 }
