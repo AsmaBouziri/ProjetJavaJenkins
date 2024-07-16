@@ -114,10 +114,10 @@ public class ModifierRendezVous extends JFrame {
         lblNewLabel_3.setBounds(47, 201, 46, 14);
         panel.add(lblNewLabel_3);
 
-        final JButton RechercherButton = new JButton("Rechercher");
-        RechercherButton.setBounds(201, 239, 162, 28);
-        panel.add(RechercherButton);
-        RechercherButton.addActionListener(new ActionListener() {
+        final JButton rechercherButton = new JButton("Rechercher");
+        rechercherButton.setBounds(201, 239, 162, 28);
+        panel.add(rechercherButton);
+        rechercherButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomtextField.getText().trim();
                 String prenom = prenomtextField.getText().trim();
@@ -133,8 +133,8 @@ public class ModifierRendezVous extends JFrame {
 
                 if (rendezVous != null) {
                     // Affichage des données du rendez-vous trouvé
-                    String date = rendezVous.getString("date");
-                    String heure = rendezVous.getString("heure");
+                    var date = rendezVous.getString("date");
+                    var heure = rendezVous.getString("heure");
 
                     String[] dateParts = date.split("/");
                     int jour = Integer.parseInt(dateParts[0]);
@@ -147,7 +147,7 @@ public class ModifierRendezVous extends JFrame {
 
                     heuretextField.setText(heure);
                 } else {
-                    JOptionPane.showMessageDialog(RechercherButton, "Aucun rendez-vous trouvé pour ce patient.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rechercherButton, "Aucun rendez-vous trouvé pour ce patient.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     jourComboBox.setSelectedIndex(0);
                     moisComboBox.setSelectedIndex(0);
                     anneeComboBox.setSelectedIndex(0);
@@ -156,7 +156,7 @@ public class ModifierRendezVous extends JFrame {
             }
         });
 
-        final JButton EnregistrerButton = new JButton("Enregistrer");
+        final var EnregistrerButton = new JButton("Enregistrer");
         EnregistrerButton.setBounds(147, 307, 139, 40);
         panel.add(EnregistrerButton);
         EnregistrerButton.addActionListener(new ActionListener() {

@@ -68,7 +68,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        JLabel titre = new JLabel("Ajouter Soins");
+        var titre = new JLabel("Ajouter Soins");
         titre.setForeground(SystemColor.windowBorder);
         titre.setBackground(SystemColor.windowBorder);
         titre.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -78,7 +78,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel = new JLabel("Nom :");
+        var lblNewLabel = new JLabel("Nom :");
         panel.add(lblNewLabel, gbc);
 
         gbc.gridx = 1;
@@ -89,7 +89,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel1 = new JLabel("Prénom : ");
+        var lblNewLabel1 = new JLabel("Prénom : ");
         panel.add(lblNewLabel1, gbc);
 
         gbc.gridx = 1;
@@ -100,7 +100,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel2 = new JLabel("Soins Réalisé :");
+        var lblNewLabel2 = new JLabel("Soins Réalisé :");
         panel.add(lblNewLabel2, gbc);
 
         gbc.gridx = 1;
@@ -118,7 +118,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.EAST;
-        JLabel lblNewLabel3 = new JLabel("Date soin :");
+        var lblNewLabel3 = new JLabel("Date soin :");
         panel.add(lblNewLabel3, gbc);
 
         gbc.gridx = 1;
@@ -152,7 +152,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        JButton enregistrerButton = new JButton("Enregistrer");
+        var enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomText.getText();
@@ -190,13 +190,13 @@ public class AjouterSoins extends JFrame {
 
         contentPane.add(panel, new GridBagConstraints());
 
-        final JButton homeButton = new JButton("");
+        final var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        GridBagConstraints gbc_home = new GridBagConstraints();
-        gbc_home.gridx = 2;
-        gbc_home.gridy = 0;
-        gbc_home.anchor = GridBagConstraints.NORTHEAST;
-        contentPane.add(homeButton, gbc_home);
+        GridBagConstraints gbchome = new GridBagConstraints();
+        gbchome.gridx = 2;
+        gbchome.gridy = 0;
+        gbchome.anchor = GridBagConstraints.NORTHEAST;
+        contentPane.add(homeButton, gbchome);
         homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 var acc = new Acceuil();

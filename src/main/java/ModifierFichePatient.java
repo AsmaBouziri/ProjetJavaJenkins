@@ -13,10 +13,20 @@ import java.util.Calendar;
 
 public class ModifierFichePatient extends JFrame {
     private JPanel contentPane;
-    private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
-    private JRadioButton hommeRadioButton, femmeRadioButton;
-    private JButton rechercherButton, modifierButton, annulerButton;
-    private JComboBox<Integer> jourComboBox, moisComboBox, anneeComboBox;
+    private JTextField nomTextField ;
+    private JTextField prenomTextField;
+    private JTextField cinTextField;
+    private JTextField adresseTextField;
+    private JTextField professionTextField;
+    private JTextField telTextField;
+    private JRadioButton hommeRadioButton;
+    private JRadioButton femmeRadioButton;
+    private JButton rechercherButton;
+    private JButton modifierButton;
+    private JButton annulerButton;
+    private JComboBox<Integer> jourComboBox;
+    private JComboBox<Integer> moisComboBox;
+    private JComboBox<Integer> anneeComboBox;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
@@ -41,21 +51,21 @@ public class ModifierFichePatient extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(568, 358)); // Dimensions du panel
-        GridBagConstraints gbcPanel = new GridBagConstraints();
+        var gbcPanel = new GridBagConstraints();
         gbcPanel.insets = new Insets(0, 0, 0, 0);
         gbcPanel.gridx = 0;
         gbcPanel.gridy = 0;
         contentPane.add(panel, gbcPanel);
         panel.setLayout(null);
 
-        JLabel Titre = new JLabel("Modifier Patient");
-        Titre.setForeground(SystemColor.windowBorder);
-        Titre.setBackground(SystemColor.windowBorder);
-        Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
-        Titre.setBounds(165, 11, 235, 28);
-        panel.add(Titre);
+        var titre = new JLabel("Modifier Patient");
+        titre.setForeground(SystemColor.windowBorder);
+        titre.setBackground(SystemColor.windowBorder);
+        titre.setFont(new Font("Tahoma", Font.BOLD, 25));
+        titre.setBounds(165, 11, 235, 28);
+        panel.add(titre);
 
-        JLabel lblNomPrenom = new JLabel("Nom et Prénom :");
+        var lblNomPrenom = new JLabel("Nom et Prénom :");
         lblNomPrenom.setBounds(53, 50, 164, 14);
         panel.add(lblNomPrenom);
 
@@ -78,9 +88,9 @@ public class ModifierFichePatient extends JFrame {
         panel.add(cinTextField);
         cinTextField.setColumns(10);
 
-        JLabel lblNewLabel_3 = new JLabel("Sexe :");
-        lblNewLabel_3.setBounds(53, 182, 168, 14);
-        panel.add(lblNewLabel_3);
+        JLabel lblNewLabel3 = new JLabel("Sexe :");
+        lblNewLabel3.setBounds(53, 182, 168, 14);
+        panel.add(lblNewLabel3);
 
         hommeRadioButton = new JRadioButton("Homme");
         hommeRadioButton.setBounds(240, 184, 109, 28);
@@ -90,40 +100,40 @@ public class ModifierFichePatient extends JFrame {
         femmeRadioButton.setBounds(370, 184, 89, 28);
         panel.add(femmeRadioButton);
 
-        ButtonGroup buttonGroupSexe = new ButtonGroup();
+        var buttonGroupSexe = new ButtonGroup();
         buttonGroupSexe.add(hommeRadioButton);
         buttonGroupSexe.add(femmeRadioButton);
 
-        JLabel lblNewLabel_4 = new JLabel("Adresse :");
-        lblNewLabel_4.setBounds(53, 217, 175, 14);
-        panel.add(lblNewLabel_4);
+        JLabel lblNewLabel4 = new JLabel("Adresse :");
+        lblNewLabel4.setBounds(53, 217, 175, 14);
+        panel.add(lblNewLabel4);
 
         adresseTextField = new JTextField();
         adresseTextField.setBounds(238, 219, 217, 28);
         panel.add(adresseTextField);
         adresseTextField.setColumns(10);
 
-        JLabel lblNewLabel_5 = new JLabel("Profession :");
-        lblNewLabel_5.setBounds(53, 256, 175, 14);
-        panel.add(lblNewLabel_5);
+        JLabel lblNewLabel5 = new JLabel("Profession :");
+        lblNewLabel5.setBounds(53, 256, 175, 14);
+        panel.add(lblNewLabel5);
 
         professionTextField = new JTextField();
         professionTextField.setBounds(238, 258, 217, 28);
         panel.add(professionTextField);
         professionTextField.setColumns(10);
 
-        JLabel lblNewLabel_6 = new JLabel("Numéro de téléphone :");
-        lblNewLabel_6.setBounds(53, 293, 180, 14);
-        panel.add(lblNewLabel_6);
+        JLabel lblNewLabel6 = new JLabel("Numéro de téléphone :");
+        lblNewLabel6.setBounds(53, 293, 180, 14);
+        panel.add(lblNewLabel6);
 
         telTextField = new JTextField();
         telTextField.setBounds(238, 297, 217, 25);
         panel.add(telTextField);
         telTextField.setColumns(10);
 
-        JLabel lblNewLabel_8 = new JLabel("Date De Naissance :");
-        lblNewLabel_8.setBounds(53, 157, 168, 14);
-        panel.add(lblNewLabel_8);
+        JLabel lblNewLabel8 = new JLabel("Date De Naissance :");
+        lblNewLabel8.setBounds(53, 157, 168, 14);
+        panel.add(lblNewLabel8);
 
         jourComboBox = new JComboBox<>();
         jourComboBox.setBounds(237, 160, 50, 22);
@@ -142,7 +152,7 @@ public class ModifierFichePatient extends JFrame {
         anneeComboBox = new JComboBox<>();
         anneeComboBox.setBounds(340, 160, 115, 22);
         panel.add(anneeComboBox);
-        Calendar calendar = Calendar.getInstance();
+        var calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         for (int i = currentYear - 100; i <= currentYear; i++) {
             anneeComboBox.addItem(i);
@@ -165,7 +175,7 @@ public class ModifierFichePatient extends JFrame {
                     professionTextField.setText(patient.getString("profession"));
                     telTextField.setText(patient.getString("telephone"));
 
-                    String sexe = patient.getString("sexe");
+                    var sexe = patient.getString("sexe");
                     if (sexe.equals("Homme")) {
                         hommeRadioButton.setSelected(true);
                     } else {
@@ -173,7 +183,7 @@ public class ModifierFichePatient extends JFrame {
                     }
 
                     // Traitement de la date de naissance
-                    String dateNaissance = patient.getString("dataNaiss");
+                    var dateNaissance = patient.getString("dataNaiss");
                     if (dateNaissance != null && !dateNaissance.isEmpty()) {
                         String[] parts = dateNaissance.split("/");
                         if (parts.length == 3) {
@@ -215,7 +225,7 @@ public class ModifierFichePatient extends JFrame {
                     // Mise à jour des données dans la base de données MongoDB
                     String dateNaissance = jourNaissance + "/" + moisNaissance + "/" + anneeNaissance;
                     Document query = new Document("nom", nom).append("prenom", prenom);
-                    Document update = new Document("$set", new Document("cin", cin)
+                    var update = new Document("$set", new Document("cin", cin)
                             .append("sexe", sexe)
                             .append("adresse", adresse)
                             .append("telephone", telephone)
@@ -250,9 +260,9 @@ public class ModifierFichePatient extends JFrame {
         annulerButton.setBounds(465, 160, 100, 28);
         panel.add(annulerButton);
 
-        JButton homeButton = new JButton("");
+        var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ModifierFichePatient.class.getResource("./images/home.png")));
-        GridBagConstraints gbcHomeButton = new GridBagConstraints();
+        var gbcHomeButton = new GridBagConstraints();
         gbcHomeButton.anchor = GridBagConstraints.NORTHEAST; // Ancrage en haut à droite
         gbcHomeButton.insets = new Insets(10, 10, 10, 10); // Marges autour du bouton
         gbcHomeButton.gridx = 1; // Colonne 1

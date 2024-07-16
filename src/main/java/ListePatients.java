@@ -58,13 +58,13 @@ public class ListePatients extends JFrame {
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         // Création d'un JPanel pour contenir le bouton Home avec un FlowLayout aligné à droite
-        JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        var panelButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelButtons.setBackground(SystemColor.activeCaption);
 
-        JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
-        panelButtons.add(HomeButton);
-        HomeButton.addActionListener(new ActionListener() {
+        var homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
+        panelButtons.add(homeButton);
+        homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Acceuil acc = new Acceuil();
                 setVisible(false);
