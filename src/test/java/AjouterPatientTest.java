@@ -38,5 +38,34 @@ public class AjouterPatientTest {
     public void tearDown() {
         Mockito.verifyNoMoreInteractions(patientsCollection);
     }
+    
+    
+    @Test
+    public void testAddPatientWithValidData() {
+        frame.getNomTextField().setText("Dupont");
+        frame.getPrenomTextField().setText("Jean");
+        frame.getCinTextField().setText("123456789");
+        frame.getAdresseTextField().setText("1 Rue du Soleil");
+        frame.getProfessionTextField().setText("Ingénieur");
+        frame.getTelTextField().setText("0123456789");
+        frame.getHommeRadioButton().setSelected(true);
+
+        ActionEvent event = new ActionEvent(frame.getEnregistrerButton(), ActionEvent.ACTION_PERFORMED, "");
+        for (ActionListener listener : frame.getEnregistrerButton().getActionListeners()) {
+            listener.actionPerformed(event);
+        }
+
+        Document expectedPatientDocument = new Document()
+                .append("nom", "Dupont")
+                .append("prenom", "Jean")
+                .append("cin", "123456789")
+                .append("adresse", "1 Rue du Soleil")
+                .append("profession", "Ingénieur")
+                .append("tel", "0123456789")
+                .append("sexe", "Homme")
+                .append("dateNaissance", "");
+        Mockito.verify(patientsCollection).insertOne(expectedPatientDocument);
+    }
+
 
 }
