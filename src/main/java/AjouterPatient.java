@@ -13,7 +13,63 @@ import java.util.Calendar;
 
 public class AjouterPatient extends JFrame {
     private JPanel contentPane;
-    private JTextField nomTextField;
+    public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+	public MongoDatabase getDatabase() {
+		return database;
+	}
+
+	public void setNomTextField(JTextField nomTextField) {
+		this.nomTextField = nomTextField;
+	}
+
+	public void setPrenomTextField(JTextField prenomTextField) {
+		this.prenomTextField = prenomTextField;
+	}
+
+	public void setCinTextField(JTextField cinTextField) {
+		this.cinTextField = cinTextField;
+	}
+
+	public void setAdresseTextField(JTextField adresseTextField) {
+		this.adresseTextField = adresseTextField;
+	}
+
+	public void setProfessionTextField(JTextField professionTextField) {
+		this.professionTextField = professionTextField;
+	}
+
+	public void setTelTextField(JTextField telTextField) {
+		this.telTextField = telTextField;
+	}
+
+	public void setHommeRadioButton(JRadioButton hommeRadioButton) {
+		this.hommeRadioButton = hommeRadioButton;
+	}
+
+	public void setFemmeRadioButton(JRadioButton femmeRadioButton) {
+		this.femmeRadioButton = femmeRadioButton;
+	}
+
+	public void setEnregistrerButton(JButton enregistrerButton) {
+		this.enregistrerButton = enregistrerButton;
+	}
+
+	public void setAnnulerButton(JButton annulerButton) {
+		this.annulerButton = annulerButton;
+	}
+
+	public void setList(JList<String> list) {
+		this.list = list;
+	}
+
+	private JTextField nomTextField;
     private JTextField prenomTextField;
     private JTextField cinTextField;
     private JTextField adresseTextField;
