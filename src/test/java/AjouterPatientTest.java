@@ -10,8 +10,6 @@ import org.mockito.Mockito;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-
 public class AjouterPatientTest {
 
     private AjouterPatient frame;
@@ -40,24 +38,22 @@ public class AjouterPatientTest {
     public void tearDown() {
         Mockito.verifyNoMoreInteractions(patientsCollection);
     }
-    
-    
+
     @Test
     public void testAddPatientWithValidData() {
-        // Assuming AjouterPatient has public methods to access components
-        frame.setNomTextField(new JTextField("Dupont"));
-        frame.setPrenomTextField(new JTextField("Jean"));
-        frame.setCinTextField(new JTextField ("123456789"));
-        frame.setAdresseTextField(new JTextField ("1 Rue du Soleil"));
-        frame.setProfessionTextField(new JTextField("Ingénieur"));
-        frame.setTelTextField(new JTextField("0123456789"));
+        frame.getNomTextField().setText("Dupont");
+        frame.getPrenomTextField().setText("Jean");
+        frame.getCinTextField().setText("123456789");
+        frame.getAdresseTextField().setText("1 Rue du Soleil");
+        frame.getProfessionTextField().setText("Ingénieur");
+        frame.getTelTextField().setText("0123456789");
+        frame.getHommeRadioButton().setSelected(true);
 
-
-        // Trigger the "Enregistrer" button action
         ActionEvent event = new ActionEvent(frame.getEnregistrerButton(), ActionEvent.ACTION_PERFORMED, "");
-        frame.getEnregistrerButton().dispatchEvent(event);
+        for (ActionListener listener : frame.getEnregistrerButton().getActionListeners()) {
+            listener.actionPerformed(event);
+        }
 
-        // Create expected patient document with correct date format
         Document expectedPatientDocument = new Document()
                 .append("nom", "Dupont")
                 .append("prenom", "Jean")
@@ -66,15 +62,8 @@ public class AjouterPatientTest {
                 .append("profession", "Ingénieur")
                 .append("tel", "0123456789")
                 .append("sexe", "Homme")
-                .append("dateNaissance", new Document()
-                        .append("jour", 15)
-                        .append("mois", 7)
-                        .append("annee", 2023));
-
-        // Verify that the patient was added to the database
+                .append("dateNaissance", "");
         Mockito.verify(patientsCollection).insertOne(expectedPatientDocument);
     }
-
-
 
 }
