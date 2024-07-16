@@ -14,7 +14,6 @@ import org.mockito.Mockito;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 
 public class AjouterPatientTest {
 
@@ -25,6 +24,7 @@ public class AjouterPatientTest {
     @BeforeEach
     public void setUp() {
         frame = new AjouterPatient();
+        Assertions.assertNotNull(frame, "Le frame AjouterPatient n'est pas initialisé.");
 
         MongoClient mockMongoClient = Mockito.mock(MongoClient.class);
         database = Mockito.mock(MongoDatabase.class);
@@ -33,6 +33,7 @@ public class AjouterPatientTest {
         Mockito.when(database.getCollection("Patient")).thenReturn(patientsCollection);
 
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
+        Assertions.assertNotNull(frame.enregistrerButton, "Le bouton enregistrer n'est pas initialisé.");
         frame.enregistrerButton.addActionListener(mockActionListener);
     }
 
@@ -50,7 +51,6 @@ public class AjouterPatientTest {
         frame.getProfessionTextField().setText("Ingénieur");
         frame.getTelTextField().setText("0123456789");
         frame.getHommeRadioButton().setSelected(true);
-
 
         ActionEvent event = new ActionEvent(frame.enregistrerButton, ActionEvent.ACTION_PERFORMED, "");
         frame.enregistrerButton.dispatchEvent(event);
@@ -76,7 +76,6 @@ public class AjouterPatientTest {
         frame.getProfessionTextField().setText("Ingénieur");
         frame.getTelTextField().setText("0123456789");
         frame.getHommeRadioButton().setSelected(true);
-
 
         ActionEvent event = new ActionEvent(frame.enregistrerButton, ActionEvent.ACTION_PERFORMED, "");
         frame.enregistrerButton.dispatchEvent(event);
