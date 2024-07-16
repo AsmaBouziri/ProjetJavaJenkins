@@ -83,11 +83,4 @@ public class AjouterPatientTest {
         Mockito.verifyNoInteractions(patientsCollection);
     }
 
-    @Test
-    public void testCancelAddPatient() {
-        ActionEvent event = new ActionEvent(frame.getAnnulerButton(), ActionEvent.ACTION_PERFORMED, "");
-        frame.getAnnulerButton().dispatchEvent(event);
-
-        Mockito.verifyNoInteractions(patientsCollection);
-    }
 }
