@@ -192,7 +192,7 @@ public class AjouterSoins extends JFrame {
 
         final var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        GridBagConstraints gbchome = new GridBagConstraints();
+        var gbchome = new GridBagConstraints();
         gbchome.gridx = 2;
         gbchome.gridy = 0;
         gbchome.anchor = GridBagConstraints.NORTHEAST;

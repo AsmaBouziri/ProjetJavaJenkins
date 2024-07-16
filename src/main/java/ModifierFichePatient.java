@@ -88,7 +88,7 @@ public class ModifierFichePatient extends JFrame {
         panel.add(cinTextField);
         cinTextField.setColumns(10);
 
-        JLabel lblNewLabel3 = new JLabel("Sexe :");
+        var lblNewLabel3 = new JLabel("Sexe :");
         lblNewLabel3.setBounds(53, 182, 168, 14);
         panel.add(lblNewLabel3);
 
@@ -104,7 +104,7 @@ public class ModifierFichePatient extends JFrame {
         buttonGroupSexe.add(hommeRadioButton);
         buttonGroupSexe.add(femmeRadioButton);
 
-        JLabel lblNewLabel4 = new JLabel("Adresse :");
+        var lblNewLabel4 = new JLabel("Adresse :");
         lblNewLabel4.setBounds(53, 217, 175, 14);
         panel.add(lblNewLabel4);
 
@@ -113,7 +113,7 @@ public class ModifierFichePatient extends JFrame {
         panel.add(adresseTextField);
         adresseTextField.setColumns(10);
 
-        JLabel lblNewLabel5 = new JLabel("Profession :");
+        var lblNewLabel5 = new JLabel("Profession :");
         lblNewLabel5.setBounds(53, 256, 175, 14);
         panel.add(lblNewLabel5);
 
@@ -122,7 +122,7 @@ public class ModifierFichePatient extends JFrame {
         panel.add(professionTextField);
         professionTextField.setColumns(10);
 
-        JLabel lblNewLabel6 = new JLabel("Numéro de téléphone :");
+        var lblNewLabel6 = new JLabel("Numéro de téléphone :");
         lblNewLabel6.setBounds(53, 293, 180, 14);
         panel.add(lblNewLabel6);
 
@@ -131,21 +131,21 @@ public class ModifierFichePatient extends JFrame {
         panel.add(telTextField);
         telTextField.setColumns(10);
 
-        JLabel lblNewLabel8 = new JLabel("Date De Naissance :");
+        var lblNewLabel8 = new JLabel("Date De Naissance :");
         lblNewLabel8.setBounds(53, 157, 168, 14);
         panel.add(lblNewLabel8);
 
         jourComboBox = new JComboBox<>();
         jourComboBox.setBounds(237, 160, 50, 22);
         panel.add(jourComboBox);
-        for (int i = 1; i <= 31; i++) {
+        for (var i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
 
         moisComboBox = new JComboBox<>();
         moisComboBox.setBounds(290, 160, 50, 22);
         panel.add(moisComboBox);
-        for (int i = 1; i <= 12; i++) {
+        for (var i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
 

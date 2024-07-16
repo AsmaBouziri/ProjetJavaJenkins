@@ -11,9 +11,119 @@ import java.util.Calendar;
 
 public class AjouterPatient extends JFrame {
     private JPanel contentPane;
-    private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
+    private JTextField nomTextField;
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+	public JTextField getNomTextField() {
+		return nomTextField;
+	}
+
+	public void setNomTextField(JTextField nomTextField) {
+		this.nomTextField = nomTextField;
+	}
+
+	public JTextField getPrenomTextField() {
+		return prenomTextField;
+	}
+
+	public void setPrenomTextField(JTextField prenomTextField) {
+		this.prenomTextField = prenomTextField;
+	}
+
+	public JTextField getCinTextField() {
+		return cinTextField;
+	}
+
+	public void setCinTextField(JTextField cinTextField) {
+		this.cinTextField = cinTextField;
+	}
+
+	public JTextField getAdresseTextField() {
+		return adresseTextField;
+	}
+
+	public void setAdresseTextField(JTextField adresseTextField) {
+		this.adresseTextField = adresseTextField;
+	}
+
+	public JTextField getProfessionTextField() {
+		return professionTextField;
+	}
+
+	public void setProfessionTextField(JTextField professionTextField) {
+		this.professionTextField = professionTextField;
+	}
+
+	public JTextField getTelTextField() {
+		return telTextField;
+	}
+
+	public void setTelTextField(JTextField telTextField) {
+		this.telTextField = telTextField;
+	}
+
+	public JRadioButton getHommeRadioButton() {
+		return hommeRadioButton;
+	}
+
+	public void setHommeRadioButton(JRadioButton hommeRadioButton) {
+		this.hommeRadioButton = hommeRadioButton;
+	}
+
+	public JRadioButton getFemmeRadioButton() {
+		return femmeRadioButton;
+	}
+
+	public void setFemmeRadioButton(JRadioButton femmeRadioButton) {
+		this.femmeRadioButton = femmeRadioButton;
+	}
+
+	public JButton getEnregistrerButton() {
+		return enregistrerButton;
+	}
+
+	public void setEnregistrerButton(JButton enregistrerButton) {
+		this.enregistrerButton = enregistrerButton;
+	}
+
+	public JButton getAnnulerButton() {
+		return annulerButton;
+	}
+
+	public void setAnnulerButton(JButton annulerButton) {
+		this.annulerButton = annulerButton;
+	}
+
+	public JList<String> getList() {
+		return list;
+	}
+
+	public void setList(JList<String> list) {
+		this.list = list;
+	}
+
+	public MongoDatabase getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(MongoDatabase database) {
+		this.database = database;
+	}
+
+	private JTextField prenomTextField;
+	private JTextField cinTextField;
+	private JTextField adresseTextField;
+	private JTextField professionTextField;
+	private JTextField telTextField;
     private JRadioButton hommeRadioButton, femmeRadioButton;;
-    private JButton enregistrerButton, annulerButton;
+    public JButton enregistrerButton;
+	private JButton annulerButton;
     private JList<String> list;
     private  MongoDatabase database;
 

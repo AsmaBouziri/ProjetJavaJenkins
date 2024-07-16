@@ -5,9 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,11 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import org.bson.Document;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import main.java.Acceuil;
 
 
 
@@ -38,7 +33,7 @@ public class SeConnecter extends JFrame{
 
 	public static void main(String[] args) {
 		
-		SeConnecter frame = new SeConnecter();
+		var frame = new SeConnecter();
 		frame.setVisible(true);
 		frame.setSize(800, 450);
 	
@@ -48,8 +43,6 @@ public class SeConnecter extends JFrame{
 	public SeConnecter() {
 		this.database = MongoDBUtil.getDatabase("CabinetDent");
 		MongoCollection<Document> collection = database.getCollection("LogIn");
-		
-        Document filter = new Document("login", collection);
 		
 		
 		setBackground(new Color(255, 255, 255));
