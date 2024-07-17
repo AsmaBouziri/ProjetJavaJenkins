@@ -116,7 +116,6 @@ public class SeConnecter extends JFrame{
 
 		            // Redirect based on the username
 		            if (email.equals("assistante")) {
-		                Acceuil dentiste = new Acceuil();
 		               // dentiste.setVisible(true);
 		            } else if (mdp.equals("dentiste")) {
 

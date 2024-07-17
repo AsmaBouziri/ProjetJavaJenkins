@@ -114,7 +114,7 @@ public class ModifierRendezVous extends JFrame {
         lblNewLabel_3.setBounds(47, 201, 46, 14);
         panel.add(lblNewLabel_3);
 
-        final JButton rechercherButton = new JButton("Rechercher");
+        final var rechercherButton = new JButton("Rechercher");
         rechercherButton.setBounds(201, 239, 162, 28);
         panel.add(rechercherButton);
         rechercherButton.addActionListener(new ActionListener() {
@@ -138,8 +138,8 @@ public class ModifierRendezVous extends JFrame {
 
                     String[] dateParts = date.split("/");
                     int jour = Integer.parseInt(dateParts[0]);
-                    int mois = Integer.parseInt(dateParts[1]);
-                    int annee = Integer.parseInt(dateParts[2]);
+                    var mois = Integer.parseInt(dateParts[1]);
+                    var annee = Integer.parseInt(dateParts[2]);
 
                     jourComboBox.setSelectedItem(jour);
                     moisComboBox.setSelectedItem(mois);
@@ -156,10 +156,10 @@ public class ModifierRendezVous extends JFrame {
             }
         });
 
-        final var EnregistrerButton = new JButton("Enregistrer");
-        EnregistrerButton.setBounds(147, 307, 139, 40);
-        panel.add(EnregistrerButton);
-        EnregistrerButton.addActionListener(new ActionListener() {
+        final var enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton.setBounds(147, 307, 139, 40);
+        panel.add(enregistrerButton);
+        enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomtextField.getText().trim();
                 String prenom = prenomtextField.getText().trim();
@@ -169,7 +169,7 @@ public class ModifierRendezVous extends JFrame {
                 String heure = heuretextField.getText().trim();
 
                 if (nom.isEmpty() || prenom.isEmpty() || heure.isEmpty()) {
-                    JOptionPane.showMessageDialog(EnregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Construction du document de mise à jour pour le rendez-vous
                     Document updateDoc = new Document("$set", new Document()
@@ -185,9 +185,9 @@ public class ModifierRendezVous extends JFrame {
                     UpdateResult result = collection.updateOne(queryDoc, updateDoc);
 
                     if (result.getModifiedCount() > 0) {
-                        JOptionPane.showMessageDialog(EnregistrerButton, "Le rendez-vous a été modifié avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(enregistrerButton, "Le rendez-vous a été modifié avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(EnregistrerButton, "Aucun rendez-vous trouvé pour ce patient.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(enregistrerButton, "Aucun rendez-vous trouvé pour ce patient.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
 
                     // Effacement des champs de saisie

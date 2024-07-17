@@ -82,10 +82,10 @@ public class RechercherPatient extends JFrame {
         labelResultat.setBackground(SystemColor.text);
         panel_1.add(labelResultat);
 
-        JButton ModifierButton = new JButton("Rechercher");
-        ModifierButton.setBackground(SystemColor.activeCaption);
-        ModifierButton.setBounds(250, 142, 147, 41);
-        ModifierButton.addActionListener(new ActionListener() {
+        var modifierButton = new JButton("Rechercher");
+        modifierButton.setBackground(SystemColor.activeCaption);
+        modifierButton.setBounds(250, 142, 147, 41);
+        modifierButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = champNom.getText().trim();
                 String prenom = champPrenom.getText().trim();
@@ -95,11 +95,11 @@ public class RechercherPatient extends JFrame {
                 Document patient = collection.find(query).first();
 
                 if (patient != null) {
-                    String adresse = patient.getString("adresse");
-                    String profession = patient.getString("profession");
-                    String tel = patient.getString("telephone");
-                    String sexe = patient.getString("sexe");
-                    String dateNaiss = patient.getString("dateNaiss");
+                    var adresse = patient.getString("adresse");
+                    var profession = patient.getString("profession");
+                    var tel = patient.getString("telephone");
+                    var sexe = patient.getString("sexe");
+                    var dateNaiss = patient.getString("dateNaiss");
 
                     // Affichage des informations dans le JTextArea
                     textArea.setText("Nom : " + nom + "\n"
@@ -117,13 +117,13 @@ public class RechercherPatient extends JFrame {
             }
         });
 
-        panel.add(ModifierButton);
+        panel.add(modifierButton);
 
-        JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(RechercherPatient.class.getResource("./images/home.png")));
-        HomeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(HomeButton);
-        HomeButton.addActionListener(new ActionListener() {
+        var homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(RechercherPatient.class.getResource("./images/home.png")));
+        homeButton.setBounds(679, 11, 48, 41);
+        contentPane.add(homeButton);
+        homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Acceuil acc = new Acceuil();
                 setVisible(false);
