@@ -47,5 +47,21 @@ class RendezVousTest {
         assertNotNull(found, "Recheche RDV de Mouhamed ...");
         assertEquals("Mouhamed", found.getString("nom"));
     }
+    
+
+    @Test
+    public void testRemoveRDV() {
+    	Document RDV = new Document()
+                .append("nom", "Mouhamed")
+                .append("prenom", "Ali")
+                .append("date", "17/07/2024" )
+                .append("heure", "9:0 ");
+        collection.insertOne(RDV);
+
+        collection.deleteOne(RDV);
+
+        Document found = collection.find(RDV).first();
+        assertNull(found, "Suppression du RDV de Mouhamed ...");
+    }
 
 }
