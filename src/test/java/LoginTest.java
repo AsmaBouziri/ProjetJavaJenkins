@@ -49,6 +49,18 @@ class LoginTest {
     }
 
     
+    @Test
+    public void testIncorrectPassword() {
+        Document dentiste = new Document("user", "dentiste").append("pwd", "987");
+        collection.insertOne(dentiste);
+
+        Document found = collection.find(new Document("user", "dentiste")).first();
+        assertNotNull(found, "Recherche Dentiste ...");
+        
+        assertEquals("dentiste", found.getString("user"));
+        assertNotEquals("987", found.getString("pwd"));
+
+    }
 
 
 
