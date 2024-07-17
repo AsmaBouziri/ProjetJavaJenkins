@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 class AccueilTest {
 
 	@Test
-	void contextLoads() {
-		
+	void contextLoads() {	
 		assertTrue(true); 
 	}
 
