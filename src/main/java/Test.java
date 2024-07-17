@@ -15,7 +15,8 @@ public class Test extends JFrame {
     private JPanel contentPane;
     private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
     private JRadioButton hommeRadioButton, femmeRadioButton;;
-    private JButton enregistrerButton, annulerButton;
+    private JButton annulerButton;
+    private JButton enregistrerButton;
     private JList<String> list;
     private DefaultListModel<String> listModel;
     private MongoDatabase database;
