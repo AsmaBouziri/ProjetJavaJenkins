@@ -3,6 +3,9 @@ package main.java;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import org.bson.Document;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +14,7 @@ import java.util.Calendar;
 public class Test extends JFrame {
     private JPanel contentPane;
     private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
-    private JRadioButton hommeRadioButton, femmeRadioButton
+    private JRadioButton hommeRadioButton, femmeRadioButton;
     private JButton annulerButton;
     private JButton enregistrerButton;
     private JList<String> list;
