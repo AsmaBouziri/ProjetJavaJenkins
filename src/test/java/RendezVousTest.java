@@ -45,7 +45,7 @@ class RendezVousTest {
 
         Document found = collection.find(new Document("nom", "Mouhamed")).first();
         assertNotNull(found, "Recheche RDV de Mouhamed ...");
-        assertEquals("nom", found.getString("Mouhamed"));
+        assertEquals("Mouhamed", found.getString("nom"));
     }
 
 }
