@@ -58,7 +58,7 @@ class LoginTest {
         assertNotNull(found, "Recherche Dentiste ...");
         
         assertEquals("dentiste", found.getString("user"));
-        assertNotEquals("987", found.getString("pwd"));
+        assertNotEquals("123", found.getString("pwd"));
 
     }
 
