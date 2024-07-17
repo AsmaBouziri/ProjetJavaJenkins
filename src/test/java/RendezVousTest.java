@@ -36,9 +36,8 @@ class RendezVousTest {
     }
 
     @Test
-    public void testAddPatient() {
-    	Document RDV = new Document()
-                .append("nom", "Mouhamed")
+    public void testAddRDV() {
+    	Document RDV = new Document("nom", "Mouhamed")
                 .append("prenom", "Ali")
                 .append("date", "17/07/2024" )
                 .append("heure", "9:0 ");
