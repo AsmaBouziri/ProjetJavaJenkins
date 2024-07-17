@@ -9,7 +9,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AjouterPatientTest {
+public class PatientTest {
 
     private static MongoClient mongoClient;
     private MongoDatabase database;
@@ -29,7 +29,7 @@ public class AjouterPatientTest {
     public void setUp() {
         database = mongoClient.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
-        collection.drop();  // Nettoyer la collection avant chaque test
+        collection.drop();  
     }
 
     @Test
@@ -47,7 +47,6 @@ public class AjouterPatientTest {
         Document found = collection.find(new Document("nom", "test")).first();
         assertNotNull(found, "Patient 'test' should be found");
         assertEquals("test", found.getString("nom"));
-        //assertEquals(30, found.getInteger("age"));
     }
 
     @Test
