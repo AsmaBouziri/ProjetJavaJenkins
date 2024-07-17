@@ -38,10 +38,15 @@ class LoginTest {
 
     @Test
     public void connectDentiste() {
+        Document dentiste = new Document("user", "dentiste").append("pwd", "987");
+        collection.insertOne(dentiste);
+        
         Document found = collection.find(new Document("user", "dentiste")).first();
         assertNotNull(found, "Recherche Dentiste ...");
+        
         assertEquals("dentiste", found.getString("user"));
         assertEquals("987", found.getString("pwd"));
     }
+
 
 }
