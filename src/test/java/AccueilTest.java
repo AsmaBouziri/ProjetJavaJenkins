@@ -22,7 +22,7 @@ public class AccueilTest {
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
         // Path to the icon
-        String iconPath = "C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins\\src\\main\\java\\images\\icons8-add-receipt-48.png";
+        String iconPath = "./images/addRDV.png";
 
         // Call the method to create the panel
         JPanel panel = null;
