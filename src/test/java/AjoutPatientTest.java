@@ -4,14 +4,12 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import main.java.AjouterPatient;
-import main.java.MongoDBUtil;
 
 import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,12 +24,10 @@ class AjouterPatientTest {
     void setUp() {
         // Mock MongoDB
         database = mock(MongoDatabase.class);
-        collection = mock(MongoCollection.class);
         when(database.getCollection("Patient")).thenReturn(collection);
 
         // Initialize the AjouterPatient frame
         frame = new AjouterPatient();
-        frame.setDatabase(database);
 
         // Mock the resource for images
         ImageIcon homeIcon = mock(ImageIcon.class);

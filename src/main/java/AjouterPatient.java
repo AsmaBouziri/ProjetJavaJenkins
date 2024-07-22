@@ -79,7 +79,8 @@ public class AjouterPatient extends JFrame {
         });
     }
 
-    public AjouterPatient() {
+
+	public AjouterPatient() {
         this.database = MongoDBUtil.getDatabase("CabinetDent");
         MongoCollection<Document> collection = database.getCollection("Patient");
 
