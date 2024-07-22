@@ -29,7 +29,10 @@ public class Acceuil extends JFrame {
         panel.add(lblNewLabel_8, gbc);
 
         JButton CButton = new JButton("");
-        CButton.setIcon(new ImageIcon(Acceuil.class.getResource("./images/icons8-logout-25.png")));
+        ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("./images/icons8-logout-25.png"));
+        if (logoutIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
+            CButton.setIcon(logoutIcon);
+        }
         gbc.gridx = 3;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -144,7 +147,10 @@ public class Acceuil extends JFrame {
         var gbc = new GridBagConstraints();
 
         var iconLabel = new JLabel();
-        iconLabel.setIcon(new ImageIcon(Acceuil.class.getResource(iconPath)));
+        ImageIcon icon = new ImageIcon(Acceuil.class.getResource(iconPath));
+        if (icon.getImageLoadStatus() != MediaTracker.ERRORED) {
+            iconLabel.setIcon(icon);
+        }
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
