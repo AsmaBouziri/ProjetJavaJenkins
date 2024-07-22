@@ -1,19 +1,16 @@
 package test.java;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.mockito.Mockito;
-
 import main.java.Acceuil;
 
 public class AccueilTest {
@@ -24,28 +21,28 @@ public class AccueilTest {
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
         // Call the method to create the panel
-        JPanel panel = new JPanel();;
-		try {
-			panel = Acceuil.createButtonPanel("text button ", "./images/icons8-unfriend-skin-type-7-48.png", mockActionListener);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        JPanel panel = new JPanel();
+        try {
+            panel = Acceuil.createButtonPanel("text button", "./images/icons8-unfriend-skin-type-7-48.png", mockActionListener);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception occurred while creating the button panel: " + e.getMessage());
+        }
 
         // Verify panel layout
-		assertTrue(panel.getLayout() instanceof FlowLayout);
+        assertTrue(panel.getLayout() instanceof GridBagLayout, "Panel layout should be GridBagLayout");
 
-		// Verify button text (assuming only the button is added)
-		JButton button = (JButton) panel.getComponent(0); // Access the first component (assuming it's the button)
-		assertEquals("Button Text", button.getText());
+        // Verify components in the panel
+        assertEquals(2, panel.getComponentCount(), "Panel should have two components");
 
-		// Verify icon (if applicable)
-		if (panel.getComponentCount() > 1) { // Check if there's a second component
-		  JLabel iconLabel = (JLabel) panel.getComponent(1);
-		  assertTrue(iconLabel.getIcon() instanceof ImageIcon);
-		}
+        // Verify icon label
+        JLabel iconLabel = (JLabel) panel.getComponent(0);
+        assertTrue(iconLabel.getIcon() instanceof ImageIcon, "Icon label should have an ImageIcon");
 
-
-        // Verify action listener
-        Mockito.verify(mockActionListener, Mockito.atLeastOnce()).actionPerformed(Mockito.any(ActionEvent.class));
+        // Verify button text and action listener
+        JButton button = (JButton) panel.getComponent(1);
+        assertEquals("text button", button.getText(), "Button text should be 'text button'");
+        button.doClick();
+        Mockito.verify(mockActionListener, Mockito.times(1)).actionPerformed(Mockito.any());
     }
 }
