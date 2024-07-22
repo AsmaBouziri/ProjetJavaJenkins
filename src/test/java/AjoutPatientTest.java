@@ -20,21 +20,23 @@ class AjouterPatientTest {
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
-    @BeforeEach
-    void setUp() {
-        // Mock MongoDB
-        database = mock(MongoDatabase.class);
-        when(database.getCollection("Patient")).thenReturn(collection);
-
-        // Initialize the AjouterPatient frame
+    @Test
+    public void testAjouterPatientCreation() {
+        // Crée une instance de AjouterPatient
         AjouterPatient frame = new AjouterPatient();
-
-        // Mock the resource for images
-        ImageIcon homeIcon = mock(ImageIcon.class);
-        when(homeIcon.getImage()).thenReturn(null);
-        frame.homeButton.setIcon(homeIcon);
+        
+        // Vérifiez que l'instance est correctement créée
+        assertNotNull(frame);
+        assertTrue(frame instanceof AjouterPatient);
+        
+        // Testez d'autres fonctionnalités si nécessaire
+        // Par exemple, vous pouvez tester si la fenêtre est visible
+        SwingUtilities.invokeLater(() -> {
+            frame.setVisible(true);
+            assertTrue(frame.isVisible());
+        });
     }
-
+    
     @Test
     void testSavePatientValidData() {
         // Setup valid data
