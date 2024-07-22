@@ -138,7 +138,7 @@ public class Acceuil extends JFrame {
         setVisible(true);
     }
 
-    private JPanel createButtonPanel(String buttonText, String iconPath, ActionListener actionListener) {
+    public static JPanel createButtonPanel(String buttonText, String iconPath, ActionListener actionListener) {
         var panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         var gbc = new GridBagConstraints();
