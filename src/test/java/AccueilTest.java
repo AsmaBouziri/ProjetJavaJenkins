@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,11 +20,12 @@ public class AccueilTest {
         // Create mock objects for dependencies
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
-        // Mock the resource loading
-        String iconPath = "/images/icons8-unfriend-skin-type-7-48.png";
-        ImageIcon mockIcon = Mockito.mock(ImageIcon.class);
-        Mockito.when(mockIcon.getImageLoadStatus()).thenReturn(java.awt.MediaTracker.COMPLETE);
-        Mockito.mockStatic(Acceuil.class).when(() -> Acceuil.class.getResource(iconPath)).thenReturn(mockIcon);
+        // Path to the icon
+        String iconPath = "./images/icons8-unfriend-skin-type-7-48.png";
+
+        // Load the icon to avoid NullPointerException
+        java.net.URL imgURL = getClass().getResource(iconPath);
+        assertNotNull(imgURL, "Image resource should be available");
 
         // Call the method to create the panel
         JPanel panel = null;
