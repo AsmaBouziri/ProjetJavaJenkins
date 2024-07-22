@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AjouterPatientTest {
 
-    private AjouterPatient frame;
+    private AjouterPatient frame;  
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
@@ -27,7 +27,7 @@ class AjouterPatientTest {
         when(database.getCollection("Patient")).thenReturn(collection);
 
         // Initialize the AjouterPatient frame
-        frame = new AjouterPatient();
+        AjouterPatient frame = new AjouterPatient();
 
         // Mock the resource for images
         ImageIcon homeIcon = mock(ImageIcon.class);
