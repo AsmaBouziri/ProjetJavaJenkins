@@ -3,8 +3,6 @@ package test.java;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -23,19 +21,28 @@ public class AccueilTest {
         // Create mock objects for dependencies
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
+        // Mock the resource loading
+        String iconPath = "/images/icons8-unfriend-skin-type-7-48.png";
+        ImageIcon mockIcon = Mockito.mock(ImageIcon.class);
+        Mockito.when(mockIcon.getImageLoadStatus()).thenReturn(java.awt.MediaTracker.COMPLETE);
+        Mockito.mockStatic(Acceuil.class).when(() -> Acceuil.class.getResource(iconPath)).thenReturn(mockIcon);
+
         // Call the method to create the panel
-        JPanel panel = new JPanel();
+        JPanel panel = null;
         try {
-            panel = Acceuil.createButtonPanel("Button Text", "/images/icons8-unfriend-skin-type-7-48.png", mockActionListener);
+            panel = Acceuil.createButtonPanel("Button Text", iconPath, mockActionListener);
         } catch (Exception e) {
             e.printStackTrace();
+            fail("Exception occurred while creating the button panel: " + e.getMessage());
         }
 
+        assertNotNull(panel, "Panel should not be null");
+
         // Verify panel layout
-        assertTrue(panel.getLayout() instanceof GridBagLayout);
+        assertTrue(panel.getLayout() instanceof java.awt.GridBagLayout);
 
         // Verify button text (assuming the button is the second component)
-        JButton button = (JButton) panel.getComponent(1); 
+        JButton button = (JButton) panel.getComponent(1);
         assertEquals("Button Text", button.getText());
 
         // Verify icon (if applicable)
