@@ -25,9 +25,8 @@ public class AccueilTest {
         // Call the method to create the panel
         JPanel panel = new JPanel();;
 		try {
-			panel = Acceuil.createButtonPanel("Button Text", "iconPath", mockActionListener);
+			panel = Acceuil.createButtonPanel("text button ", "./images/icons8-unfriend-skin-type-7-48.png", mockActionListener);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
