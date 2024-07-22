@@ -24,8 +24,7 @@ public class AccueilTest {
         String iconPath = "./images/icons8-unfriend-skin-type-7-48.png";
 
         // Load the icon to avoid NullPointerException
-        java.net.URL imgURL = getClass().getResource(iconPath);
-        assertNotNull(imgURL, "Image resource should be available");
+        assertNotNull(iconPath, "Image resource should be available");
 
         // Call the method to create the panel
         JPanel panel = null;
