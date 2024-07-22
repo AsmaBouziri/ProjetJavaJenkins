@@ -13,22 +13,22 @@ import java.util.Calendar;
 
 public class ModifierFichePatient extends JFrame {
     private JPanel contentPane;
-    private JTextField nomTextField ;
-    private JTextField prenomTextField;
-    private JTextField cinTextField;
-    private JTextField adresseTextField;
-    private JTextField professionTextField;
-    private JTextField telTextField;
-    private JRadioButton hommeRadioButton;
-    private JRadioButton femmeRadioButton;
-    private JButton rechercherButton;
-    private JButton modifierButton;
-    private JButton annulerButton;
-    private JComboBox<Integer> jourComboBox;
-    private JComboBox<Integer> moisComboBox;
-    private JComboBox<Integer> anneeComboBox;
-    private MongoDatabase database;
-    private MongoCollection<Document> collection;
+    public JTextField nomTextField ;
+    public JTextField prenomTextField;
+    public JTextField cinTextField;
+    public JTextField adresseTextField;
+    public JTextField professionTextField;
+    public JTextField telTextField;
+    public JRadioButton hommeRadioButton;
+    public JRadioButton femmeRadioButton;
+    public JButton rechercherButton;
+    public JButton modifierButton;
+    public JButton annulerButton;
+    public JComboBox<Integer> jourComboBox;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
+    public MongoDatabase database;
+    public MongoCollection<Document> collection;
 
     public static void main(String[] args) {
         ModifierFichePatient frame = new ModifierFichePatient();
