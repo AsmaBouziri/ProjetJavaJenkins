@@ -147,7 +147,7 @@ public class Acceuil extends JFrame {
         var gbc = new GridBagConstraints();
 
         var iconLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(Acceuil.class.getResource(iconPath));
+        ImageIcon icon = new ImageIcon(iconPath);
         if (icon.getImageLoadStatus() != MediaTracker.ERRORED) {
             iconLabel.setIcon(icon);
         }
