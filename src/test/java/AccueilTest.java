@@ -2,6 +2,7 @@ package test.java;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,8 +32,7 @@ public class AccueilTest {
 		}
 
         // Verify panel layout
-        GridBagLayout layout = (GridBagLayout) panel.getLayout();
-        assertNotNull(layout);
+		assertTrue(panel.getLayout() instanceof FlowLayout);
 
         // Verify button text
         JButton button = (JButton) panel.getComponent(1);
