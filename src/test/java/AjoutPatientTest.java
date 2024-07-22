@@ -4,6 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import main.java.AjouterPatient;
+import main.java.MongoDBUtil;
 
 import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,14 +24,15 @@ class AjouterPatientTest {
 
     @BeforeEach
     void setUp() {
-        // Mock MongoDB
-        database = mock(MongoDatabase.class);
-        collection = mock(MongoCollection.class);
-        when(database.getCollection("Patient")).thenReturn(collection);
+      // Mock MongoDB
+      database = mock(MongoDatabase.class);
+      MongoDBUtil.getDatabase("CabinetDent");
+      MongoCollection<Document> collection = database.getCollection("Patient");
 
-        // Initialize the AjouterPatient frame
-        frame = new AjouterPatient();
-        frame.database = database;  // Inject the mock database
+      // Initialize the AjouterPatient frame
+      frame = new AjouterPatient();
+      // Set the mocked database to the frame
+      
     }
 
     @Test
