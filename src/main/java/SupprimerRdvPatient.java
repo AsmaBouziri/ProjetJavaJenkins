@@ -26,18 +26,10 @@ public class SupprimerRdvPatient extends JFrame {
     }
 
     public SupprimerRdvPatient() {
-        this.database = MongoDBUtil.getDatabase("CabinetDent");
-        MongoCollection<Document> collection = database.getCollection("RendezVous");
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 753, 419);
-        setTitle("Annuler Rendez-Vous");
-        contentPane = new JPanel();
-        contentPane.setBackground(SystemColor.activeCaption);
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+    	this.database = MongoDBUtil.getDatabase("CabinetDent");
+    	MongoCollection<Document> collection = database.getCollection("RendezVous");
+    	contentPane = new JPanel();
+    	new FrameConf().configure(this, contentPane, "Annuler Rendez-Vous");
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 240, 240));
