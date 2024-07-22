@@ -215,7 +215,7 @@ public class AjouterPatient extends JFrame {
         contentPane.add(homeButton);
     }
 
-    private void savePatient(MongoCollection<Document> collection) {
+    public void savePatient(MongoCollection<Document> collection) {
         String nom = nomTextField.getText();
         String prenom = prenomTextField.getText();
         String cin = cinTextField.getText();

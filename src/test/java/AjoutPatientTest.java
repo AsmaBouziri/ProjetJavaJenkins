@@ -1,147 +1,134 @@
 package test.java;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import org.bson.Document;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import main.java.AjouterPatient;
 
-import org.bson.Document;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import java.util.Calendar;
 
-import javax.swing.*;
+public class AjoutPatientTest {
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+    private AjouterPatient ajouterPatient;
+    private MongoDatabase mockDatabase;
+    private MongoCollection<Document> mockCollection;
 
-class AjouterPatientTest {
+    @BeforeEach
+    public void setUp() {
+        ajouterPatient = new AjouterPatient();
 
-    private AjouterPatient frame;  
-    private MongoDatabase database;
-    private MongoCollection<Document> collection;
+        // Mock MongoDB components
+        mockDatabase = mock(MongoDatabase.class);
+        mockCollection = mock(MongoCollection.class);
 
-    @Test
-    public void testAjouterPatientCreation() {
-        // Crée une instance de AjouterPatient
-        AjouterPatient frame = new AjouterPatient();
-        
-        // Vérifiez que l'instance est correctement créée
-        assertNotNull(frame);
-        assertTrue(frame instanceof AjouterPatient);
-        
-        // Testez d'autres fonctionnalités si nécessaire
-        // Par exemple, vous pouvez tester si la fenêtre est visible
-        SwingUtilities.invokeLater(() -> {
-            frame.setVisible(true);
-            assertTrue(frame.isVisible());
-        });
+        // Set up the mocks
+        when(mockDatabase.getCollection("Patient")).thenReturn(mockCollection);
+
+        ajouterPatient.setDatabase(mockDatabase);
     }
-    
+
     @Test
-    void testSavePatientValidData() {
-        // Setup valid data
-        frame.setNomTextField(new JTextField("DAVID"));
-        frame.setPrenomTextField(new JTextField("Jon"));
-        frame.setTelTextField(new JTextField("12345678"));
-        frame.setAdresseTextField(new JTextField("Ben Arous"));
-        frame.setProfessionTextField(new JTextField("Professeur"));
-        frame.setCinTextField(new JTextField("01234567"));
-        frame.jourComboBox.setSelectedItem(1);
-        frame.moisComboBox.setSelectedItem(1);
-        frame.anneeComboBox.setSelectedItem(2000);
-        frame.hommeRadioButton.setSelected(true);
+    public void testSavePatientSuccess() {
+        // Set up the UI components
+        ajouterPatient.getNomTextField().setText("Doe");
+        ajouterPatient.getPrenomTextField().setText("John");
+        ajouterPatient.getCinTextField().setText("12345678");
+        ajouterPatient.getAdresseTextField().setText("123 Street");
+        ajouterPatient.getProfessionTextField().setText("Dentist");
+        ajouterPatient.getTelTextField().setText("01234567");
 
-        // Perform action
-        frame.getEnregistrerButton().doClick();
+        ajouterPatient.jourComboBox.setSelectedItem(1);
+        ajouterPatient.moisComboBox.setSelectedItem(1);
+        ajouterPatient.anneeComboBox.setSelectedItem(Calendar.getInstance().get(Calendar.YEAR));
 
-        // Verify if the patient has been inserted
-        Document expectedDocument = new Document("nom", "DAVID")
-                .append("prenom", "Jon")
-                .append("cin", "01234567")
+        ajouterPatient.hommeRadioButton.setSelected(true);
+
+        // Call the method
+        ajouterPatient.savePatient(mockCollection);
+
+        // Verify that insertOne was called with the correct document
+        Document expectedDocument = new Document("nom", "Doe")
+                .append("prenom", "John")
+                .append("cin", "12345678")
                 .append("sexe", "Homme")
-                .append("adresse", "Ben Arous")
-                .append("telephone", "12345678")
-                .append("dataNaiss", "1/1/2000")
-                .append("profession", "Professeur");
+                .append("adresse", "123 Street")
+                .append("telephone", "01234567")
+                .append("dataNaiss", "1/1/" + Calendar.getInstance().get(Calendar.YEAR))
+                .append("profession", "Dentist");
 
-        verify(collection).insertOne(expectedDocument);
+        verify(mockCollection).insertOne(expectedDocument);
     }
 
     @Test
-    void testSavePatientInvalidPhoneNumber() {
-        // Setup invalid phone number
-        frame.setTelTextField(new JTextField("12345"));
+    public void testSavePatientFailureEmptyFields() {
+        // Set up the UI components with empty fields
+        ajouterPatient.getNomTextField().setText("");
+        ajouterPatient.getPrenomTextField().setText("");
+        ajouterPatient.getCinTextField().setText("");
+        ajouterPatient.getAdresseTextField().setText("");
+        ajouterPatient.getProfessionTextField().setText("");
+        ajouterPatient.getTelTextField().setText("");
 
-        // Capture and verify dialog
-        JOptionPane.showMessageDialog(frame, "Le numéro de téléphone doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        // Call the method
+        ajouterPatient.savePatient(mockCollection);
 
-        // Perform action
-        frame.getEnregistrerButton().doClick();
-
-        // Check if error dialog was shown
-        // This may require an alternative way to verify dialog appearance, such as a mock or assert the dialog is called
+        // Verify that no document is inserted
+        verify(mockCollection, never()).insertOne(any(Document.class));
     }
 
     @Test
-    void testSavePatientInvalidCin() {
-        // Setup invalid CIN
-        frame.setCinTextField(new JTextField("1234"));
+    public void testSavePatientFailureInvalidTelephone() {
+        // Set up the UI components with invalid telephone number
+        ajouterPatient.getNomTextField().setText("Doe");
+        ajouterPatient.getPrenomTextField().setText("John");
+        ajouterPatient.getCinTextField().setText("12345678");
+        ajouterPatient.getAdresseTextField().setText("123 Street");
+        ajouterPatient.getProfessionTextField().setText("Dentist");
+        ajouterPatient.getTelTextField().setText("123");
 
-        // Perform action
-        frame.getEnregistrerButton().doClick();
+        // Call the method
+        ajouterPatient.savePatient(mockCollection);
 
-        // Verify if the error dialog is shown
-        JOptionPane.showMessageDialog(frame, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        // Verify that no document is inserted
+        verify(mockCollection, never()).insertOne(any(Document.class));
     }
 
     @Test
-    void testSavePatientEmptyFields() {
-        // Setup empty fields
-        frame.setNomTextField(new JTextField(""));
-        frame.setPrenomTextField(new JTextField(""));
-        frame.setTelTextField(new JTextField(""));
-        frame.setAdresseTextField(new JTextField(""));
-        frame.setProfessionTextField(new JTextField(""));
-        frame.setCinTextField(new JTextField(""));
-        frame.jourComboBox.setSelectedItem(1);
-        frame.moisComboBox.setSelectedItem(1);
-        frame.anneeComboBox.setSelectedItem(2000);
-        frame.hommeRadioButton.setSelected(true);
+    public void testClearFields() {
+        // Set up the UI components with values
+        ajouterPatient.getNomTextField().setText("Doe");
+        ajouterPatient.getPrenomTextField().setText("John");
+        ajouterPatient.getCinTextField().setText("12345678");
+        ajouterPatient.getAdresseTextField().setText("123 Street");
+        ajouterPatient.getProfessionTextField().setText("Dentist");
+        ajouterPatient.getTelTextField().setText("01234567");
+        ajouterPatient.jourComboBox.setSelectedIndex(1);
+        ajouterPatient.moisComboBox.setSelectedIndex(1);
+        ajouterPatient.anneeComboBox.setSelectedIndex(1);
+        ajouterPatient.hommeRadioButton.setSelected(true);
 
-        // Perform action
-        frame.getEnregistrerButton().doClick();
+        // Call the clearFields method
+        ajouterPatient.clearFields();
 
-        // Verify if the error dialog is shown
-        JOptionPane.showMessageDialog(frame, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
-    }
-
-    @Test
-    void testClearFields() {
-        // Setup fields with some data
-        frame.setNomTextField(new JTextField("DAVID"));
-        frame.setPrenomTextField(new JTextField("Jon"));
-        frame.setTelTextField(new JTextField("12345678"));
-        frame.setAdresseTextField(new JTextField("Ben Arous"));
-        frame.setProfessionTextField(new JTextField("Professeur"));
-        frame.setCinTextField(new JTextField("01234567"));
-        frame.jourComboBox.setSelectedItem(1);
-        frame.moisComboBox.setSelectedItem(1);
-        frame.anneeComboBox.setSelectedItem(2000);
-        frame.hommeRadioButton.setSelected(true);
-
-        // Clear fields
-        frame.clearFields();
-
-        // Verify if the fields are cleared
-        assertEquals("", frame.getNomTextField().getText());
-        assertEquals("", frame.getPrenomTextField().getText());
-        assertEquals("", frame.getCinTextField().getText());
-        assertEquals("", frame.getAdresseTextField().getText());
-        assertEquals("", frame.getProfessionTextField().getText());
-        assertEquals("", frame.getTelTextField().getText());
-        assertEquals(0, frame.jourComboBox.getSelectedIndex());
-        assertEquals(0, frame.moisComboBox.getSelectedIndex());
-        assertEquals(0, frame.anneeComboBox.getSelectedIndex());
-        assertTrue(frame.hommeRadioButton.isSelected());
+        // Verify that all fields are cleared
+        assertEquals("", ajouterPatient.getNomTextField().getText());
+        assertEquals("", ajouterPatient.getPrenomTextField().getText());
+        assertEquals("", ajouterPatient.getCinTextField().getText());
+        assertEquals("", ajouterPatient.getAdresseTextField().getText());
+        assertEquals("", ajouterPatient.getProfessionTextField().getText());
+        assertEquals("", ajouterPatient.getTelTextField().getText());
+        assertEquals(0, ajouterPatient.jourComboBox.getSelectedIndex());
+        assertEquals(0, ajouterPatient.moisComboBox.getSelectedIndex());
+        assertEquals(0, ajouterPatient.anneeComboBox.getSelectedIndex());
+        assertTrue(ajouterPatient.hommeRadioButton.isSelected());
     }
 }
