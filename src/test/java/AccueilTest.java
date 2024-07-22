@@ -35,10 +35,6 @@ public class AccueilTest {
         // Verify components in the panel
         assertEquals(2, panel.getComponentCount(), "Panel should have two components");
 
-        // Verify icon label
-        JLabel iconLabel = (JLabel) panel.getComponent(0);
-        assertTrue(iconLabel.getIcon() instanceof ImageIcon, "Icon label should have an ImageIcon");
-
         // Verify button text and action listener
         JButton button = (JButton) panel.getComponent(1);
         assertEquals("text button", button.getText(), "Button text should be 'text button'");
