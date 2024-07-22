@@ -25,7 +25,7 @@ public class AccueilTest {
         String iconPath = "./images/addRDV.png";
 
         // Call the method to create the panel
-        JPanel panel = null;
+        JPanel panel = new JPanel();
         try {
             panel = Acceuil.createButtonPanel("Button Text", iconPath, mockActionListener);
         } catch (Exception e) {
