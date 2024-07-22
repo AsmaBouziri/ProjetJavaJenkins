@@ -26,14 +26,15 @@ class AjouterPatientTest {
     void setUp() {
       // Mock MongoDB
       database = mock(MongoDatabase.class);
-      MongoDBUtil.getDatabase("CabinetDent");
-      MongoCollection<Document> collection = database.getCollection("Patient");
+      collection = mock(MongoCollection.class);
+      when(database.getCollection("Patient")).thenReturn(collection);
 
       // Initialize the AjouterPatient frame
       frame = new AjouterPatient();
       // Set the mocked database to the frame
-      
+      frame.setDatabase(database);
     }
+
 
     @Test
     void testSavePatientValidData() {

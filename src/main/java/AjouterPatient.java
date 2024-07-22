@@ -10,6 +10,10 @@ import java.awt.event.*;
 import java.util.Calendar;
 
 public class AjouterPatient extends JFrame {
+	
+	public void setDatabase(MongoDatabase database) {
+		  this.database = database;
+		}
     private JPanel contentPane;
     private JTextField nomTextField, prenomTextField, cinTextField, adresseTextField, professionTextField, telTextField;
     public JTextField getNomTextField() {
