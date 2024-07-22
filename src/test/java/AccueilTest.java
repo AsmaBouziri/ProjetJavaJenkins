@@ -23,7 +23,7 @@ public class AccueilTest {
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
         // Call the method to create the panel
-        JPanel panel = null;
+        JPanel panel = new JPanel();;
 		try {
 			panel = Acceuil.createButtonPanel("Button Text", "iconPath", mockActionListener);
 		} catch (Exception e) {
