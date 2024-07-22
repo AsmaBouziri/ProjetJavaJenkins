@@ -24,6 +24,21 @@ public class ModifierFichePatientTest {
     private ModifierFichePatient frame;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
+    private JPanel contentPane;
+    public JTextField nomTextField ;
+    public JTextField prenomTextField;
+    public JTextField cinTextField;
+    public JTextField adresseTextField;
+    public JTextField professionTextField;
+    public JTextField telTextField;
+    public JRadioButton hommeRadioButton;
+    public JRadioButton femmeRadioButton;
+    public JButton rechercherButton;
+    public JButton modifierButton;
+    public JButton annulerButton;
+    public JComboBox<Integer> jourComboBox;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
 
     @BeforeEach
     public void setUp() {
