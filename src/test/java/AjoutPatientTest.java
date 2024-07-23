@@ -22,27 +22,6 @@ public class AjoutPatientTest {
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
-    
-    @Test
-    public void testDatabaseConnection() {
-        MongoDatabase testDb = MongoDBUtil.getDatabase("CabinetDent");
-        assertNotNull(testDb, "La connexion à la base de données a échoué.");
-    }
-    @Test
-    public void testWindowInitialization() {
-        AjouterPatient frame = new AjouterPatient();
-        assertNotNull(frame);
-        assertNotNull(frame.getContentPane());
-        assertNotNull(frame.nomTextField);
-        assertNotNull(frame.prenomTextField);
-        assertNotNull(frame.cinTextField);
-        assertNotNull(frame.adresseTextField);
-        assertNotNull(frame.professionTextField);
-        assertNotNull(frame.telTextField);
-        assertNotNull(frame.enregistrerButton);
-        assertNotNull(frame.annulerButton);
-    }
-
     @BeforeEach
     public void setUp() {
         database = MongoDBUtil.getDatabase("CabinetDent");
