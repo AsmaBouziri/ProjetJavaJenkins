@@ -23,19 +23,13 @@ public class AccueilTest {
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
         // Call the method to create the panel
-        JPanel panel = new JPanel();
-        try {
-            panel = Acceuil.createButtonPanel("text button", "./images/addRDV.png", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
-                    suppRDVFrame.setVisible(true);
-                    
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("Exception occurred while creating the button panel: " + e.getMessage());
-        }
+        JPanel panel = Acceuil.createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
+                suppRDVFrame.setVisible(true);
+                
+            }
+        });
 
         // Verify panel layout
         assertTrue(panel.getLayout() instanceof GridBagLayout, "Panel layout should be GridBagLayout");
