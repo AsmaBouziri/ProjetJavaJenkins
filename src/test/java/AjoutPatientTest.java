@@ -43,7 +43,6 @@ public class AjoutPatientTest {
         assertNotNull(ajouterPatient.professionTextField);
         assertNotNull(ajouterPatient.telTextField);
         assertNotNull(ajouterPatient.enregistrerButton);
-        assertNotNull(ajouterPatient.annulerButton);
         assertNotNull(ajouterPatient.hommeRadioButton);
         assertNotNull(ajouterPatient.femmeRadioButton);
         assertNotNull(ajouterPatient.annulerButton);
