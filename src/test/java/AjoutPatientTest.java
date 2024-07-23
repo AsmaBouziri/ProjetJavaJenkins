@@ -3,9 +3,13 @@ package test.java;
 import main.java.AjouterPatient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+
 
 import com.mongodb.client.MongoCollection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.bson.Document;
@@ -13,10 +17,11 @@ import org.bson.Document;
 public class AjoutPatientTest {
 
     private AjouterPatient ajouterPatient;
-    private MongoCollection<Document> collection;
+    private MongoCollection<Document> mockCollection;
 
     @BeforeEach
     public void setUp() {
+    	mockCollection = Mockito.mock(MongoCollection.class);
         ajouterPatient = new AjouterPatient();
         ajouterPatient.setSize(800, 600);
         ajouterPatient.setVisible(true);
@@ -45,6 +50,8 @@ public class AjoutPatientTest {
         ajouterPatient.adresseTextField.setText("ben arous");
         ajouterPatient.professionTextField.setText("professeur");
         ajouterPatient.telTextField.setText("12345678");
+
+        
         // Simulate button click
         ajouterPatient.enregistrerButton.doClick();
 
@@ -52,14 +59,14 @@ public class AjoutPatientTest {
         Document expectedDocument = new Document("nom", "ali")
             .append("prenom", "ali")
             .append("cin", "12345678")
-            .append("sexe", "f") // Assure-toi que c'est 'f' ou adapte selon le champ de sexe
+            .append("sexe", "f") 
             .append("adresse", "ben arous")
             .append("telephone", "12345678")
             .append("dataNaiss", "12/02/2150")
             .append("profession", "professeur");
 
         // Verify that insertOne was called with the expected document
-        collection.insertOne(expectedDocument);
+        verify(mockCollection).insertOne(expectedDocument);
     }
 
 }
