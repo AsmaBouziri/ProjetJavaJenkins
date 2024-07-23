@@ -45,9 +45,6 @@ public class AjoutPatientTest {
         assertNotNull(ajouterPatient.enregistrerButton);
         assertNotNull(ajouterPatient.hommeRadioButton);
         assertNotNull(ajouterPatient.femmeRadioButton);
-        assertNotNull(ajouterPatient.annulerButton);
-        assertNotNull(ajouterPatient.hommeRadioButton);
-        assertNotNull(ajouterPatient.femmeRadioButton);
         assertNotNull(ajouterPatient.jourComboBox);
         assertNotNull(ajouterPatient.anneeComboBox);
         assertNotNull(ajouterPatient.moisComboBox);
