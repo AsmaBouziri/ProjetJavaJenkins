@@ -146,16 +146,25 @@ public class Acceuil extends JFrame {
         panel.setLayout(new GridBagLayout());
         var gbc = new GridBagConstraints();
 
+        // Initialize the icon label
         var iconLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(Acceuil.class.getResource(iconPath));
-        if (icon.getImageLoadStatus() != MediaTracker.ERRORED) {
-            iconLabel.setIcon(icon);
+        java.net.URL imgURL = Acceuil.class.getResource(iconPath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            if (icon.getImageLoadStatus() != MediaTracker.ERRORED) {
+                iconLabel.setIcon(icon);
+            } else {
+                System.err.println("Error loading icon: " + iconPath);
+            }
+        } else {
+            System.err.println("Icon path not found: " + iconPath);
         }
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         panel.add(iconLabel, gbc);
 
+        // Initialize the button
         var button = new JButton(buttonText);
         button.setFont(new Font("Tahoma", Font.ITALIC, 18));
         button.addActionListener(actionListener);
@@ -166,6 +175,7 @@ public class Acceuil extends JFrame {
 
         return panel;
     }
+
 
     public static void main(String[] args) {
         Acceuil frame = new Acceuil();
