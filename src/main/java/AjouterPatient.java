@@ -26,6 +26,9 @@ public class AjouterPatient extends JFrame {
     public JButton annulerButton;
     public JList<String> list;
     private DefaultListModel<String> listModel;
+    public JComboBox<Integer> jourComboBox;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
 
     public static void main(String[] args) {
         AjouterPatient frame = new AjouterPatient();

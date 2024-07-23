@@ -51,7 +51,9 @@ public class AjoutPatientTest {
         ajouterPatient.professionTextField.setText("professeur");
         ajouterPatient.telTextField.setText("12345678");
 
-        
+        ajouterPatient.jourComboBox.setSelectedItem(12);
+        ajouterPatient.moisComboBox.setSelectedItem(2);
+        ajouterPatient.anneeComboBox.setSelectedItem(2150);
         // Simulate button click
         ajouterPatient.enregistrerButton.doClick();
 
