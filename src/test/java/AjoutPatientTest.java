@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
 
-
+import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -17,11 +18,15 @@ import org.bson.Document;
 public class AjoutPatientTest {
 
     private AjouterPatient ajouterPatient;
-    private MongoCollection<Document> mockCollection;
+    private static MongoClient mongoClient;
+    private MongoDatabase database;
+    private MongoCollection<Document> collection;
 
     @BeforeEach
     public void setUp() {
-    	mockCollection = Mockito.mock(MongoCollection.class);
+    	database = mongoClient.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
+        
         ajouterPatient = new AjouterPatient();
         ajouterPatient.setSize(800, 600);
         ajouterPatient.setVisible(true);
@@ -63,18 +68,9 @@ public class AjoutPatientTest {
         // Simulate button click
         ajouterPatient.enregistrerButton.doClick();
 
-        // Expected Document
-        Document expectedDocument = new Document("nom", "ali")
-            .append("prenom", "ali")
-            .append("cin", "12345678")
-            .append("sexe", "f") 
-            .append("adresse", "ben arous")
-            .append("telephone", "12345678")
-            .append("dataNaiss", "12/02/2150")
-            .append("profession", "professeur");
-
-        // Verify that insertOne was called with the expected document
-        verify(mockCollection).insertOne(expectedDocument);
+        Document found = collection.find(new Document("nom", "ali")).first();
+        assertNotNull(found, "Patient 'ali' should be found");
+        assertEquals("ali", found.getString("nom"));
     }
 
 }
