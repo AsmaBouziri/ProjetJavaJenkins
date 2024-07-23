@@ -138,21 +138,21 @@ public class AjouterPatient extends JFrame {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
 
-        final var jourComboBox = new JComboBox<Integer>();
+        jourComboBox = new JComboBox<Integer>();
         jourComboBox.setBounds(237, 160, 50, 22);
         panel.add(jourComboBox);
         for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
 
-        final var moisComboBox = new JComboBox<Integer>();
+        moisComboBox = new JComboBox<Integer>();
         moisComboBox.setBounds(286, 160, 50, 22);
         panel.add(moisComboBox);
         for (int i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
 
-        final var anneeComboBox = new JComboBox<Integer>();
+        anneeComboBox = new JComboBox<Integer>();
         anneeComboBox.setBounds(336, 160, 100, 22);
         panel.add(anneeComboBox);
         for (int i = currentYear - 100; i <= currentYear; i++) {
