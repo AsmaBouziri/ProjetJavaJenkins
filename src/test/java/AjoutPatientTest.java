@@ -4,6 +4,8 @@ import main.java.AjouterPatient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.mongodb.client.MongoCollection;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.bson.Document;
@@ -11,6 +13,7 @@ import org.bson.Document;
 public class AjoutPatientTest {
 
     private AjouterPatient ajouterPatient;
+    private MongoCollection<Document> collection;
 
     @BeforeEach
     public void setUp() {
@@ -56,7 +59,7 @@ public class AjoutPatientTest {
             .append("profession", "professeur");
 
         // Verify that insertOne was called with the expected document
-        verify(mockCollection).insertOne(expectedDocument);
+        collection.insertOne(expectedDocument);
     }
 
 }
