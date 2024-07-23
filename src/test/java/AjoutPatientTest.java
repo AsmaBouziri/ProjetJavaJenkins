@@ -1,125 +1,111 @@
-//package test.java;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.Mockito.*;
-//
-//import org.bson.Document;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import com.mongodb.client.MongoCollection;
-//import com.mongodb.client.MongoDatabase;
-//
-//import main.java.AjouterPatient;
-//
-//import javax.swing.JTextField;
-//import javax.swing.JComboBox;
-//import javax.swing.JRadioButton;
-//import java.util.Calendar;
-//
-//public class AjoutPatientTest {
-//
-//    private AjouterPatient ajouterPatient;
-//    private MongoDatabase mockDatabase;
-//    private MongoCollection<Document> mockCollection;
-//
-//    @BeforeEach
-//    public void setUp() {
-//        ajouterPatient = new AjouterPatient();
-//    }
-//
-//    @Test
-//    public void testSavePatientSuccess() {
-//        // Set up the UI components
-//        ajouterPatient.getNomTextField().setText("Doe");
-//        ajouterPatient.getPrenomTextField().setText("John");
-//        ajouterPatient.getCinTextField().setText("12345678");
-//        ajouterPatient.getAdresseTextField().setText("123 Street");
-//        ajouterPatient.getProfessionTextField().setText("Dentist");
-//        ajouterPatient.getTelTextField().setText("01234567");
-//
-//        ajouterPatient.jourComboBox.setSelectedItem(1);
-//        ajouterPatient.moisComboBox.setSelectedItem(1);
-//        ajouterPatient.anneeComboBox.setSelectedItem(Calendar.getInstance().get(Calendar.YEAR));
-//
-//        ajouterPatient.hommeRadioButton.setSelected(true);
-//
-//        // Call the method
-//        ajouterPatient.savePatient(mockCollection);
-//
-//        // Verify that insertOne was called with the correct document
-//        Document expectedDocument = new Document("nom", "Doe")
-//                .append("prenom", "John")
-//                .append("cin", "12345678")
-//                .append("sexe", "Homme")
-//                .append("adresse", "123 Street")
-//                .append("telephone", "01234567")
-//                .append("dataNaiss", "1/1/" + Calendar.getInstance().get(Calendar.YEAR))
-//                .append("profession", "Dentist");
-//
-//        verify(mockCollection).insertOne(expectedDocument);
-//    }
-//
-//    @Test
-//    public void testSavePatientFailureEmptyFields() {
-//        // Set up the UI components with empty fields
-//        ajouterPatient.getNomTextField().setText("");
-//        ajouterPatient.getPrenomTextField().setText("");
-//        ajouterPatient.getCinTextField().setText("");
-//        ajouterPatient.getAdresseTextField().setText("");
-//        ajouterPatient.getProfessionTextField().setText("");
-//        ajouterPatient.getTelTextField().setText("");
-//
-//        // Call the method
-//        ajouterPatient.savePatient(mockCollection);
-//
-//        // Verify that no document is inserted
-//        verify(mockCollection, never()).insertOne(any(Document.class));
-//    }
-//
-//    @Test
-//    public void testSavePatientFailureInvalidTelephone() {
-//        // Set up the UI components with invalid telephone number
-//        ajouterPatient.getNomTextField().setText("Doe");
-//        ajouterPatient.getPrenomTextField().setText("John");
-//        ajouterPatient.getCinTextField().setText("12345678");
-//        ajouterPatient.getAdresseTextField().setText("123 Street");
-//        ajouterPatient.getProfessionTextField().setText("Dentist");
-//        ajouterPatient.getTelTextField().setText("123");
-//
-//        // Call the method
-//        ajouterPatient.savePatient(mockCollection);
-//
-//        // Verify that no document is inserted
-//        verify(mockCollection, never()).insertOne(any(Document.class));
-//    }
-//
-//    @Test
-//    public void testClearFields() {
-//        // Set up the UI components with values
-//        ajouterPatient.getNomTextField().setText("Doe");
-//        ajouterPatient.getPrenomTextField().setText("John");
-//        ajouterPatient.getCinTextField().setText("12345678");
-//        ajouterPatient.getAdresseTextField().setText("123 Street");
-//        ajouterPatient.getProfessionTextField().setText("Dentist");
-//        ajouterPatient.getTelTextField().setText("01234567");
-//        ajouterPatient.jourComboBox.setSelectedIndex(1);
-//        ajouterPatient.moisComboBox.setSelectedIndex(1);
-//        ajouterPatient.anneeComboBox.setSelectedIndex(1);
-//        ajouterPatient.hommeRadioButton.setSelected(true);
-//
-//        // Call the clearFields method
-//        ajouterPatient.clearFields();
-//
-//        // Verify that all fields are cleared
-//        assertEquals("", ajouterPatient.getNomTextField().getText());
-//        assertEquals("", ajouterPatient.getPrenomTextField().getText());
-//        assertEquals("", ajouterPatient.getCinTextField().getText());
-//        assertEquals("", ajouterPatient.getAdresseTextField().getText());
-//        assertEquals("", ajouterPatient.getProfessionTextField().getText());
-//        assertEquals("", ajouterPatient.getTelTextField().getText());
-//        assertEquals(0, ajouterPatient.jourComboBox.getSelectedIndex());
-//        assertEquals(0, ajouterPatient.moisComboBox.getSelectedIndex());
-//        assertEquals(0, ajouterPatient.anneeComboBox.getSelectedIndex());
-//        assertTrue(ajouterPatient.hommeRadioButton.isSelected());
-//    }
-//}
+package test.java;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import main.java.AjouterPatient;
+import main.java.MongoDBUtil;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+public class AjoutPatientTest {
+    private AjouterPatient ajouterPatient;
+    private MongoDatabase database;
+    private MongoCollection<Document> collection;
+
+    @BeforeEach
+    public void setUp() {
+        // Initialize the AjouterPatient frame
+        ajouterPatient = new AjouterPatient();
+        ajouterPatient.setSize(800, 600);
+        ajouterPatient.setVisible(true);
+
+        // Set up the database connection
+        database = MongoDBUtil.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Clear the collection after each test
+        collection.drop();
+
+        // Close the AjouterPatient frame
+        ajouterPatient.dispose();
+    }
+
+    @Test
+    public void testAjouterPatientFields() {
+        // Verify that all text fields are present and initially empty
+        assertEquals("", ajouterPatient.nomTextField.getText());
+        assertEquals("", ajouterPatient.prenomTextField.getText());
+        assertEquals("", ajouterPatient.cinTextField.getText());
+        assertEquals("", ajouterPatient.adresseTextField.getText());
+        assertEquals("", ajouterPatient.professionTextField.getText());
+        assertEquals("", ajouterPatient.telTextField.getText());
+        // Verify that the radio buttons are present and no selection is made initially
+        assertFalse(ajouterPatient.hommeRadioButton.isSelected());
+        assertFalse(ajouterPatient.femmeRadioButton.isSelected());
+    }
+
+    @Test
+    public void testAjouterPatientEnregistrerButton() {
+        // Set field values
+        ajouterPatient.nomTextField.setText("Doe");
+        ajouterPatient.prenomTextField.setText("John");
+        ajouterPatient.cinTextField.setText("12345678");
+        ajouterPatient.adresseTextField.setText("123 Main St");
+        ajouterPatient.professionTextField.setText("Dentist");
+        ajouterPatient.telTextField.setText("87654321");
+        ajouterPatient.hommeRadioButton.setSelected(true);
+
+        // Click the Enregistrer button
+        ajouterPatient.enregistrerButton.doClick();
+
+        // Verify that the document was inserted into the collection
+        Document doc = collection.find(new Document("cin", "12345678")).first();
+        assertNotNull(doc);
+        assertEquals("Doe", doc.getString("nom"));
+        assertEquals("John", doc.getString("prenom"));
+        assertEquals("12345678", doc.getString("cin"));
+        assertEquals("Homme", doc.getString("sexe"));
+        assertEquals("123 Main St", doc.getString("adresse"));
+        assertEquals("Dentist", doc.getString("profession"));
+        assertEquals("87654321", doc.getString("telephone"));
+        assertEquals("15/6/1985", doc.getString("dataNaiss"));
+    }
+
+    @Test
+    public void testAjouterPatientAnnulerButton() {
+        // Set field values
+        ajouterPatient.nomTextField.setText("Doe");
+        ajouterPatient.prenomTextField.setText("John");
+        ajouterPatient.cinTextField.setText("12345678");
+        ajouterPatient.adresseTextField.setText("123 Main St");
+        ajouterPatient.professionTextField.setText("Dentist");
+        ajouterPatient.telTextField.setText("87654321");
+        ajouterPatient.hommeRadioButton.setSelected(true);
+
+        // Click the Annuler button
+        ajouterPatient.annulerButton.doClick();
+
+        // Verify that the fields are cleared
+        assertEquals("", ajouterPatient.nomTextField.getText());
+        assertEquals("", ajouterPatient.prenomTextField.getText());
+        assertEquals("", ajouterPatient.cinTextField.getText());
+        assertEquals("", ajouterPatient.adresseTextField.getText());
+        assertEquals("", ajouterPatient.professionTextField.getText());
+        assertEquals("", ajouterPatient.telTextField.getText());
+        assertFalse(ajouterPatient.hommeRadioButton.isSelected());
+        assertFalse(ajouterPatient.femmeRadioButton.isSelected());
+    }
+}

@@ -16,17 +16,17 @@ import main.java.MongoDBUtil;
 public class AjouterPatient extends JFrame  {
 	private JPanel contentPane;
 	private MongoDatabase database;
-	private JTextField nomTextField;
-	private JTextField prenomTextField;
-	private JTextField cinTextField;
-	private JTextField adresseTextField;
-	private JTextField professionTextField;
-	private JTextField telTextField;
-	private JRadioButton hommeRadioButton;
-	private JRadioButton femmeRadioButton;
-	private JButton enregistrerButton;
-	private JButton annulerButton;
-	private JList<String> list;
+	public JTextField nomTextField;
+	public JTextField prenomTextField;
+	public JTextField cinTextField;
+	public JTextField adresseTextField;
+	public JTextField professionTextField;
+	public JTextField telTextField;
+	public JRadioButton hommeRadioButton;
+	public JRadioButton femmeRadioButton;
+	public JButton enregistrerButton;
+	public JButton annulerButton;
+	public JList<String> list;
 	private DefaultListModel<String> listModel;
 
 	public static void main(String[] args) {
