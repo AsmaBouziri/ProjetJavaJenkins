@@ -22,8 +22,9 @@ public class AccueilTest {
         // Create mock objects for dependencies
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
+        Acceuil acceuil = new Acceuil();
         // Call the method to create the panel
-        JPanel panel = Acceuil.createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
+        JPanel panel = acceuil.createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
                 suppRDVFrame.setVisible(true);
