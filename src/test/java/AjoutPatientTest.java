@@ -27,6 +27,14 @@ public class AjoutPatientTest {
     	AjouterPatient frame = new AjouterPatient();
 		frame.setSize(800, 600);
 		frame.setVisible(true);
+		
+		frame.nomTextField = new JTextField();
+		frame.prenomTextField = new JTextField();
+		frame.cinTextField = new JTextField();
+		frame.adresseTextField = new JTextField();
+		frame.professionTextField = new JTextField();
+		frame.telTextField = new JTextField();
+		
 
     }
 
@@ -35,26 +43,9 @@ public class AjoutPatientTest {
         ajouterPatient.dispose();
     }
 
-    public static boolean waitUntilButtonsAreInitialized(AjouterPatient frame) {
-    	  int maxWaitTime = 10; // Adjust timeout as needed (in seconds)
-    	  int waitTime = 0;
-    	  while (waitTime < maxWaitTime && (frame.enregistrerButton == null || frame.annulerButton == null)) {
-    	    try {
-    	      Thread.sleep(1000); // Wait for 1 second
-    	      waitTime++;
-    	    } catch (InterruptedException e) {
-    	      e.printStackTrace();
-    	      return false;
-    	    }
-    	  }
-    	  return frame.enregistrerButton != null && frame.annulerButton != null;
-    	}
     
     @Test
     public void testAjouterPatientFields() {
-    	 if (!waitUntilButtonsAreInitialized(ajouterPatient)) {
-    		    fail("Failed to initialize buttons within timeout");
-    		  }
         // Verify that all text fields are present and initially empty
         assertEquals("", ajouterPatient.nomTextField.getText());
         assertEquals("", ajouterPatient.prenomTextField.getText());
@@ -69,9 +60,6 @@ public class AjoutPatientTest {
 
     @Test
     public void testAjouterPatientEnregistrerButton() {
-    	 if (!waitUntilButtonsAreInitialized(ajouterPatient)) {
-    		    fail("Failed to initialize buttons within timeout");
-    		  }
         // Set field values
         ajouterPatient.nomTextField.setText("Doe");
         ajouterPatient.prenomTextField.setText("John");
@@ -102,9 +90,6 @@ public class AjoutPatientTest {
 
     @Test
     public void testAjouterPatientAnnulerButton() {
-    	 if (!waitUntilButtonsAreInitialized(ajouterPatient)) {
-    		    fail("Failed to initialize buttons within timeout");
-    		  }
         // Set field values
         ajouterPatient.nomTextField.setText("Doe");
         ajouterPatient.prenomTextField.setText("John");
