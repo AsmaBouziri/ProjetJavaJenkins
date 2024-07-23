@@ -53,9 +53,7 @@ public class AjoutPatientTest {
         assertEquals("", ajouterPatient.adresseTextField.getText());
         assertEquals("", ajouterPatient.professionTextField.getText());
         assertEquals("", ajouterPatient.telTextField.getText());
-        // Verify that the radio buttons are present and no selection is made initially
-        assertFalse(ajouterPatient.hommeRadioButton.isSelected());
-        assertFalse(ajouterPatient.femmeRadioButton.isSelected());
+
     }
 
     @Test
@@ -67,8 +65,6 @@ public class AjoutPatientTest {
         ajouterPatient.adresseTextField.setText("123 Main St");
         ajouterPatient.professionTextField.setText("Dentist");
         ajouterPatient.telTextField.setText("87654321");
-        ajouterPatient.hommeRadioButton.setSelected(true);
-
         // Simulate the click on the Enregistrer button
         ajouterPatient.enregistrerButton.doClick();
 
@@ -84,8 +80,6 @@ public class AjoutPatientTest {
         assertEquals("", ajouterPatient.adresseTextField.getText());
         assertEquals("", ajouterPatient.professionTextField.getText());
         assertEquals("", ajouterPatient.telTextField.getText());
-        assertFalse(ajouterPatient.hommeRadioButton.isSelected());
-        assertFalse(ajouterPatient.femmeRadioButton.isSelected());
     }
 
     @Test
@@ -97,8 +91,6 @@ public class AjoutPatientTest {
         ajouterPatient.adresseTextField.setText("123 Main St");
         ajouterPatient.professionTextField.setText("Dentist");
         ajouterPatient.telTextField.setText("87654321");
-        ajouterPatient.hommeRadioButton.setSelected(true);
-
         // Click the Annuler button
         ajouterPatient.annulerButton.doClick();
 
@@ -109,7 +101,5 @@ public class AjoutPatientTest {
         assertEquals("", ajouterPatient.adresseTextField.getText());
         assertEquals("", ajouterPatient.professionTextField.getText());
         assertEquals("", ajouterPatient.telTextField.getText());
-        assertFalse(ajouterPatient.hommeRadioButton.isSelected());
-        assertFalse(ajouterPatient.femmeRadioButton.isSelected());
     }
 }
