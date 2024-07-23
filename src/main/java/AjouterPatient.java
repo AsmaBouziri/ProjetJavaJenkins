@@ -216,19 +216,6 @@ public class AjouterPatient extends JFrame {
         enregistrerButton.setBounds(95, 380, 130, 37);
         contentPane.add(enregistrerButton);
 
-        annulerButton = new JButton("Annuler");
-        annulerButton.setBackground(SystemColor.activeCaption);
-        annulerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-        annulerButton.setBounds(273, 380, 130, 37);
-        contentPane.add(annulerButton);
 
-        listModel = new DefaultListModel<>();
-        list = new JList<>(listModel);
-        list.setBounds(92, 428, 649, 85);
-        contentPane.add(list);
     }
 }

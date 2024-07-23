@@ -1,139 +1,83 @@
-//package test.java;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//import org.bson.Document;
-//import org.junit.jupiter.api.*;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//
-//import com.mongodb.client.MongoCollection;
-//import com.mongodb.client.MongoDatabase;
-//
-//import main.java.ModifierFichePatient;
-//import main.java.MongoDBUtil;
-//
-//import java.awt.*;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//import javax.swing.*;
-//
-//
-//public class ModifierFichePatientTest {
-//
-//    private ModifierFichePatient frame;
-//    private MongoDatabase database;
-//    private MongoCollection<Document> collection;
-//    private JPanel contentPane;
-//    public JTextField nomTextField ;
-//    public JTextField prenomTextField;
-//    public JTextField cinTextField;
-//    public JTextField adresseTextField;
-//    public JTextField professionTextField;
-//    public JTextField telTextField;
-//    public JRadioButton hommeRadioButton;
-//    public JRadioButton femmeRadioButton;
-//    public JButton rechercherButton;
-//    public JButton modifierButton;
-//    public JButton annulerButton;
-//    public JComboBox<Integer> jourComboBox;
-//    public JComboBox<Integer> moisComboBox;
-//    public JComboBox<Integer> anneeComboBox;
-//
-//    @BeforeEach
-//    public void setUp() {
-//        frame = new ModifierFichePatient();
-//        frame.setSize(800, 600);
-//        frame.setVisible(true);
-//
-//        database = MongoDBUtil.getDatabase("CabinetDent");
-//        collection = database.getCollection("Patient");
-//    }
-//
-//    @AfterEach
-//    public void tearDown() {
-//        frame.dispose();
-//        MongoDBUtil.close();
-//    }
-//
-//    @Test
-//    public void testFrameInitialisation() {
-//        assertNotNull(frame);
-//        assertNotNull(frame.nomTextField);
-//        assertNotNull(frame.prenomTextField);
-//        assertNotNull(frame.cinTextField);
-//        assertNotNull(frame.adresseTextField);
-//        assertNotNull(frame.professionTextField);
-//        assertNotNull(frame.telTextField);
-//        assertNotNull(frame.hommeRadioButton);
-//        assertNotNull(frame.femmeRadioButton);
-//        assertNotNull(frame.rechercherButton);
-//        assertNotNull(frame.modifierButton);
-//        assertNotNull(frame.annulerButton);
-//        assertNotNull(frame.jourComboBox);
-//        assertNotNull(frame.moisComboBox);
-//        assertNotNull(frame.anneeComboBox);
-//    }
-//
-//    @Test
-//    public void testRechercherPatientNonTrouve() {
-//        frame.nomTextField.setText("NomInexistant");
-//        frame.prenomTextField.setText("PrenomInexistant");
-//
-//        ActionEvent e = new ActionEvent(frame.rechercherButton, ActionEvent.ACTION_PERFORMED, "Rechercher");
-//        for (ActionListener al : frame.rechercherButton.getActionListeners()) {
-//            al.actionPerformed(e);
-//        }
-//
-//        assertEquals("", frame.cinTextField.getText());
-//        assertEquals("", frame.adresseTextField.getText());
-//        assertEquals("", frame.professionTextField.getText());
-//        assertEquals("", frame.telTextField.getText());
-//    }
-//
-//    @Test
-//    public void testAnnulerButtonAction() {
-//        frame.nomTextField.setText("TestNom");
-//        frame.prenomTextField.setText("TestPrenom");
-//        frame.cinTextField.setText("12345678");
-//        frame.adresseTextField.setText("TestAdresse");
-//        frame.professionTextField.setText("TestProfession");
-//        frame.telTextField.setText("87654321");
-//        frame.hommeRadioButton.setSelected(true);
-//
-//        ActionEvent e = new ActionEvent(frame.annulerButton, ActionEvent.ACTION_PERFORMED, "Annuler");
-//        for (ActionListener al : frame.annulerButton.getActionListeners()) {
-//            al.actionPerformed(e);
-//        }
-//
-//        assertEquals("", frame.nomTextField.getText());
-//        assertEquals("", frame.prenomTextField.getText());
-//        assertEquals("", frame.cinTextField.getText());
-//        assertEquals("", frame.adresseTextField.getText());
-//        assertEquals("", frame.professionTextField.getText());
-//        assertEquals("", frame.telTextField.getText());
-//        assertTrue(frame.hommeRadioButton.isSelected());
-//        assertFalse(frame.femmeRadioButton.isSelected());
-//    }
-//
-//    @Test
-//    public void testModifierButtonValidation() {
-//        frame.nomTextField.setText("TestNom");
-//        frame.prenomTextField.setText("TestPrenom");
-//        frame.cinTextField.setText("1234"); // CIN incorrect
-//        frame.adresseTextField.setText("TestAdresse");
-//        frame.professionTextField.setText("TestProfession");
-//        frame.telTextField.setText("87654321");
-//
-//        ActionEvent e = new ActionEvent(frame.modifierButton, ActionEvent.ACTION_PERFORMED, "Modifier");
-//        for (ActionListener al : frame.modifierButton.getActionListeners()) {
-//            al.actionPerformed(e);
-//        }
-//
-//        assertEquals("1234", frame.cinTextField.getText()); // CIN should not be modified
-//        assertEquals("TestAdresse", frame.adresseTextField.getText());
-//        assertEquals("TestProfession", frame.professionTextField.getText());
-//        assertEquals("87654321", frame.telTextField.getText());
-//    }
-//}
-//
+package test.java;
+
+import main.java.ModifierFichePatient;
+import main.java.MongoDBUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.bson.Document;
+
+public class ModifierFichePatientTest {
+
+    private ModifierFichePatient modifierFichePatient;
+    private MongoCollection<Document> mockCollection;
+
+    @BeforeEach
+    public void setUp() {
+        mockCollection = Mockito.mock(MongoCollection.class);
+        modifierFichePatient = new ModifierFichePatient();
+        modifierFichePatient.database = MongoDBUtil.getDatabase("CabinetDent");
+        modifierFichePatient.collection = mockCollection;
+        modifierFichePatient.setSize(800, 600);
+        modifierFichePatient.setVisible(true);
+    }
+
+    @Test
+    public void testComponentsInitialization() {
+        assertNotNull(modifierFichePatient.nomTextField);
+        assertNotNull(modifierFichePatient.prenomTextField);
+        assertNotNull(modifierFichePatient.cinTextField);
+        assertNotNull(modifierFichePatient.adresseTextField);
+        assertNotNull(modifierFichePatient.professionTextField);
+        assertNotNull(modifierFichePatient.telTextField);
+        assertNotNull(modifierFichePatient.rechercherButton);
+        assertNotNull(modifierFichePatient.modifierButton);
+        assertNotNull(modifierFichePatient.annulerButton);
+        assertNotNull(modifierFichePatient.hommeRadioButton);
+        assertNotNull(modifierFichePatient.femmeRadioButton);
+        assertNotNull(modifierFichePatient.jourComboBox);
+        assertNotNull(modifierFichePatient.moisComboBox);
+        assertNotNull(modifierFichePatient.anneeComboBox);
+    }
+    
+    @Test
+    public void testModifierButtonUpdatesData() {
+        // Configure the test data
+        modifierFichePatient.nomTextField.setText("ali");
+        modifierFichePatient.prenomTextField.setText("ali");
+        modifierFichePatient.cinTextField.setText("12345678");
+        modifierFichePatient.adresseTextField.setText("ben arous");
+        modifierFichePatient.professionTextField.setText("professeur");
+        modifierFichePatient.telTextField.setText("12345678");
+
+        modifierFichePatient.jourComboBox.setSelectedItem(12);
+        modifierFichePatient.moisComboBox.setSelectedItem(2);
+        modifierFichePatient.anneeComboBox.setSelectedItem(2150);
+        modifierFichePatient.hommeRadioButton.setSelected(true);
+
+        // Simulate button click
+        modifierFichePatient.modifierButton.doClick();
+
+        // Expected Document
+        Document expectedDocument = new Document("nom", "ali")
+            .append("prenom", "ali")
+            .append("cin", "12345678")
+            .append("sexe", "Homme") 
+            .append("adresse", "ben arous")
+            .append("telephone", "12345678")
+            .append("dataNaiss", "12/02/2150")
+            .append("profession", "professeur");
+
+        // Verify that updateOne was called with the expected document
+        Document query = new Document("nom", "ali").append("prenom", "ali");
+        Document update = new Document("$set", expectedDocument);
+        verify(mockCollection).updateOne(query, update);
+    }
+}
