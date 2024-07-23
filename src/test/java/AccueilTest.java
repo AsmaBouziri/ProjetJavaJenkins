@@ -23,7 +23,7 @@ public class AccueilTest {
         ActionListener mockActionListener = Mockito.mock(ActionListener.class);
 
      // Call the method to create the panel
-        JPanel panel = Acceuil.createButtonPanel("Annuler RDV", "/images/icons8-delete-document-48.png", mockActionListener);
+        JPanel panel = Acceuil.createButtonPanel("Annuler RDV", "./images/addRDV.png", mockActionListener);
 
         // Verify panel layout
         assertTrue(panel.getLayout() instanceof GridBagLayout, "Panel layout should be GridBagLayout");

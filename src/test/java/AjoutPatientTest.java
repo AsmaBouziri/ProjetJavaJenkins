@@ -1,41 +1,33 @@
 package test.java;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import main.java.AjouterPatient;
-import main.java.MongoDBUtil; // Commented out for now
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-// Imports for mocking MongoDBUtil (if needed)
-// import org.mockito.Mockito;
-// import static org.mockito.Mockito.*;
 
 public class AjoutPatientTest {
 
     private AjouterPatient ajouterPatient;
-    private MongoDatabase database;
 
     @BeforeEach
     public void setUp() throws Exception {
-    	AjouterPatient frame = new AjouterPatient();
-		frame.setSize(800, 600);
-		frame.setVisible(true);
-		
-		frame.nomTextField = new JTextField();
-		frame.prenomTextField = new JTextField();
-		frame.cinTextField = new JTextField();
-		frame.adresseTextField = new JTextField();
-		frame.professionTextField = new JTextField();
-		frame.telTextField = new JTextField();
-		
+        ajouterPatient = new AjouterPatient();
+        ajouterPatient.setSize(800, 600);
+        ajouterPatient.setVisible(true);
+        
+        // Ensure that the GUI components are initialized properly
+        ajouterPatient.nomTextField = new JTextField();
+        ajouterPatient.prenomTextField = new JTextField();
+        ajouterPatient.cinTextField = new JTextField();
+        ajouterPatient.adresseTextField = new JTextField();
+        ajouterPatient.professionTextField = new JTextField();
+        ajouterPatient.telTextField = new JTextField();
 
+        // Reinitialize buttons if necessary
+        ajouterPatient.enregistrerButton = new JButton();
+        ajouterPatient.annulerButton = new JButton();
     }
 
     @AfterEach
@@ -43,17 +35,22 @@ public class AjoutPatientTest {
         ajouterPatient.dispose();
     }
 
-    
     @Test
     public void testAjouterPatientFields() {
         // Verify that all text fields are present and initially empty
+        assertNotNull(ajouterPatient.nomTextField);
+        assertNotNull(ajouterPatient.prenomTextField);
+        assertNotNull(ajouterPatient.cinTextField);
+        assertNotNull(ajouterPatient.adresseTextField);
+        assertNotNull(ajouterPatient.professionTextField);
+        assertNotNull(ajouterPatient.telTextField);
+
         assertEquals("", ajouterPatient.nomTextField.getText());
         assertEquals("", ajouterPatient.prenomTextField.getText());
         assertEquals("", ajouterPatient.cinTextField.getText());
         assertEquals("", ajouterPatient.adresseTextField.getText());
         assertEquals("", ajouterPatient.professionTextField.getText());
         assertEquals("", ajouterPatient.telTextField.getText());
-
     }
 
     @Test
@@ -65,13 +62,9 @@ public class AjoutPatientTest {
         ajouterPatient.adresseTextField.setText("123 Main St");
         ajouterPatient.professionTextField.setText("Dentist");
         ajouterPatient.telTextField.setText("87654321");
+
         // Simulate the click on the Enregistrer button
         ajouterPatient.enregistrerButton.doClick();
-
-        // Verify that the document was inserted into the collection (if using a test database)
-        // ... Replace with your verification logic based on your test database setup
-        // For example, using Mockito:
-        // verify(collection, times(1)).insertOne(any(Document.class));
 
         // Verify that the fields are cleared
         assertEquals("", ajouterPatient.nomTextField.getText());
@@ -91,6 +84,7 @@ public class AjoutPatientTest {
         ajouterPatient.adresseTextField.setText("123 Main St");
         ajouterPatient.professionTextField.setText("Dentist");
         ajouterPatient.telTextField.setText("87654321");
+
         // Click the Annuler button
         ajouterPatient.annulerButton.doClick();
 
