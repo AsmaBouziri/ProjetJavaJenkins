@@ -24,7 +24,10 @@ public class AjoutPatientTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        ajouterPatient = new AjouterPatient();
+    	AjouterPatient frame = new AjouterPatient();
+		frame.setSize(800, 600);
+		frame.setVisible(true);
+
     }
 
     @AfterEach
