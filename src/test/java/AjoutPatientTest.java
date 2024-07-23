@@ -24,8 +24,7 @@ public class AjoutPatientTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialize the AjouterPatient frame
-        ajouterPatient = new AjouterPatient();
+
         ajouterPatient.setSize(800, 600);
         ajouterPatient.setVisible(true);
 
