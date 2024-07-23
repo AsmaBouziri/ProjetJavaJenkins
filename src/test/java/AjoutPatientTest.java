@@ -24,13 +24,15 @@ public class AjoutPatientTest {
 
     @BeforeEach
     public void setUp() {
-
+        database = MongoDBUtil.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
+        // Initialize the AjouterPatient frame
+        ajouterPatient = new AjouterPatient();
         ajouterPatient.setSize(800, 600);
         ajouterPatient.setVisible(true);
 
         // Set up the database connection
-        database = MongoDBUtil.getDatabase("CabinetDent");
-        collection = database.getCollection("Patient");
+
     }
 
     @AfterEach
