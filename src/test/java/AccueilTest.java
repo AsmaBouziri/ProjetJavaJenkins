@@ -33,7 +33,7 @@ public class AccueilTest {
 
         // Verify button text and action listener
         JButton button = (JButton) panel.getComponent(1);
-        assertEquals("text button", button.getText(), "Button text should be 'text button'");
+        assertEquals("Annuler RDV", button.getText(), "Button text should be 'text button'");
         button.doClick();
         Mockito.verify(mockActionListener, Mockito.times(1)).actionPerformed(Mockito.any());
     }
