@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import org.mockito.Mockito;
 import main.java.Acceuil;
+import main.java.SupprimerRdvPatient;
 
 public class AccueilTest {
 
@@ -23,7 +25,13 @@ public class AccueilTest {
         // Call the method to create the panel
         JPanel panel = new JPanel();
         try {
-            panel = Acceuil.createButtonPanel("text button", "./images/addRDV.png", mockActionListener);
+            panel = Acceuil.createButtonPanel("text button", "./images/addRDV.png", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
+                    suppRDVFrame.setVisible(true);
+                    
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
             fail("Exception occurred while creating the button panel: " + e.getMessage());
