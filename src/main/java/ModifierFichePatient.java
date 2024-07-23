@@ -37,8 +37,13 @@ public class ModifierFichePatient extends JFrame {
     }
 
     public ModifierFichePatient() {
-        this.database = MongoDBUtil.getDatabase("CabinetDent");
-        this.collection = database.getCollection("Patient");
+    	try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        MongoCollection<Document> collection = database.getCollection("Patient");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 753, 419);

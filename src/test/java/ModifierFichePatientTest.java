@@ -27,7 +27,6 @@ public class ModifierFichePatientTest {
     public void setUp() {
     	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
-        
         modifierFichePatient = new ModifierFichePatient();
         modifierFichePatient.setSize(800, 600);
         modifierFichePatient.setVisible(true);
