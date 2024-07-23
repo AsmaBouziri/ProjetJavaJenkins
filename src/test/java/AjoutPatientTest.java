@@ -1,6 +1,8 @@
 package test.java;
 
 import main.java.AjouterPatient;
+import main.java.MongoDBUtil;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,7 +26,7 @@ public class AjoutPatientTest {
 
     @BeforeEach
     public void setUp() {
-    	database = mongoClient.getDatabase("CabinetDent");
+    	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
         
         ajouterPatient = new AjouterPatient();
