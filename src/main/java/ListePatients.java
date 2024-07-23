@@ -12,6 +12,7 @@ public class ListePatients extends JFrame {
     private JTable table;
     private DefaultTableModel model;
     private MongoDatabase database;
+    private MongoCollection<Document> collection;
 
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
