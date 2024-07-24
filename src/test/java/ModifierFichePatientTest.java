@@ -20,7 +20,7 @@ import org.bson.Document;
 
 public class ModifierFichePatientTest {
 
-    private ModifierFichePatient ajouterPatient;
+    private ModifierFichePatient modiferPatient;
     private static MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -30,24 +30,24 @@ public class ModifierFichePatientTest {
     	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
         
-        ajouterPatient = new ModifierFichePatient();
-        ajouterPatient.setSize(800, 600);
-        ajouterPatient.setVisible(true);
+        modiferPatient = new ModifierFichePatient();
+        modiferPatient.setSize(800, 600);
+        modiferPatient.setVisible(true);
     }
 
     @Test
     public void testComponentsInitialization() {
-        assertNotNull(ajouterPatient.nomTextField);
-        assertNotNull(ajouterPatient.prenomTextField);
-        assertNotNull(ajouterPatient.cinTextField);
-        assertNotNull(ajouterPatient.adresseTextField);
-        assertNotNull(ajouterPatient.professionTextField);
-        assertNotNull(ajouterPatient.telTextField);
-        assertNotNull(ajouterPatient.hommeRadioButton);
-        assertNotNull(ajouterPatient.femmeRadioButton);
-        assertNotNull(ajouterPatient.jourComboBox);
-        assertNotNull(ajouterPatient.anneeComboBox);
-        assertNotNull(ajouterPatient.moisComboBox);
+        assertNotNull(modiferPatient.nomTextField);
+        assertNotNull(modiferPatient.prenomTextField);
+        assertNotNull(modiferPatient.cinTextField);
+        assertNotNull(modiferPatient.adresseTextField);
+        assertNotNull(modiferPatient.professionTextField);
+        assertNotNull(modiferPatient.telTextField);
+        assertNotNull(modiferPatient.hommeRadioButton);
+        assertNotNull(modiferPatient.femmeRadioButton);
+        assertNotNull(modiferPatient.jourComboBox);
+        assertNotNull(modiferPatient.anneeComboBox);
+        assertNotNull(modiferPatient.moisComboBox);
     }
     
 

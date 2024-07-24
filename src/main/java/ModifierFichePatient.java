@@ -216,6 +216,45 @@ public class ModifierFichePatient extends JFrame {
         panel.add(rechercherButton);
 
         modifierButton = new JButton("Modifier");
+
+        modifierButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nom = nomTextField.getText();
+                String prenom = prenomTextField.getText();
+                String cin = cinTextField.getText();
+                int jourNaissance = (int) jourComboBox.getSelectedItem();
+                int moisNaissance = (int) moisComboBox.getSelectedItem();
+                int anneeNaissance = (int) anneeComboBox.getSelectedItem();
+                String sexe = hommeRadioButton.isSelected() ? "Homme" : "Femme";
+                String adresse = adresseTextField.getText();
+                String profession = professionTextField.getText();
+                String telephone = telTextField.getText();
+
+                // Vérification de la validité des champs de saisie
+                if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || adresse.isEmpty() || profession.isEmpty() || telephone.isEmpty()) {
+                    JOptionPane.showMessageDialog(modifierButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else if (telephone.length() != 8) {
+                    JOptionPane.showMessageDialog(modifierButton, "Le numéro de téléphone doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else if (cin.length() != 8) {
+                    JOptionPane.showMessageDialog(modifierButton, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    // Mise à jour des données dans la base de données MongoDB
+                    String dateNaissance = jourNaissance + "/" + moisNaissance + "/" + anneeNaissance;
+                    Document query = new Document("nom", nom).append("prenom", prenom);
+                    var update = new Document("$set", new Document("cin", cin)
+                            .append("sexe", sexe)
+                            .append("adresse", adresse)
+                            .append("telephone", telephone)
+                            .append("dataNaiss", dateNaissance)
+                            .append("profession", profession));
+                    collection.updateOne(query, update);
+                    
+                    // Affichage d'un message de succès
+                    JOptionPane.showMessageDialog(modifierButton, "Les informations ont été modifiées avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
         modifierButton.setForeground(Color.BLACK);
         modifierButton.setBackground(SystemColor.textHighlight);
         modifierButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -223,6 +262,21 @@ public class ModifierFichePatient extends JFrame {
         panel.add(modifierButton);
 
         annulerButton = new JButton("Annuler");
+        annulerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Effacer tous les champs
+                nomTextField.setText("");
+                prenomTextField.setText("");
+                cinTextField.setText("");
+                hommeRadioButton.setSelected(true);
+                adresseTextField.setText("");
+                professionTextField.setText("");
+                telTextField.setText("");
+                jourComboBox.setSelectedIndex(0);
+                moisComboBox.setSelectedIndex(0);
+                anneeComboBox.setSelectedIndex(0);
+            }
+        });
         annulerButton.setForeground(Color.BLACK);
         annulerButton.setBackground(SystemColor.textHighlight);
         annulerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
