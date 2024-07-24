@@ -50,5 +50,25 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
+    @Test
+    public void testEnregistrerButtonInsertsData() {
+        // Configure the test data
+    	modiferPatient.nomTextField.setText("ali");
+    	modiferPatient.prenomTextField.setText("ali");
+    	modiferPatient.cinTextField.setText("12345678");
+    	modiferPatient.adresseTextField.setText("ben arous");
+    	modiferPatient.professionTextField.setText("professeur");
+        modiferPatient.telTextField.setText("12345678");
+
+        modiferPatient.jourComboBox.setSelectedItem(12);
+        modiferPatient.moisComboBox.setSelectedItem(2);
+        modiferPatient.anneeComboBox.setSelectedItem(2150);
+        // Simulate button click
+        modiferPatient.modifierButton.doClick();
+
+        Document found = collection.find(new Document("nom", "ali")).first();
+        assertNotNull(found, "Patient 'ali' should be found");
+        assertEquals("ali", found.getString("nom"));
+    }
 
 }
