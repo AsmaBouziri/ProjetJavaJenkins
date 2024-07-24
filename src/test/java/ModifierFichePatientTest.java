@@ -51,11 +51,11 @@ public class ModifierFichePatientTest {
     }
     
     @Test
-    public void testEnregistrerButtonInsertsData() {
+    public void testModiferButton() {
         // Configure the test data
-    	modiferPatient.nomTextField.setText("ali");
-    	modiferPatient.prenomTextField.setText("ali");
-    	modiferPatient.cinTextField.setText("12345678");
+    	modiferPatient.nomTextField.setText("test");
+    	modiferPatient.prenomTextField.setText("test");
+    	modiferPatient.cinTextField.setText("00001111");
     	modiferPatient.adresseTextField.setText("ben arous");
     	modiferPatient.professionTextField.setText("professeur");
         modiferPatient.telTextField.setText("12345678");
