@@ -52,16 +52,16 @@ public class ModifierFichePatientTest {
     @Test
     public void testRechercherButton() {
         // Configure the test data
-    	modiferPatient.nomTextField.setText("test");
-    	modiferPatient.prenomTextField.setText("test");
+    	modiferPatient.nomTextField.setText("ali");
+    	modiferPatient.prenomTextField.setText("ali");
 
         // Simulate button click
         modiferPatient.rechercherButton.doClick();
 
      // Verify that the fields are populated correctly
         assertEquals("12345678", modiferPatient.cinTextField.getText());
-        assertEquals("azerty", modiferPatient.adresseTextField.getText());
-        assertEquals("azerty", modiferPatient.professionTextField.getText());
+        assertEquals("ben arous", modiferPatient.adresseTextField.getText());
+        assertEquals("professeur", modiferPatient.professionTextField.getText());
         assertEquals("12345678", modiferPatient.telTextField.getText());
 
     }
