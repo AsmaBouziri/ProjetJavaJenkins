@@ -7,13 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.verify;
-
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.bson.Document;
 
 public class ModifierFichePatientTest {
@@ -25,7 +23,8 @@ public class ModifierFichePatientTest {
 
     @BeforeEach
     public void setUp() {
-    	database = MongoDBUtil.getDatabase("CabinetDent");
+        // Assuming the constructor requires no arguments
+        database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
         modifierFichePatient = new ModifierFichePatient();
         modifierFichePatient.setSize(800, 600);
@@ -49,6 +48,4 @@ public class ModifierFichePatientTest {
         assertNotNull(modifierFichePatient.moisComboBox);
         assertNotNull(modifierFichePatient.anneeComboBox);
     }
-    
-   
 }
