@@ -48,45 +48,6 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
-    
-//    @Test
-//    public void testRechercherButton() {
-//        // Configure the test data
-//    	modiferPatient.nomTextField.setText("ali");
-//    	modiferPatient.prenomTextField.setText("ali");
-//
-//        // Simulate button click
-//        modiferPatient.rechercherButton.doClick();
-//
-//   
-////        assertEquals("12345678", modiferPatient.cinTextField.getText());
-////        assertEquals("ben arous", modiferPatient.adresseTextField.getText());
-////        assertEquals("professeur", modiferPatient.professionTextField.getText());
-////        assertEquals("12345678", modiferPatient.telTextField.getText());
-//
-//    }
-    
-    
-    @Test
-    public void testModifierButton() throws Exception {
-      ModifierFichePatient modifierPatient = new ModifierFichePatient();
 
-      // Set some sample data (assuming no validation is performed during modification)
-      modifierPatient.nomTextField.setText("test");
-      modifierPatient.prenomTextField.setText("test");
-      modifierPatient.cinTextField.setText("12345678"); 
-      modifierPatient.adresseTextField.setText("add");
-      modifierPatient.professionTextField.setText("prof");
-      modifierPatient.telTextField.setText("12345678");
-      modifierPatient.jourComboBox.setSelectedItem(1);
-      modifierPatient.moisComboBox.setSelectedItem(1); 
-      modifierPatient.anneeComboBox.setSelectedItem(2024); 
-
-      // Simulate button click
-      modifierPatient.modifierButton.doClick();
-
-
-    }
-    
 
 }
