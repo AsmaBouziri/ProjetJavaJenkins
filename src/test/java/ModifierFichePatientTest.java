@@ -1,61 +1,74 @@
 package test.java;
 
-import static org.junit.jupiter.api.Assertions.*;
+import main.java.AjouterPatient;
+import main.java.MongoDBUtil;
 
-import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import main.java.ModifierFichePatient;
-import main.java.MongoDBUtil;
+import static org.mockito.Mockito.verify;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.bson.Document;
+
 public class ModifierFichePatientTest {
 
-    private ModifierFichePatient modifierFichePatient;
-    private static MongoClient mockMongoClient;
-    private MongoDatabase mockDatabase;
-    private MongoCollection<Document> mockCollection;
+    private AjouterPatient ajouterPatient;
+    private static MongoClient mongoClient;
+    private MongoDatabase database;
+    private MongoCollection<Document> collection;
 
     @BeforeEach
     public void setUp() {
-        mockMongoClient = Mockito.mock(MongoClient.class);
-        mockDatabase = Mockito.mock(MongoDatabase.class);
-        mockCollection = Mockito.mock(MongoCollection.class);
-
-        // Assuming MongoDBUtil uses the mocked MongoClient
-        Mockito.when(MongoDBUtil.getDatabase("CabinetDent")).thenReturn(mockDatabase);
-        Mockito.when(mockDatabase.getCollection("Patient")).thenReturn(mockCollection);
-
-        modifierFichePatient = new ModifierFichePatient();
-        modifierFichePatient.setSize(800, 600);
-        modifierFichePatient.setVisible(true);
+    	database = MongoDBUtil.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
+        
+        ajouterPatient = new AjouterPatient();
+        ajouterPatient.setSize(800, 600);
+        ajouterPatient.setVisible(true);
     }
 
     @Test
     public void testComponentsInitialization() {
-        assertNotNull(modifierFichePatient.nomTextField);
-        assertNotNull(modifierFichePatient.prenomTextField);
-        assertNotNull(modifierFichePatient.cinTextField);
-        assertNotNull(modifierFichePatient.adresseTextField);
-        assertNotNull(modifierFichePatient.professionTextField);
-        assertNotNull(modifierFichePatient.telTextField);
-        assertNotNull(modifierFichePatient.hommeRadioButton);
-        assertNotNull(modifierFichePatient.femmeRadioButton);
-        assertNotNull(modifierFichePatient.rechercherButton);
-        assertNotNull(modifierFichePatient.modifierButton);
-        assertNotNull(modifierFichePatient.annulerButton);
-        assertNotNull(modifierFichePatient.jourComboBox);
-        assertNotNull(modifierFichePatient.moisComboBox);
-        assertNotNull(modifierFichePatient.anneeComboBox);
+        assertNotNull(ajouterPatient.nomTextField);
+        assertNotNull(ajouterPatient.prenomTextField);
+        assertNotNull(ajouterPatient.cinTextField);
+        assertNotNull(ajouterPatient.adresseTextField);
+        assertNotNull(ajouterPatient.professionTextField);
+        assertNotNull(ajouterPatient.telTextField);
+        assertNotNull(ajouterPatient.enregistrerButton);
+        assertNotNull(ajouterPatient.hommeRadioButton);
+        assertNotNull(ajouterPatient.femmeRadioButton);
+        assertNotNull(ajouterPatient.jourComboBox);
+        assertNotNull(ajouterPatient.anneeComboBox);
+        assertNotNull(ajouterPatient.moisComboBox);
     }
+    
+    @Test
+    public void testEnregistrerButtonInsertsData() {
+        // Configure the test data
+        ajouterPatient.nomTextField.setText("ali");
+        ajouterPatient.prenomTextField.setText("ali");
+        ajouterPatient.cinTextField.setText("12345678");
+        ajouterPatient.adresseTextField.setText("ben arous");
+        ajouterPatient.professionTextField.setText("professeur");
+        ajouterPatient.telTextField.setText("12345678");
 
-    // You can add more tests here to test specific functionalities of ModifierFichePatient,
-    // such as searching for a patient, modifying patient information, etc.
-    // These tests might involve interacting with the mocked MongoClient objects.
+        ajouterPatient.jourComboBox.setSelectedItem(12);
+        ajouterPatient.moisComboBox.setSelectedItem(2);
+        ajouterPatient.anneeComboBox.setSelectedItem(2150);
+        // Simulate button click
+        ajouterPatient.enregistrerButton.doClick();
+
+        Document found = collection.find(new Document("nom", "ali")).first();
+        assertNotNull(found, "Patient 'ali' should be found");
+        assertEquals("ali", found.getString("nom"));
+    }
 
 }
