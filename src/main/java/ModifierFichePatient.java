@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 public class ModifierFichePatient extends JFrame {
     private JPanel contentPane;
-    public JTextField nomTextField ;
+    public JTextField nomTextField;
     public JTextField prenomTextField;
     public JTextField cinTextField;
     public JTextField adresseTextField;
@@ -37,13 +37,17 @@ public class ModifierFichePatient extends JFrame {
     }
 
     public ModifierFichePatient() {
-    	try {
+        try {
             this.database = MongoDBUtil.getDatabase("CabinetDent");
+            this.collection = database.getCollection("Patient");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        MongoCollection<Document> collection = database.getCollection("Patient");
+
+        if (database == null || collection == null) {
+            throw new IllegalStateException("Erreur de connexion à la base de données.");
+        }
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 753, 419);
@@ -197,91 +201,38 @@ public class ModifierFichePatient extends JFrame {
                             anneeComboBox.setSelectedItem(Integer.parseInt(parts[2]));
                         }
                     }
+
+                    JOptionPane.showMessageDialog(null, "Patient trouvé !");
                 } else {
-                    JOptionPane.showMessageDialog(rechercherButton, "Patient non trouvé.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Patient introuvable !");
                 }
             }
         });
-        rechercherButton.setBounds(465, 50, 100, 28);
+
+        rechercherButton.setForeground(Color.BLACK);
+        rechercherButton.setBackground(SystemColor.textHighlight);
+        rechercherButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        rechercherButton.setBounds(238, 346, 131, 23);
         panel.add(rechercherButton);
 
         modifierButton = new JButton("Modifier");
-        modifierButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String nom = nomTextField.getText();
-                String prenom = prenomTextField.getText();
-                String cin = cinTextField.getText();
-                int jourNaissance = (int) jourComboBox.getSelectedItem();
-                int moisNaissance = (int) moisComboBox.getSelectedItem();
-                int anneeNaissance = (int) anneeComboBox.getSelectedItem();
-                String sexe = hommeRadioButton.isSelected() ? "Homme" : "Femme";
-                String adresse = adresseTextField.getText();
-                String profession = professionTextField.getText();
-                String telephone = telTextField.getText();
-
-                // Vérification de la validité des champs de saisie
-                if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || adresse.isEmpty() || profession.isEmpty() || telephone.isEmpty()) {
-                    JOptionPane.showMessageDialog(modifierButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                } else if (telephone.length() != 8) {
-                    JOptionPane.showMessageDialog(modifierButton, "Le numéro de téléphone doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                } else if (cin.length() != 8) {
-                    JOptionPane.showMessageDialog(modifierButton, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // Mise à jour des données dans la base de données MongoDB
-                    String dateNaissance = jourNaissance + "/" + moisNaissance + "/" + anneeNaissance;
-                    Document query = new Document("nom", nom).append("prenom", prenom);
-                    var update = new Document("$set", new Document("cin", cin)
-                            .append("sexe", sexe)
-                            .append("adresse", adresse)
-                            .append("telephone", telephone)
-                            .append("dataNaiss", dateNaissance)
-                            .append("profession", profession));
-                    collection.updateOne(query, update);
-                    
-                    // Affichage d'un message de succès
-                    JOptionPane.showMessageDialog(modifierButton, "Les informations ont été modifiées avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        });
-        modifierButton.setBounds(465, 113, 100, 28);
+        modifierButton.setForeground(Color.BLACK);
+        modifierButton.setBackground(SystemColor.textHighlight);
+        modifierButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        modifierButton.setBounds(379, 346, 114, 23);
         panel.add(modifierButton);
 
         annulerButton = new JButton("Annuler");
-        annulerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Effacer tous les champs
-                nomTextField.setText("");
-                prenomTextField.setText("");
-                cinTextField.setText("");
-                hommeRadioButton.setSelected(true);
-                adresseTextField.setText("");
-                professionTextField.setText("");
-                telTextField.setText("");
-                jourComboBox.setSelectedIndex(0);
-                moisComboBox.setSelectedIndex(0);
-                anneeComboBox.setSelectedIndex(0);
-            }
-        });
-        annulerButton.setBounds(465, 160, 100, 28);
+        annulerButton.setForeground(Color.BLACK);
+        annulerButton.setBackground(SystemColor.textHighlight);
+        annulerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        annulerButton.setBounds(503, 346, 114, 23);
         panel.add(annulerButton);
+    }
 
-        var homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(ModifierFichePatient.class.getResource("./images/home.png")));
-        var gbcHomeButton = new GridBagConstraints();
-        gbcHomeButton.anchor = GridBagConstraints.NORTHEAST; // Ancrage en haut à droite
-        gbcHomeButton.insets = new Insets(10, 10, 10, 10); // Marges autour du bouton
-        gbcHomeButton.gridx = 1; // Colonne 1
-        gbcHomeButton.gridy = 0; // Ligne 0
-        contentPane.add(homeButton, gbcHomeButton);
-
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
-
-        pack(); // Ajuste la taille de la fenêtre en fonction du contenu
+    // Méthode pour initialiser la base de données pour les tests
+    public void setDatabase(MongoDatabase database) {
+        this.database = database;
+        this.collection = database.getCollection("Patient");
     }
 }
