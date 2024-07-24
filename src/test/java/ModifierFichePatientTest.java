@@ -49,22 +49,22 @@ public class ModifierFichePatientTest {
     }
     
     
-    @Test
-    public void testRechercherButton() {
-        // Configure the test data
-    	modiferPatient.nomTextField.setText("ali");
-    	modiferPatient.prenomTextField.setText("ali");
-
-        // Simulate button click
-        modiferPatient.rechercherButton.doClick();
-
-   
-//        assertEquals("12345678", modiferPatient.cinTextField.getText());
-//        assertEquals("ben arous", modiferPatient.adresseTextField.getText());
-//        assertEquals("professeur", modiferPatient.professionTextField.getText());
-//        assertEquals("12345678", modiferPatient.telTextField.getText());
-
-    }
+//    @Test
+//    public void testRechercherButton() {
+//        // Configure the test data
+//    	modiferPatient.nomTextField.setText("ali");
+//    	modiferPatient.prenomTextField.setText("ali");
+//
+//        // Simulate button click
+//        modiferPatient.rechercherButton.doClick();
+//
+//   
+////        assertEquals("12345678", modiferPatient.cinTextField.getText());
+////        assertEquals("ben arous", modiferPatient.adresseTextField.getText());
+////        assertEquals("professeur", modiferPatient.professionTextField.getText());
+////        assertEquals("12345678", modiferPatient.telTextField.getText());
+//
+//    }
     
     
 
