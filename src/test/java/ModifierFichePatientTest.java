@@ -1,31 +1,36 @@
 package test.java;
 
-import main.java.AjouterPatient;
-import main.java.ModifierFichePatient;
-import main.java.MongoDBUtil;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
+
+import main.java.ModifierFichePatient;
+import main.java.MongoDBUtil;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import org.bson.Document;
 
 public class ModifierFichePatientTest {
 
     private ModifierFichePatient modifierFichePatient;
-    private static MongoClient mongoClient;
-    private MongoDatabase database;
-    private MongoCollection<Document> collection;
+    private static MongoClient mockMongoClient;
+    private MongoDatabase mockDatabase;
+    private MongoCollection<Document> mockCollection;
 
     @BeforeEach
     public void setUp() {
-        // Assuming the constructor requires no arguments
-        database = MongoDBUtil.getDatabase("CabinetDent");
-        collection = database.getCollection("Patient");
+        mockMongoClient = Mockito.mock(MongoClient.class);
+        mockDatabase = Mockito.mock(MongoDatabase.class);
+        mockCollection = Mockito.mock(MongoCollection.class);
+
+        // Assuming MongoDBUtil uses the mocked MongoClient
+        Mockito.when(MongoDBUtil.getDatabase("CabinetDent")).thenReturn(mockDatabase);
+        Mockito.when(mockDatabase.getCollection("Patient")).thenReturn(mockCollection);
+
         modifierFichePatient = new ModifierFichePatient();
         modifierFichePatient.setSize(800, 600);
         modifierFichePatient.setVisible(true);
@@ -39,13 +44,18 @@ public class ModifierFichePatientTest {
         assertNotNull(modifierFichePatient.adresseTextField);
         assertNotNull(modifierFichePatient.professionTextField);
         assertNotNull(modifierFichePatient.telTextField);
+        assertNotNull(modifierFichePatient.hommeRadioButton);
+        assertNotNull(modifierFichePatient.femmeRadioButton);
         assertNotNull(modifierFichePatient.rechercherButton);
         assertNotNull(modifierFichePatient.modifierButton);
         assertNotNull(modifierFichePatient.annulerButton);
-        assertNotNull(modifierFichePatient.hommeRadioButton);
-        assertNotNull(modifierFichePatient.femmeRadioButton);
         assertNotNull(modifierFichePatient.jourComboBox);
         assertNotNull(modifierFichePatient.moisComboBox);
         assertNotNull(modifierFichePatient.anneeComboBox);
     }
+
+    // You can add more tests here to test specific functionalities of ModifierFichePatient,
+    // such as searching for a patient, modifying patient information, etc.
+    // These tests might involve interacting with the mocked MongoClient objects.
+
 }
