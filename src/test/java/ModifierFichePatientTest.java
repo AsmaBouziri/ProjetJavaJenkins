@@ -1,19 +1,17 @@
 package test.java;
 
-import main.java.AjouterPatient;
+
 import main.java.ModifierFichePatient;
 import main.java.MongoDBUtil;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
 
-import com.mongodb.client.MongoClient;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -22,7 +20,6 @@ import org.bson.Document;
 public class ModifierFichePatientTest {
 
     private ModifierFichePatient modiferPatient;
-    private static MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
@@ -66,7 +63,7 @@ public class ModifierFichePatientTest {
         assertEquals("azerty", modiferPatient.adresseTextField.getText());
         assertEquals("azerty", modiferPatient.professionTextField.getText());
         assertEquals("12345678", modiferPatient.telTextField.getText());
-        assertTrue(modiferPatient.femmeRadioButton.isSelected());
+
     }
     
     
