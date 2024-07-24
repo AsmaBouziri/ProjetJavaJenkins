@@ -31,8 +31,8 @@ import com.mongodb.client.model.Updates;
 
 public class AjouterSoins extends JFrame {
     private JPanel contentPane;
-    private JTextField nomText;
-    private JTextField prenomText;
+    public JTextField nomText;
+    public JTextField prenomText;
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> patientsCollection;
