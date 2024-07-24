@@ -13,6 +13,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -50,25 +51,27 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
+    
     @Test
-    public void testModiferButton() {
+    public void testRechercherButton() {
         // Configure the test data
     	modiferPatient.nomTextField.setText("test");
     	modiferPatient.prenomTextField.setText("test");
-    	modiferPatient.cinTextField.setText("00001111");
-    	modiferPatient.adresseTextField.setText("ben arous");
-    	modiferPatient.professionTextField.setText("professeur");
-        modiferPatient.telTextField.setText("12345678");
 
-        modiferPatient.jourComboBox.setSelectedItem(12);
-        modiferPatient.moisComboBox.setSelectedItem(2);
-        modiferPatient.anneeComboBox.setSelectedItem(2150);
         // Simulate button click
-        modiferPatient.modifierButton.doClick();
+        modiferPatient.rechercherButton.doClick();
 
-//        Document found = collection.find(new Document("nom", "ali")).first();
-//        assertNotNull(found, "Patient 'ali' should be found");
-//        assertEquals("ali", found.getString("nom"));
+     // Verify that the fields are populated correctly
+        assertEquals("123456", modiferPatient.cinTextField.getText());
+        assertEquals("123 Test St", modiferPatient.adresseTextField.getText());
+        assertEquals("Engineer", modiferPatient.professionTextField.getText());
+        assertEquals("123-456-7890", modiferPatient.telTextField.getText());
+        assertTrue(modiferPatient.hommeRadioButton.isSelected());
+        assertEquals(1, modiferPatient.jourComboBox.getSelectedItem());
+        assertEquals(1, modiferPatient.moisComboBox.getSelectedItem());
+        assertEquals(2000, modiferPatient.anneeComboBox.getSelectedItem());
     }
+    
+    
 
 }
