@@ -1,6 +1,7 @@
 package test.java;
 
 import main.java.AjouterPatient;
+import main.java.ModifierFichePatient;
 import main.java.MongoDBUtil;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ import org.bson.Document;
 
 public class ModifierFichePatientTest {
 
-    private AjouterPatient ajouterPatient;
+    private ModifierFichePatient ajouterPatient;
     private static MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -29,7 +30,7 @@ public class ModifierFichePatientTest {
     	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
         
-        ajouterPatient = new AjouterPatient();
+        ajouterPatient = new ModifierFichePatient();
         ajouterPatient.setSize(800, 600);
         ajouterPatient.setVisible(true);
     }
@@ -42,7 +43,6 @@ public class ModifierFichePatientTest {
         assertNotNull(ajouterPatient.adresseTextField);
         assertNotNull(ajouterPatient.professionTextField);
         assertNotNull(ajouterPatient.telTextField);
-        assertNotNull(ajouterPatient.enregistrerButton);
         assertNotNull(ajouterPatient.hommeRadioButton);
         assertNotNull(ajouterPatient.femmeRadioButton);
         assertNotNull(ajouterPatient.jourComboBox);
@@ -50,25 +50,5 @@ public class ModifierFichePatientTest {
         assertNotNull(ajouterPatient.moisComboBox);
     }
     
-    @Test
-    public void testEnregistrerButtonInsertsData() {
-        // Configure the test data
-        ajouterPatient.nomTextField.setText("ali");
-        ajouterPatient.prenomTextField.setText("ali");
-        ajouterPatient.cinTextField.setText("12345678");
-        ajouterPatient.adresseTextField.setText("ben arous");
-        ajouterPatient.professionTextField.setText("professeur");
-        ajouterPatient.telTextField.setText("12345678");
-
-        ajouterPatient.jourComboBox.setSelectedItem(12);
-        ajouterPatient.moisComboBox.setSelectedItem(2);
-        ajouterPatient.anneeComboBox.setSelectedItem(2150);
-        // Simulate button click
-        ajouterPatient.enregistrerButton.doClick();
-
-        Document found = collection.find(new Document("nom", "ali")).first();
-        assertNotNull(found, "Patient 'ali' should be found");
-        assertEquals("ali", found.getString("nom"));
-    }
 
 }
