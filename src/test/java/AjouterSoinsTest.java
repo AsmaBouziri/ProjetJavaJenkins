@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -45,25 +47,25 @@ public class AjouterSoinsTest {
          assertNotNull(ajouterSoins.enregistrerButton);
     }
     
-//    @Test
-//    public void testEnregistrerButtonInsertsData() {
-//        // Configure the test data
-//        ajouterPatient.nomTextField.setText("ali");
-//        ajouterPatient.prenomTextField.setText("ali");
-//        ajouterPatient.cinTextField.setText("12345678");
-//        ajouterPatient.adresseTextField.setText("ben arous");
-//        ajouterPatient.professionTextField.setText("professeur");
-//        ajouterPatient.telTextField.setText("12345678");
-//
-//        ajouterPatient.jourComboBox.setSelectedItem(12);
-//        ajouterPatient.moisComboBox.setSelectedItem(2);
-//        ajouterPatient.anneeComboBox.setSelectedItem(2150);
-//        // Simulate button click
-//        ajouterPatient.enregistrerButton.doClick();
-//
-//        Document found = collection.find(new Document("nom", "ali")).first();
-//        assertNotNull(found, "Patient 'ali' should be found");
-//        assertEquals("ali", found.getString("nom"));
-//    }
+    @Test
+    public void testAddSoin() {
+        // Set up the form data
+        ajouterSoins.nomText.setText("John");
+        ajouterSoins.prenomText.setText("Doe");
+        ajouterSoins.comboBox.setSelectedItem("détartrage");
+        ajouterSoins.jourComboBox.setSelectedItem(15);
+        ajouterSoins.moisComboBox.setSelectedItem(7);
+        ajouterSoins.anneeComboBox.setSelectedItem(2024);
+
+        // Simulate the button click to add a soin
+        ajouterSoins.enregistrerButton.doClick();
+
+        // Check if the data was added to MongoDB
+        Document patient = collection.find(Filters.eq("nom", "John")).first();
+        assertNotNull(patient);
+        assertTrue(patient.getList("soins", Document.class).stream()
+            .anyMatch(doc -> doc.getString("soin").equals("détartrage") &&
+                            doc.getString("date").equals("15/7/2024")));
+    }
 
 }
