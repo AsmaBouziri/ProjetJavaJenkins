@@ -17,6 +17,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
+
 import org.bson.Document;
 
 public class AjouterSoinsTest {
@@ -63,9 +65,18 @@ public class AjouterSoinsTest {
         // Check if the data was added to MongoDB
         Document patient = collection.find(Filters.eq("nom", "test")).first();
         assertNotNull(patient);
-        assertTrue(patient.getList("soins", Document.class).stream()
-            .anyMatch(doc -> doc.getString("soin").equals("détartrage") &&
-                            doc.getString("date").equals("15/7/2024")));
+        List<Document> soins = patient.getList("soins", Document.class);
+
+        // Find the matching soin
+        Document foundSoin = soins.stream()
+            .filter(doc -> doc.getString("soin").equals("détartrage") &&
+                           doc.getString("date").equals("15/7/2024"))
+            .findFirst()
+            .orElse(null);
+
+        // Check if the found soin is not null (i.e., it exists)
+        assertEquals("détartrage", foundSoin != null ? foundSoin.getString("soin") : null);
+        assertEquals("15/7/2024", foundSoin != null ? foundSoin.getString("date") : null);
     }
 
 }
