@@ -30,9 +30,15 @@ public class ModifierRendezVous extends JFrame {
     }
 
     public ModifierRendezVous() {
-        this.database = MongoDBUtil.getDatabase("CabinetDent");
-        MongoCollection<Document> collection = database.getCollection("RendezVous");
-
+       
+    	 try {
+             this.database = MongoDBUtil.getDatabase("CabinetDent");
+         } catch (Exception e) {
+             e.printStackTrace();
+             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+         }
+         MongoCollection<Document> collection = database.getCollection("Rendez-Vous");
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 753, 419);
         setTitle("Modifier Rendez-Vous");
