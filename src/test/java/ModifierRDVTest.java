@@ -48,12 +48,6 @@ public class ModifierRDVTest {
     
     @Test
     public void testEnregistrerRendezVous() {
-        // Insérer un document de test
-        Document rendezVous = new Document("nom", "Dupont")
-                .append("prenom", "Jean")
-                .append("date", "15/08/2024")
-                .append("heure", "14:00");
-        collection.insertOne(rendezVous);
 
         modifierRendezVous.nomtextField.setText("Dupont");
         modifierRendezVous.prenomtextField.setText("Jean");
