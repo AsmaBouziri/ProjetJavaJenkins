@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import org.bson.Document;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 
 import java.awt.*;
@@ -14,12 +15,12 @@ import java.util.Calendar;
 public class ModifierRendezVous extends JFrame {
 
     private JPanel contentPane;
-    private JTextField nomtextField;
-    private JTextField prenomtextField;
-    private JComboBox<Integer> jourComboBox;
-    private JComboBox<Integer> moisComboBox;
-    private JComboBox<Integer> anneeComboBox;
-    private JTextField heuretextField;
+    public JTextField nomtextField;
+    public JTextField prenomtextField;
+    public JComboBox<Integer> jourComboBox;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
+    public JTextField heuretextField;
     private MongoDatabase database;
 
     public static void main(String[] args) {
@@ -168,6 +169,7 @@ public class ModifierRendezVous extends JFrame {
                 int annee = (int) anneeComboBox.getSelectedItem();
                 String heure = heuretextField.getText().trim();
 
+                // Vérification de la validité des champs de saisie
                 if (nom.isEmpty() || prenom.isEmpty() || heure.isEmpty()) {
                     JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
