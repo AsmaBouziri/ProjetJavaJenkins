@@ -1,27 +1,13 @@
 package main.java;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.SystemColor;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -34,7 +20,7 @@ public class AjouterSoins extends JFrame {
     public JTextField nomText;
     public JTextField prenomText;
     public JComboBox<String> comboBox;
-    public  JComboBox<Integer> jourComboBox ;
+    public JComboBox<Integer> jourComboBox;
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public JButton enregistrerButton;
@@ -130,21 +116,21 @@ public class AjouterSoins extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         var datePanel = new JPanel();
         datePanel.add(new JLabel("Jour"));
-         jourComboBox = new JComboBox<>();
+        jourComboBox = new JComboBox<>();
         for (var i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         datePanel.add(jourComboBox);
 
         datePanel.add(new JLabel("Mois"));
-         moisComboBox = new JComboBox<>();
+        moisComboBox = new JComboBox<>();
         for (var i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
         datePanel.add(moisComboBox);
 
         datePanel.add(new JLabel("Année"));
-        JComboBox<Integer> anneeComboBox = new JComboBox<>();
+        anneeComboBox = new JComboBox<>();
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = currentYear - 2; i <= currentYear + 5; i++) {
             anneeComboBox.addItem(i);
