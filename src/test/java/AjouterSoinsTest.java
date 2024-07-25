@@ -50,8 +50,8 @@ public class AjouterSoinsTest {
     @Test
     public void testAddSoin() {
         // Set up the form data
-        ajouterSoins.nomText.setText("John");
-        ajouterSoins.prenomText.setText("Doe");
+        ajouterSoins.nomText.setText("test");
+        ajouterSoins.prenomText.setText("test");
         ajouterSoins.comboBox.setSelectedItem("détartrage");
         ajouterSoins.jourComboBox.setSelectedItem(15);
         ajouterSoins.moisComboBox.setSelectedItem(7);
@@ -61,7 +61,7 @@ public class AjouterSoinsTest {
         ajouterSoins.enregistrerButton.doClick();
 
         // Check if the data was added to MongoDB
-        Document patient = collection.find(Filters.eq("nom", "John")).first();
+        Document patient = collection.find(Filters.eq("nom", "test")).first();
         assertNotNull(patient);
         assertTrue(patient.getList("soins", Document.class).stream()
             .anyMatch(doc -> doc.getString("soin").equals("détartrage") &&
