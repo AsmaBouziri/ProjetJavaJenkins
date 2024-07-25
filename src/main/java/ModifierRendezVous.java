@@ -22,6 +22,7 @@ public class ModifierRendezVous extends JFrame {
     public JComboBox<Integer> anneeComboBox;
     public JTextField heuretextField;
     private MongoDatabase database;
+    private MongoCollection<Document> collection;
 
     public static void main(String[] args) {
         ModifierRendezVous frame = new ModifierRendezVous();
@@ -30,15 +31,14 @@ public class ModifierRendezVous extends JFrame {
     }
 
     public ModifierRendezVous() {
-       
-    	 try {
-             this.database = MongoDBUtil.getDatabase("CabinetDent");
-         } catch (Exception e) {
-             e.printStackTrace();
-             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-         }
-         MongoCollection<Document> collection = database.getCollection("Rendez-Vous");
-    	
+        try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+            this.collection = database.getCollection("Rendez-Vous");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 753, 419);
         setTitle("Modifier Rendez-Vous");
@@ -51,7 +51,7 @@ public class ModifierRendezVous extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 240, 240));
-        panel.setPreferredSize(new Dimension(431, 358)); // Dimension initiale conservée
+        panel.setPreferredSize(new Dimension(431, 358)); 
         contentPane.add(panel);
         panel.setLayout(null);
 
@@ -71,11 +71,9 @@ public class ModifierRendezVous extends JFrame {
         panel.add(prenomtextField);
         prenomtextField.setColumns(10);
 
-        // Récupération de l'année en cours pour les combobox d'année
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
 
-        // ComboBox pour le jour
         jourComboBox = new JComboBox<>();
         jourComboBox.setBounds(191, 164, 50, 22);
         panel.add(jourComboBox);
@@ -83,7 +81,6 @@ public class ModifierRendezVous extends JFrame {
             jourComboBox.addItem(i);
         }
 
-        // ComboBox pour le mois
         moisComboBox = new JComboBox<>();
         moisComboBox.setBounds(240, 164, 50, 22);
         panel.add(moisComboBox);
@@ -91,7 +88,6 @@ public class ModifierRendezVous extends JFrame {
             moisComboBox.addItem(i);
         }
 
-        // ComboBox pour l'année
         anneeComboBox = new JComboBox<>();
         anneeComboBox.setBounds(290, 164, 80, 22);
         panel.add(anneeComboBox);
@@ -99,7 +95,6 @@ public class ModifierRendezVous extends JFrame {
             anneeComboBox.addItem(i);
         }
 
-        // ComboBox pour l'heure
         heuretextField = new JTextField();
         heuretextField.setBounds(191, 197, 179, 28);
         panel.add(heuretextField);
@@ -129,24 +124,22 @@ public class ModifierRendezVous extends JFrame {
                 String nom = nomtextField.getText().trim();
                 String prenom = prenomtextField.getText().trim();
 
-                // Recherche du dernier rendez-vous du patient
                 Document queryDoc = new Document()
                         .append("nom", nom)
                         .append("prenom", prenom);
 
                 Document rendezVous = collection.find(queryDoc)
-                        .sort(new Document("date", -1)) // Trie par date décroissante pour obtenir le dernier rendez-vous
+                        .sort(new Document("date", -1))
                         .first();
 
                 if (rendezVous != null) {
-                    // Affichage des données du rendez-vous trouvé
-                    var date = rendezVous.getString("date");
-                    var heure = rendezVous.getString("heure");
+                    String date = rendezVous.getString("date");
+                    String heure = rendezVous.getString("heure");
 
                     String[] dateParts = date.split("/");
                     int jour = Integer.parseInt(dateParts[0]);
-                    var mois = Integer.parseInt(dateParts[1]);
-                    var annee = Integer.parseInt(dateParts[2]);
+                    int mois = Integer.parseInt(dateParts[1]);
+                    int annee = Integer.parseInt(dateParts[2]);
 
                     jourComboBox.setSelectedItem(jour);
                     moisComboBox.setSelectedItem(mois);
@@ -175,21 +168,17 @@ public class ModifierRendezVous extends JFrame {
                 int annee = (int) anneeComboBox.getSelectedItem();
                 String heure = heuretextField.getText().trim();
 
-                // Vérification de la validité des champs de saisie
                 if (nom.isEmpty() || prenom.isEmpty() || heure.isEmpty()) {
                     JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // Construction du document de mise à jour pour le rendez-vous
                     Document updateDoc = new Document("$set", new Document()
                             .append("date", jour + "/" + mois + "/" + annee)
                             .append("heure", heure));
 
-                    // Recherche du rendez-vous à mettre à jour basé sur le nom et prénom
                     Document queryDoc = new Document()
                             .append("nom", nom)
                             .append("prenom", prenom);
 
-                    // Exécution de la mise à jour dans la collection MongoDB
                     UpdateResult result = collection.updateOne(queryDoc, updateDoc);
 
                     if (result.getModifiedCount() > 0) {
@@ -198,7 +187,6 @@ public class ModifierRendezVous extends JFrame {
                         JOptionPane.showMessageDialog(enregistrerButton, "Aucun rendez-vous trouvé pour ce patient.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
 
-                    // Effacement des champs de saisie
                     nomtextField.setText("");
                     prenomtextField.setText("");
                     jourComboBox.setSelectedIndex(0);
@@ -206,18 +194,6 @@ public class ModifierRendezVous extends JFrame {
                     anneeComboBox.setSelectedIndex(0);
                     heuretextField.setText("");
                 }
-            }
-        });
-
-        final JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(ModifierRendezVous.class.getResource("./images/home.png")));
-        HomeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(HomeButton);
-        HomeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
             }
         });
     }
