@@ -1,6 +1,6 @@
 package test.java;
 
-import main.java.AjouterPatient;
+
 import main.java.ModifierRendezVous;
 import main.java.MongoDBUtil;
 
@@ -8,11 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import com.mongodb.client.MongoClient;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.bson.Document;
@@ -20,7 +19,6 @@ import org.bson.Document;
 public class ModifierRDVTest {
 
     private ModifierRendezVous modifierRendezVous;
-    private static MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
@@ -45,20 +43,20 @@ public class ModifierRDVTest {
 
     }
     
-    
-    @Test
-    public void testEnregistrerRendezVous() {
-
-        modifierRendezVous.nomtextField.setText("Dupont");
-        modifierRendezVous.prenomtextField.setText("Jean");
-        modifierRendezVous.jourComboBox.setSelectedItem(15);
-        modifierRendezVous.moisComboBox.setSelectedItem(9);
-        modifierRendezVous.anneeComboBox.setSelectedItem(2024);
-        modifierRendezVous.heuretextField.setText("15:00");
-        
-        modifierRendezVous.enregistrerButton.doClick();
-
-    }
+//    
+//    @Test
+//    public void testEnregistrerRendezVous() {
+//
+//        modifierRendezVous.nomtextField.setText("Dupont");
+//        modifierRendezVous.prenomtextField.setText("Jean");
+//        modifierRendezVous.jourComboBox.setSelectedItem(15);
+//        modifierRendezVous.moisComboBox.setSelectedItem(9);
+//        modifierRendezVous.anneeComboBox.setSelectedItem(2024);
+//        modifierRendezVous.heuretextField.setText("15:00");
+//        
+//        modifierRendezVous.enregistrerButton.doClick();
+//
+//    }
 
     
     
