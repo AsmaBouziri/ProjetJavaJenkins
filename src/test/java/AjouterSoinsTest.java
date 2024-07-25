@@ -1,65 +1,73 @@
 package test.java;
 
-import main.java.AjouterSoins;
+import main.java.AjouterPatient;
 import main.java.MongoDBUtil;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.bson.Document;
 
 public class AjouterSoinsTest {
 
-    private AjouterSoins ajouterSoins;
+    private AjouterPatient ajouterPatient;
+    private static MongoClient mongoClient;
     private MongoDatabase database;
-    private MongoCollection<Document> patientsCollection;
+    private MongoCollection<Document> collection;
 
     @BeforeEach
     public void setUp() {
-    	
-        database = MongoDBUtil.getDatabase("CabinetDent");
-        patientsCollection = database.getCollection("Patient");
-        // Initialize the AjouterSoins instance without showing the GUI
-        ajouterSoins = new AjouterSoins();
-        ajouterSoins.setSize(800, 600);
-        ajouterSoins.setVisible(false);
+    	database = MongoDBUtil.getDatabase("CabinetDent");
+        collection = database.getCollection("Patient");
+        
+        ajouterPatient = new AjouterPatient();
+        ajouterPatient.setSize(800, 600);
+        ajouterPatient.setVisible(true);
+    }
+
+    @Test
+    public void testComponentsInitialization() {
+        assertNotNull(ajouterPatient.nomTextField);
+        assertNotNull(ajouterPatient.prenomTextField);
+        assertNotNull(ajouterPatient.cinTextField);
+        assertNotNull(ajouterPatient.adresseTextField);
+        assertNotNull(ajouterPatient.professionTextField);
+        assertNotNull(ajouterPatient.telTextField);
+        assertNotNull(ajouterPatient.enregistrerButton);
+        assertNotNull(ajouterPatient.hommeRadioButton);
+        assertNotNull(ajouterPatient.femmeRadioButton);
+        assertNotNull(ajouterPatient.jourComboBox);
+        assertNotNull(ajouterPatient.anneeComboBox);
+        assertNotNull(ajouterPatient.moisComboBox);
     }
     
     @Test
-    public void testComponentsInitialization() {
-    	  assertNotNull(ajouterSoins.nomText);
-          assertNotNull(ajouterSoins.prenomText);
-          assertNotNull(ajouterSoins.comboBox);
-          assertNotNull(ajouterSoins.jourComboBox);
-          assertNotNull(ajouterSoins.moisComboBox);
-          assertNotNull(ajouterSoins.anneeComboBox);
-          assertNotNull(ajouterSoins.enregistrerButton);
+    public void testEnregistrerButtonInsertsData() {
+        // Configure the test data
+        ajouterPatient.nomTextField.setText("ali");
+        ajouterPatient.prenomTextField.setText("ali");
+        ajouterPatient.cinTextField.setText("12345678");
+        ajouterPatient.adresseTextField.setText("ben arous");
+        ajouterPatient.professionTextField.setText("professeur");
+        ajouterPatient.telTextField.setText("12345678");
 
+        ajouterPatient.jourComboBox.setSelectedItem(12);
+        ajouterPatient.moisComboBox.setSelectedItem(2);
+        ajouterPatient.anneeComboBox.setSelectedItem(2150);
+        // Simulate button click
+        ajouterPatient.enregistrerButton.doClick();
+
+        Document found = collection.find(new Document("nom", "ali")).first();
+        assertNotNull(found, "Patient 'ali' should be found");
+        assertEquals("ali", found.getString("nom"));
     }
-    
-//    @Test
-//    public void testAddSoin() {
-//        // Set up the form data
-//        ajouterSoins.nomText.setText("John");
-//        ajouterSoins.prenomText.setText("Doe");
-//        ajouterSoins.comboBox.setSelectedItem("détartrage");
-//        ajouterSoins.jourComboBox.setSelectedItem(15);
-//        ajouterSoins.moisComboBox.setSelectedItem(7);
-//        ajouterSoins.anneeComboBox.setSelectedItem(2024);
-//
-//        // Simulate the button click to add a soin
-//        ajouterSoins.enregistrerButton.doClick();
-//
-//   
-//    }
 
-    
 }
