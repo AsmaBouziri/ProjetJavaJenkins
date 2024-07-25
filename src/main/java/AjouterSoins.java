@@ -29,16 +29,20 @@ public class AjouterSoins extends JFrame {
     private MongoCollection<Document> patientsCollection;
 
     public static void main(String[] args) {
-        var frame = new AjouterSoins();
+    	AjouterSoins frame = new AjouterSoins();
+    	frame.setSize(800, 600);
         frame.setVisible(true);
     }
 
     public AjouterSoins() {
         // Connect to MongoDB
-        mongoClient = new MongoClient("localhost", 27017);
-        database = mongoClient.getDatabase("CabinetDent");
-        patientsCollection = database.getCollection("Patient");
-
+        try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        MongoCollection<Document> collection = database.getCollection("Patient");
         setBackground(new Color(255, 255, 255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Ajouter Un soin réalisé");
