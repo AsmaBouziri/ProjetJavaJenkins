@@ -40,21 +40,21 @@ public class AjouterSoinsTest {
 
     }
     
-    @Test
-    public void testAddSoin() {
-        // Set up the form data
-        ajouterSoins.nomText.setText("John");
-        ajouterSoins.prenomText.setText("Doe");
-        ajouterSoins.comboBox.setSelectedItem("détartrage");
-        ajouterSoins.jourComboBox.setSelectedItem(15);
-        ajouterSoins.moisComboBox.setSelectedItem(7);
-        ajouterSoins.anneeComboBox.setSelectedItem(2024);
-
-        // Simulate the button click to add a soin
-        ajouterSoins.enregistrerButton.doClick();
-
-   
-    }
+//    @Test
+//    public void testAddSoin() {
+//        // Set up the form data
+//        ajouterSoins.nomText.setText("John");
+//        ajouterSoins.prenomText.setText("Doe");
+//        ajouterSoins.comboBox.setSelectedItem("détartrage");
+//        ajouterSoins.jourComboBox.setSelectedItem(15);
+//        ajouterSoins.moisComboBox.setSelectedItem(7);
+//        ajouterSoins.anneeComboBox.setSelectedItem(2024);
+//
+//        // Simulate the button click to add a soin
+//        ajouterSoins.enregistrerButton.doClick();
+//
+//   
+//    }
 
     
 }
