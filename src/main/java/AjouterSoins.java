@@ -44,6 +44,8 @@ public class AjouterSoins extends JFrame {
         }
         MongoCollection<Document> collection = database.getCollection("Patient");
         setBackground(new Color(255, 255, 255));
+        
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Ajouter Un soin réalisé");
         setBounds(100, 100, 753, 419);
