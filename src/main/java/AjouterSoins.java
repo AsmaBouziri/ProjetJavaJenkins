@@ -39,16 +39,17 @@ public class AjouterSoins extends JFrame {
     	
              try {
                  this.database = MongoDBUtil.getDatabase("CabinetDent");
-                 this.patientsCollection = database.getCollection("Patient");
+     
              } catch (Exception e) {
                  e.printStackTrace();
                  JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
              }
          
-
+        MongoCollection<Document> collection = database.getCollection("Patient");
+        
+        
+        
         setBackground(new Color(255, 255, 255));
-        
-        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Ajouter Un soin réalisé");
         setBounds(100, 100, 753, 419);
@@ -205,6 +206,6 @@ public class AjouterSoins extends JFrame {
             }
         });
 
-        setVisible(true);
+        
     }
 }
