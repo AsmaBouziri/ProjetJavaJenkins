@@ -21,6 +21,7 @@ public class ModifierRendezVous extends JFrame {
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public  JButton rechercherButton;
+    public  JButton enregistrerButton;
     public JTextField heuretextField;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -34,7 +35,7 @@ public class ModifierRendezVous extends JFrame {
     public ModifierRendezVous() {
         try {
             this.database = MongoDBUtil.getDatabase("CabinetDent");
-            this.collection = database.getCollection("Rendez-Vous");
+            this.collection = database.getCollection("RendezVous");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -157,7 +158,7 @@ public class ModifierRendezVous extends JFrame {
             }
         });
 
-        final var enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.setBounds(147, 307, 139, 40);
         panel.add(enregistrerButton);
         enregistrerButton.addActionListener(new ActionListener() {
