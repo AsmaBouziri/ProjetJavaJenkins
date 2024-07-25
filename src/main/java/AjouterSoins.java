@@ -33,6 +33,11 @@ public class AjouterSoins extends JFrame {
     private JPanel contentPane;
     public JTextField nomText;
     public JTextField prenomText;
+    public JComboBox<String> comboBox;
+    public  JComboBox<Integer> jourComboBox ;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
+    public JButton enregistrerButton;
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> patientsCollection;
@@ -105,7 +110,7 @@ public class AjouterSoins extends JFrame {
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
-        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox = new JComboBox<>();
         comboBox.addItem("**Soins**");
         comboBox.addItem("détartrage");
         comboBox.addItem("plombage");
@@ -125,14 +130,14 @@ public class AjouterSoins extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         var datePanel = new JPanel();
         datePanel.add(new JLabel("Jour"));
-        JComboBox<Integer> jourComboBox = new JComboBox<>();
+         jourComboBox = new JComboBox<>();
         for (var i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
         datePanel.add(jourComboBox);
 
         datePanel.add(new JLabel("Mois"));
-        JComboBox<Integer> moisComboBox = new JComboBox<>();
+         moisComboBox = new JComboBox<>();
         for (var i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
@@ -152,7 +157,7 @@ public class AjouterSoins extends JFrame {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        var enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomText.getText();

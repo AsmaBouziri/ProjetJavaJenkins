@@ -37,39 +37,32 @@ public class AjouterSoinsTest {
         collection = database.getCollection("Patient");
     }
 
-//    @Test
-//    public void testEnregistrerButtonInsertNewPatient() {
-//        // Configure the test data
-//        ajouterSoins.nomText.setText("Dupont");
-//        ajouterSoins.prenomText.setText("Jean");
-//
-//        JComboBox<String> comboBox = (JComboBox<String>) getPrivateField(ajouterSoins, "comboBox");
-//        comboBox.setSelectedItem("détartrage");
-//
-//        JComboBox<Integer> jourComboBox = (JComboBox<Integer>) getPrivateField(ajouterSoins, "jourComboBox");
-//        jourComboBox.setSelectedItem(15);
-//
-//        JComboBox<Integer> moisComboBox = (JComboBox<Integer>) getPrivateField(ajouterSoins, "moisComboBox");
-//        moisComboBox.setSelectedItem(8);
-//
-//        JComboBox<Integer> anneeComboBox = (JComboBox<Integer>) getPrivateField(ajouterSoins, "anneeComboBox");
-//        anneeComboBox.setSelectedItem(2024);
-//
-//        JButton enregistrerButton = (JButton) getPrivateField(ajouterSoins, "enregistrerButton");
-//        enregistrerButton.doClick();
-//
-//        // Verify the interaction with MongoDB
-//        Document found = collection.find(new Document("nom", "Dupont")).first();
-//        assertNotNull(found, "Patient 'Dupont' should be found");
-//        assertEquals("Jean", found.getString("prenom"));
-//        
-//        List<Document> soinsList = (List<Document>) found.get("soins");
-//        assertNotNull(soinsList);
-//        assertEquals(1, soinsList.size());
-//
-//        Document soinDocument = soinsList.get(0);
-//        assertEquals("détartrage", soinDocument.getString("soin"));
-//        assertEquals("15/8/2024", soinDocument.getString("date"));
-//    }
+    @Test
+    public void testEnregistrerButtonInsertNewPatient() {
+       // Configure the test data
+        ajouterSoins.nomText.setText("test");
+        ajouterSoins.prenomText.setText("test");
+        ajouterSoins.comboBox.setSelectedItem("détartrage");
+
+        ajouterSoins.jourComboBox.setSelectedItem(15);
+        ajouterSoins.moisComboBox.setSelectedItem(8);
+        ajouterSoins.anneeComboBox.setSelectedItem(2024);
+
+        
+        ajouterSoins.enregistrerButton.doClick();
+
+        // Verify the interaction with MongoDB
+        Document found = collection.find(new Document("nom", "test")).first();
+        assertNotNull(found, "Patient 'test' should be found");
+        assertEquals("test", found.getString("prenom"));
+        
+        List<Document> soinsList = (List<Document>) found.get("soins");
+        assertNotNull(soinsList);
+        assertEquals(1, soinsList.size());
+
+        Document soinDocument = soinsList.get(0);
+        assertEquals("détartrage", soinDocument.getString("soin"));
+        assertEquals("15/8/2024", soinDocument.getString("date"));
+    }
 
 }
