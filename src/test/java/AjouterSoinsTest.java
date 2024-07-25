@@ -24,7 +24,8 @@ public class AjouterSoinsTest {
 
     @BeforeEach
     public void setUp() {
-
+        database = MongoDBUtil.getDatabase("CabinetDent");
+        patientsCollection = database.getCollection("Patient");
         // Initialize the AjouterSoins instance without showing the GUI
         ajouterSoins = new AjouterSoins();
         ajouterSoins.setSize(800, 600);
