@@ -35,8 +35,13 @@ public class AjouterSoinsTest {
     
     @Test
     public void testComponentsInitialization() {
-        assertNull(ajouterSoins.nomText);
-        assertNull(ajouterSoins.prenomText);
+    	  assertNotNull(ajouterSoins.nomText);
+          assertNotNull(ajouterSoins.prenomText);
+          assertNotNull(ajouterSoins.comboBox);
+          assertNotNull(ajouterSoins.jourComboBox);
+          assertNotNull(ajouterSoins.moisComboBox);
+          assertNotNull(ajouterSoins.anneeComboBox);
+          assertNotNull(ajouterSoins.enregistrerButton);
 
     }
     
