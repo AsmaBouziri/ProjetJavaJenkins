@@ -1,6 +1,5 @@
 package test.java;
 
-import main.java.AjouterPatient;
 import main.java.AjouterSoins;
 import main.java.MongoDBUtil;
 
@@ -8,12 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import com.mongodb.client.MongoClient;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -24,7 +22,6 @@ import org.bson.Document;
 public class AjouterSoinsTest {
 
     private AjouterSoins ajouterSoins;
-    private static MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
