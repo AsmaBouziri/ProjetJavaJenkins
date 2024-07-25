@@ -46,4 +46,27 @@ public class ModifierRDVTest {
     }
     
     
+    @Test
+    public void testRechercherRendezVousTrouve() {
+        // Insérer un document de test
+        Document rendezVous = new Document("nom", "alain")
+                .append("prenom", "francois")
+                .append("date", "15/08/2024")
+                .append("heure", "14:00");
+        collection.insertOne(rendezVous);
+
+
+        modifierRendezVous.nomtextField.setText("alain");
+        modifierRendezVous.prenomtextField.setText("francois");
+
+        modifierRendezVous.rechercherButton.doClick();
+
+
+        assertEquals(15, modifierRendezVous.jourComboBox.getSelectedItem());
+        assertEquals(8, modifierRendezVous.moisComboBox.getSelectedItem());
+        assertEquals(2024, modifierRendezVous.anneeComboBox.getSelectedItem());
+        assertEquals("14:00", modifierRendezVous.heuretextField.getText());
+    }
+    
+    
 }

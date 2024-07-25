@@ -20,6 +20,7 @@ public class ModifierRendezVous extends JFrame {
     public JComboBox<Integer> jourComboBox;
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
+    public  JButton rechercherButton;
     public JTextField heuretextField;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -116,7 +117,7 @@ public class ModifierRendezVous extends JFrame {
         lblNewLabel_3.setBounds(47, 201, 46, 14);
         panel.add(lblNewLabel_3);
 
-        final var rechercherButton = new JButton("Rechercher");
+        rechercherButton = new JButton("Rechercher");
         rechercherButton.setBounds(201, 239, 162, 28);
         panel.add(rechercherButton);
         rechercherButton.addActionListener(new ActionListener() {
