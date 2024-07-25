@@ -55,7 +55,7 @@ public class ModifierRDVTest {
         modifierRendezVous.moisComboBox.setSelectedItem(9);
         modifierRendezVous.anneeComboBox.setSelectedItem(2024);
         modifierRendezVous.heuretextField.setText("15:00");
-
+        
         modifierRendezVous.enregistrerButton.doClick();
 
     }
