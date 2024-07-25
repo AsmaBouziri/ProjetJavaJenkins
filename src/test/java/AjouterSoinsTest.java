@@ -7,9 +7,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,44 +19,52 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AjouterSoinsTest {
 
     private AjouterSoins ajouterSoins;
-    private MongoClient mongoClient;
     private MongoDatabase database;
-    private MongoCollection<Document> collection;
+    private MongoCollection<Document> patientsCollection;
 
     @BeforeEach
     public void setUp() {
-    	
-    	database = MongoDBUtil.getDatabase("CabinetDent");
-        collection = database.getCollection("Patient");
-        
-        // Initialize the AjouterSoins instance
-        ajouterSoins = new AjouterSoins();        
+        database = MongoDBUtil.getDatabase("CabinetDent");
+        patientsCollection = database.getCollection("Patient");
+
+        // Clean up the collection before each test
+        patientsCollection.deleteMany(new Document());
+
+        // Initialize the AjouterSoins instance without showing the GUI
+        ajouterSoins = new AjouterSoins();
+        ajouterSoins.setVisible(false);
     }
 
-    
-    @Test
-    public void testComponentsInitialization() {
-        assertNotNull(ajouterSoins.nomText);
-        assertNotNull(ajouterSoins.prenomText);
-       
-        assertNotNull(ajouterSoins.jourComboBox);
-        assertNotNull(ajouterSoins.anneeComboBox);
-        assertNotNull(ajouterSoins.moisComboBox);
+    @AfterEach
+    public void tearDown() {
+        // Clean up the collection after each test
+        patientsCollection.deleteMany(new Document());
     }
-    
-//    @Test
-//    public void testEnregistrerButtonInsertNewPatient() {
-//        // Configure the test data
-//        ajouterSoins.nomText.setText("test");
-//        ajouterSoins.prenomText.setText("test");
-//        ajouterSoins.comboBox.setSelectedItem("détartrage");
-//
-//        ajouterSoins.jourComboBox.setSelectedItem(15);
-//        ajouterSoins.moisComboBox.setSelectedItem(8);
-//        ajouterSoins.anneeComboBox.setSelectedItem(2024);
-//
-//        ajouterSoins.enregistrerButton.doClick();
-//
-// 
-//    }
+
+    @Test
+    public void testAddSoin() {
+        // Set up the form data
+        ajouterSoins.nomText.setText("John");
+        ajouterSoins.prenomText.setText("Doe");
+        ajouterSoins.comboBox.setSelectedItem("détartrage");
+        ajouterSoins.jourComboBox.setSelectedItem(15);
+        ajouterSoins.moisComboBox.setSelectedItem(7);
+        ajouterSoins.anneeComboBox.setSelectedItem(2024);
+
+        // Simulate the button click to add a soin
+        ajouterSoins.addSoin();
+
+        // Check that the soin was added to the collection
+        Document query = new Document("nom", "John").append("prenom", "Doe");
+        List<Document> results = patientsCollection.find(query).into(new ArrayList<>());
+
+        assertEquals(1, results.size());
+        Document addedPatient = results.get(0);
+        List<Document> soinsList = (List<Document>) addedPatient.get("soins");
+        assertNotNull(soinsList);
+        assertEquals(1, soinsList.size());
+        Document addedSoin = soinsList.get(0);
+        assertEquals("détartrage", addedSoin.getString("soin"));
+        assertEquals("15/7/2024", addedSoin.getString("date"));
+    }
 }

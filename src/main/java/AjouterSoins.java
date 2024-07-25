@@ -24,13 +24,12 @@ public class AjouterSoins extends JFrame {
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public JButton enregistrerButton;
-    private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> patientsCollection;
 
     public static void main(String[] args) {
-    	AjouterSoins frame = new AjouterSoins();
-    	frame.setSize(800, 600);
+        AjouterSoins frame = new AjouterSoins();
+        frame.setSize(800, 600);
         frame.setVisible(true);
     }
 
@@ -38,14 +37,17 @@ public class AjouterSoins extends JFrame {
         // Connect to MongoDB
         try {
             this.database = MongoDBUtil.getDatabase("CabinetDent");
+            this.patientsCollection = database.getCollection("Patient");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        MongoCollection<Document> collection = database.getCollection("Patient");
+
+        initializeGUI();
+    }
+
+    private void initializeGUI() {
         setBackground(new Color(255, 255, 255));
-        
-        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Ajouter Un soin réalisé");
         setBounds(100, 100, 753, 419);
@@ -152,35 +154,7 @@ public class AjouterSoins extends JFrame {
         enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String nom = nomText.getText();
-                String prenom = prenomText.getText();
-                String soin = (String) comboBox.getSelectedItem();
-                int jour = (int) jourComboBox.getSelectedItem();
-                int mois = (int) moisComboBox.getSelectedItem();
-                int annee = (int) anneeComboBox.getSelectedItem();
-                String dateSoin = jour + "/" + mois + "/" + annee;
-
-                // Création d'un document de soin
-                var soinDocument = new Document("soin", soin)
-                        .append("date", dateSoin);
-
-                // Recherche du patient par nom et prénom
-                Document patient = patientsCollection.find(Filters.eq("nom", nom)).first();
-
-                if (patient == null) {
-                    List<Document> soinsList = new ArrayList<>();
-                    soinsList.add(soinDocument);
-
-                    Document newPatient = new Document("nom", nom)
-                            .append("prenom", prenom)
-                            .append("soins", soinsList);
-
-                    patientsCollection.insertOne(newPatient);
-                } else {
-                    patientsCollection.updateOne(Filters.eq("nom", nom), Updates.push("soins", soinDocument));
-                }
-
-                JOptionPane.showMessageDialog(enregistrerButton, "Soin ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                addSoin();
             }
         });
         panel.add(enregistrerButton, gbc);
@@ -203,5 +177,37 @@ public class AjouterSoins extends JFrame {
         });
 
         setVisible(true);
+    }
+
+    public void addSoin() {
+        String nom = nomText.getText();
+        String prenom = prenomText.getText();
+        String soin = (String) comboBox.getSelectedItem();
+        int jour = (int) jourComboBox.getSelectedItem();
+        int mois = (int) moisComboBox.getSelectedItem();
+        int annee = (int) anneeComboBox.getSelectedItem();
+        String dateSoin = jour + "/" + mois + "/" + annee;
+
+        // Création d'un document de soin
+        var soinDocument = new Document("soin", soin)
+                .append("date", dateSoin);
+
+        // Recherche du patient par nom et prénom
+        Document patient = patientsCollection.find(Filters.eq("nom", nom)).first();
+
+        if (patient == null) {
+            List<Document> soinsList = new ArrayList<>();
+            soinsList.add(soinDocument);
+
+            Document newPatient = new Document("nom", nom)
+                    .append("prenom", prenom)
+                    .append("soins", soinsList);
+
+            patientsCollection.insertOne(newPatient);
+        } else {
+            patientsCollection.updateOne(Filters.eq("nom", nom), Updates.push("soins", soinDocument));
+        }
+
+        JOptionPane.showMessageDialog(enregistrerButton, "Soin ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
     }
 }
