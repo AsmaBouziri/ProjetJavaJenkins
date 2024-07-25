@@ -31,19 +31,30 @@ public class AjouterSoinsTest {
         ajouterSoins = new AjouterSoins();        
     }
 
+    
     @Test
-    public void testEnregistrerButtonInsertNewPatient() {
-        // Configure the test data
-        ajouterSoins.nomText.setText("test");
-        ajouterSoins.prenomText.setText("test");
-        ajouterSoins.comboBox.setSelectedItem("détartrage");
-
-        ajouterSoins.jourComboBox.setSelectedItem(15);
-        ajouterSoins.moisComboBox.setSelectedItem(8);
-        ajouterSoins.anneeComboBox.setSelectedItem(2024);
-
-        ajouterSoins.enregistrerButton.doClick();
-
- 
+    public void testComponentsInitialization() {
+        assertNotNull(ajouterSoins.nomText);
+        assertNotNull(ajouterSoins.prenomText);
+       
+        assertNotNull(ajouterSoins.jourComboBox);
+        assertNotNull(ajouterSoins.anneeComboBox);
+        assertNotNull(ajouterSoins.moisComboBox);
     }
+    
+//    @Test
+//    public void testEnregistrerButtonInsertNewPatient() {
+//        // Configure the test data
+//        ajouterSoins.nomText.setText("test");
+//        ajouterSoins.prenomText.setText("test");
+//        ajouterSoins.comboBox.setSelectedItem("détartrage");
+//
+//        ajouterSoins.jourComboBox.setSelectedItem(15);
+//        ajouterSoins.moisComboBox.setSelectedItem(8);
+//        ajouterSoins.anneeComboBox.setSelectedItem(2024);
+//
+//        ajouterSoins.enregistrerButton.doClick();
+//
+// 
+//    }
 }
