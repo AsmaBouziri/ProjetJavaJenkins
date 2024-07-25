@@ -1,22 +1,19 @@
 package main.java;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import com.mongodb.MongoClient;
+
+import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Calendar;
 
 public class AjouterSoins extends JFrame {
     private JPanel contentPane;
+    private MongoDatabase database;
     public JTextField nomText;
     public JTextField prenomText;
     public JComboBox<String> comboBox;
@@ -24,136 +21,91 @@ public class AjouterSoins extends JFrame {
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public JButton enregistrerButton;
-    private MongoClient mongoClient;
-    private MongoDatabase database;
-    private MongoCollection<Document> patientsCollection;
 
     public static void main(String[] args) {
-    	AjouterSoins frame = new AjouterSoins();
-    	frame.setSize(800, 600);
+        AjouterSoins frame = new AjouterSoins();
+        frame.setSize(800, 600);
         frame.setVisible(true);
     }
 
     public AjouterSoins() {
-        // Connect to MongoDB
-    	
-             try {
-                 this.database = MongoDBUtil.getDatabase("CabinetDent");
-     
-             } catch (Exception e) {
-                 e.printStackTrace();
-                 JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-             }
-         
+        try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
         MongoCollection<Document> collection = database.getCollection("Patient");
-        
-        
-        
+
         setBackground(new Color(255, 255, 255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Ajouter Un soin réalisé");
-        setBounds(100, 100, 753, 419);
+        setBounds(100, 100, 800, 600);
+        setTitle("Ajouter Soins");
         contentPane = new JPanel();
         contentPane.setBackground(SystemColor.activeCaption);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        contentPane.setLayout(new GridBagLayout());
+        contentPane.setLayout(null);
 
         var panel = new JPanel();
-        panel.setBackground(new Color(240, 240, 240));
-        panel.setLayout(new GridBagLayout());
-        var gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        panel.setBounds(101, 11, 534, 358);
+        contentPane.add(panel);
+        panel.setLayout(null);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        var titre = new JLabel("Ajouter Soins");
-        titre.setForeground(SystemColor.windowBorder);
-        titre.setBackground(SystemColor.windowBorder);
-        titre.setFont(new Font("Tahoma", Font.BOLD, 25));
-        panel.add(titre, gbc);
+        JLabel Titre = new JLabel("Ajouter Soins");
+        Titre.setForeground(SystemColor.windowBorder);
+        Titre.setBackground(SystemColor.windowBorder);
+        Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
+        Titre.setBounds(165, 11, 235, 28);
+        panel.add(Titre);
 
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.EAST;
-        var lblNewLabel = new JLabel("Nom :");
-        panel.add(lblNewLabel, gbc);
+        nomText = new JTextField();
+        nomText.setColumns(10);
+        nomText.setBounds(238, 50, 217, 28);
+        panel.add(nomText);
 
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.WEST;
-        nomText = new JTextField(20);
-        panel.add(nomText, gbc);
+        prenomText = new JTextField();
+        prenomText.setBounds(238, 82, 217, 28);
+        panel.add(prenomText);
+        prenomText.setColumns(10);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.EAST;
-        var lblNewLabel1 = new JLabel("Prénom : ");
-        panel.add(lblNewLabel1, gbc);
-
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.WEST;
-        prenomText = new JTextField(20);
-        panel.add(prenomText, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.anchor = GridBagConstraints.EAST;
-        var lblNewLabel2 = new JLabel("Soins Réalisé :");
-        panel.add(lblNewLabel2, gbc);
-
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.WEST;
-        comboBox = new JComboBox<>();
-        comboBox.addItem("**Soins**");
+        comboBox = new JComboBox<String>();
+        comboBox.setBounds(238, 113, 217, 28);
+        panel.add(comboBox);
+        // Populate the comboBox with soins types (e.g., "détartrage", "blanchiment", etc.)
         comboBox.addItem("détartrage");
-        comboBox.addItem("plombage");
-        comboBox.addItem("dévitalisation dentaire");
-        comboBox.addItem("extraction dentaire");
-        comboBox.addItem("scellement des sillons");
-        comboBox.addItem("Visite ");
-        panel.add(comboBox, gbc);
+        comboBox.addItem("blanchiment");
+        comboBox.addItem("consultation");
 
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.anchor = GridBagConstraints.EAST;
-        var lblNewLabel3 = new JLabel("Date soin :");
-        panel.add(lblNewLabel3, gbc);
-
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.WEST;
-        var datePanel = new JPanel();
-        datePanel.add(new JLabel("Jour"));
-        jourComboBox = new JComboBox<>();
-        for (var i = 1; i <= 31; i++) {
+        jourComboBox = new JComboBox<Integer>();
+        jourComboBox.setBounds(237, 160, 50, 22);
+        panel.add(jourComboBox);
+        for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
-        datePanel.add(jourComboBox);
 
-        datePanel.add(new JLabel("Mois"));
-        moisComboBox = new JComboBox<>();
-        for (var i = 1; i <= 12; i++) {
+        moisComboBox = new JComboBox<Integer>();
+        moisComboBox.setBounds(286, 160, 50, 22);
+        panel.add(moisComboBox);
+        for (int i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
-        datePanel.add(moisComboBox);
 
-        datePanel.add(new JLabel("Année"));
-        anneeComboBox = new JComboBox<>();
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = currentYear - 2; i <= currentYear + 5; i++) {
+        anneeComboBox = new JComboBox<Integer>();
+        anneeComboBox.setBounds(336, 160, 100, 22);
+        panel.add(anneeComboBox);
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        for (int i = currentYear - 100; i <= currentYear; i++) {
             anneeComboBox.addItem(i);
         }
-        datePanel.add(anneeComboBox);
 
-        panel.add(datePanel, gbc);
+        var lblNewLabel8 = new JLabel("Date du Soin :");
+        lblNewLabel8.setBounds(53, 157, 168, 14);
+        panel.add(lblNewLabel8);
 
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
         enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton.setBackground(SystemColor.activeCaption);
         enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomText.getText();
@@ -164,48 +116,31 @@ public class AjouterSoins extends JFrame {
                 int annee = (int) anneeComboBox.getSelectedItem();
                 String dateSoin = jour + "/" + mois + "/" + annee;
 
-                // Création d'un document de soin
-                var soinDocument = new Document("soin", soin)
-                        .append("date", dateSoin);
-
-                // Recherche du patient par nom et prénom
-                Document patient = patientsCollection.find(Filters.eq("nom", nom)).first();
-
-                if (patient == null) {
-                    List<Document> soinsList = new ArrayList<>();
-                    soinsList.add(soinDocument);
-
-                    Document newPatient = new Document("nom", nom)
-                            .append("prenom", prenom)
-                            .append("soins", soinsList);
-
-                    patientsCollection.insertOne(newPatient);
+                // Vérification de la validité des champs de saisie
+                if (nom.isEmpty() || prenom.isEmpty() || soin == null) {
+                    JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    patientsCollection.updateOne(Filters.eq("nom", nom), Updates.push("soins", soinDocument));
+                    Document document = new Document("nom", nom)
+                            .append("prenom", prenom)
+                            .append("soin", soin)
+                            .append("date", dateSoin);
+
+                    collection.updateOne(
+                        new Document("nom", nom).append("prenom", prenom),
+                        new Document("$push", new Document("soins", document))
+                    );
+
+                    // Effacement des champs de saisie
+                    nomText.setText("");
+                    prenomText.setText("");
+                    comboBox.setSelectedIndex(0);
+                    jourComboBox.setSelectedIndex(0);
+                    moisComboBox.setSelectedIndex(0);
+                    anneeComboBox.setSelectedIndex(0);
                 }
-
-                JOptionPane.showMessageDialog(enregistrerButton, "Soin ajouté avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        panel.add(enregistrerButton, gbc);
-
-        contentPane.add(panel, new GridBagConstraints());
-
-        final var homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        var gbchome = new GridBagConstraints();
-        gbchome.gridx = 2;
-        gbchome.gridy = 0;
-        gbchome.anchor = GridBagConstraints.NORTHEAST;
-        contentPane.add(homeButton, gbchome);
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                var acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
-
-        
+        enregistrerButton.setBounds(95, 380, 130, 37);
+        contentPane.add(enregistrerButton);
     }
 }
