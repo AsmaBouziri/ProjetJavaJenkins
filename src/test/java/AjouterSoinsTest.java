@@ -1,6 +1,8 @@
 package test.java;
 
 import main.java.AjouterSoins;
+import main.java.MongoDBUtil;
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -21,12 +23,12 @@ public class AjouterSoinsTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialize the AjouterSoins instance
-        ajouterSoins = new AjouterSoins();
-        mongoClient = new MongoClient("localhost", 27017);
-        database = mongoClient.getDatabase("CabinetDent");
+    	
+    	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
         
+        // Initialize the AjouterSoins instance
+        ajouterSoins = new AjouterSoins();        
     }
 
     @Test
