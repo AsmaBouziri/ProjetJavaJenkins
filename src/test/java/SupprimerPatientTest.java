@@ -39,4 +39,22 @@ class SupprimerPatientTest {
         assertNotNull(supprimrPatient.btnNewButton);
 
     }
+    
+    public void testPatientDeletion() {
+    	Document patient = new Document("nom", "Doe")
+                .append("prenom", "John");
+    	collection.insertOne(patient);
+    	
+        // Remplir les champs pour la suppression
+    	supprimrPatient.nomtextField.setText("Doe");
+    	supprimrPatient.prenomtextField.setText("John");
+
+        // Simuler le clic sur le bouton
+    	supprimrPatient.btnNewButton.doClick();
+
+        // Vérifier que le patient a été supprimé
+        Document query = new Document("nom", "Doe").append("prenom", "John");
+        long count = collection.countDocuments(query);
+        assertEquals(0, count, "Patient should be deleted from the database");
+    }
 }
