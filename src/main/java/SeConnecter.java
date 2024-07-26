@@ -42,8 +42,13 @@ public class SeConnecter extends JFrame{
 	}
 
 	public SeConnecter() {
-		this.database = MongoDBUtil.getDatabase("CabinetDent");
-		MongoCollection<Document> collection = database.getCollection("LogIn");
+		try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        MongoCollection<Document> collection = database.getCollection("LogIn");
 		
 		
 		setBackground(new Color(255, 255, 255));
