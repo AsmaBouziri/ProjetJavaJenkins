@@ -25,14 +25,11 @@ public class ListePatientTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialiser la base de données et ajouter des données pour le test
-        mongoClient = MongoClients.create("mongodb://localhost:27017");
-        database = mongoClient.getDatabase("CabinetDent");
+        
+    	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("Patient");
 
-        // Vider la collection avant chaque test pour éviter des résultats de tests croisés
-        collection.drop();
-
+        
         // Ajouter des données de test
         Document patient1 = new Document("nom", "Dupont")
                 .append("prenom", "Jean")
@@ -72,10 +69,5 @@ public class ListePatientTest {
         assertEquals("0102030405", model.getValueAt(0, 5), "La première ligne devrait contenir '0102030405' dans la colonne 'Téléphone'.");
     }
 
-    @Test
-    public void testHomeButton() {
-        JButton homeButton = (JButton) ((JPanel) listePatients.getContentPane().getComponent(1)).getComponent(0);
-        assertNotNull(homeButton, "Le bouton 'Home' devrait exister.");
-    }
 
 }

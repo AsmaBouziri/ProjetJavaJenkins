@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ListePatients extends JFrame {
-    private JTable table;
+    public  JTable table;
     private DefaultTableModel model;
     private MongoDatabase database;
 
