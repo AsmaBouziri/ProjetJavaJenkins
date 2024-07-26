@@ -10,8 +10,9 @@ import com.mongodb.client.result.DeleteResult;
 
 public class SupprimerPatient extends JFrame {
     private JPanel contentPane;
-    private JTextField nomtextField;
-    private JTextField prenomtextField;
+    public JTextField nomtextField;
+    public JTextField prenomtextField;
+    public final JButton btnNewButton ;
     private MongoDatabase database;
 
     public static void main(String[] args) {
@@ -55,7 +56,7 @@ public class SupprimerPatient extends JFrame {
         prenomtextField.setBounds(191, 182, 185, 35);
         panel.add(prenomtextField);
 
-        final JButton btnNewButton = new JButton("Supprimer");
+         btnNewButton = new JButton("Supprimer");
         btnNewButton.setBackground(SystemColor.activeCaption);
         btnNewButton.setBounds(162, 272, 147, 41);
         btnNewButton.addActionListener(new ActionListener() {
@@ -86,16 +87,16 @@ public class SupprimerPatient extends JFrame {
         lblNewLabel_1.setBounds(49, 192, 70, 14);
         panel.add(lblNewLabel_1);
 
-        final JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        HomeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(HomeButton);
-        HomeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
+//        final JButton HomeButton = new JButton("");
+//        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
+//        HomeButton.setBounds(679, 11, 48, 41);
+//        contentPane.add(HomeButton);
+//        HomeButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                Acceuil acc = new Acceuil();
+//                setVisible(false);
+//                acc.setVisible(true);
+//            }
+//        });
     }
 }
