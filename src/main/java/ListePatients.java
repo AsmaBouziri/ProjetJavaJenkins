@@ -62,16 +62,16 @@ public class ListePatients extends JFrame {
         var panelButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelButtons.setBackground(SystemColor.activeCaption);
 
-        var homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
-        panelButtons.add(homeButton);
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
+//        var homeButton = new JButton("");
+//        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
+//        panelButtons.add(homeButton);
+//        homeButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                Acceuil acc = new Acceuil();
+//                setVisible(false);
+//                acc.setVisible(true);
+//            }
+//        });
 
         contentPane.add(panelButtons, BorderLayout.NORTH);
     }
