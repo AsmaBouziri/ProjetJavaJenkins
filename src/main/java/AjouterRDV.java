@@ -187,16 +187,5 @@ public class AjouterRDV extends JFrame {
             }
         });
 
-        JButton homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(AjouterRDV.class.getResource("./images/home.png")));
-        homeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(homeButton);
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
     }
 }
