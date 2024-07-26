@@ -16,11 +16,11 @@ public class AjouterRDV extends JFrame {
     public JTextField nomtextField;
     public JTextField prenomtextField;
     private MongoDatabase database;
-    private JComboBox<Integer> jourComboBox;
-    private JComboBox<Integer> moisComboBox;
-    private JComboBox<Integer> anneeComboBox;
-    private JComboBox<Integer> heurComboBox;
-    private JComboBox<Integer> minComboBox;
+    public JComboBox<Integer> jourComboBox;
+    public JComboBox<Integer> moisComboBox;
+    public JComboBox<Integer> anneeComboBox;
+    public JComboBox<Integer> heurComboBox;
+    public JComboBox<Integer> minComboBox;
 
     public static void main(String[] args) {
         AjouterRDV frame = new AjouterRDV();
