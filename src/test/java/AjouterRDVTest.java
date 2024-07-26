@@ -27,6 +27,8 @@ class AjouterRDVTest {
         ajouterRDV = new AjouterRDV();
         ajouterRDV.setSize(800, 600);
         ajouterRDV.setVisible(true);
+        
+        ajouterRDV.pack();
     }
 
     @Test
