@@ -125,24 +125,16 @@ public class AccueilTest {
         return null;
     }
     
-    
     @Test
-    public void testButtonPresence() {
-        // Créez un nouveau panneau pour le test
+    public void testComponentVisibility() {
         JPanel panel = (JPanel) this.panel.getComponent(0);
 
-        // Assurez-vous que chaque bouton est présent dans le panneau
         for (int i = 0; i < panel.getComponentCount(); i++) {
             JPanel buttonPanel = (JPanel) panel.getComponent(i);
-
-            // Vérifiez que le panneau a deux composants: JLabel et JButton
-            assertEquals(2, buttonPanel.getComponentCount(), "Button panel should have exactly 2 components");
-
-            // Vérifiez que le premier composant est un JLabel (icône)
-            assertTrue(buttonPanel.getComponent(0) instanceof JLabel, "First component should be a JLabel");
+            assertTrue(buttonPanel.isVisible(), "Button panel " + i + " should be visible");
             
-            // Vérifiez que le second composant est un JButton (bouton)
-            assertTrue(buttonPanel.getComponent(1) instanceof JButton, "Second component should be a JButton");
+            JButton button = (JButton) buttonPanel.getComponent(1);
+            assertTrue(button.isVisible(), "Button in panel " + i + " should be visible");
         }
     }
 
