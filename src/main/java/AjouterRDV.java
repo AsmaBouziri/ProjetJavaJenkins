@@ -13,8 +13,8 @@ import java.util.Calendar;
 public class AjouterRDV extends JFrame {
 
     private JPanel contentPane;
-    private JTextField nomtextField;
-    private JTextField prenomtextField;
+    public JTextField nomtextField;
+    public JTextField prenomtextField;
     private MongoDatabase database;
 
     public static void main(String[] args) {
