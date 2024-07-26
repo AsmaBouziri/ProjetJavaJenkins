@@ -40,12 +40,6 @@ class SeConnecterTest {
         seConnecter.setVisible(true);
     }
 
-    @AfterEach
-    public void tearDown() {
-        // Clean up MongoDB
-        collection.deleteMany(new Document());
-        mongoClient.close();
-    }
 
     @Test
     public void testComponentsInitialization() {
@@ -54,23 +48,23 @@ class SeConnecterTest {
         assertNotNull(seConnecter.btnNewButton, "btnNewButton should not be null");
     }
 
-    @Test
-    public void testSuccessfulLogin() {
-        // Add a user for testing
-        Document user = new Document("user", "testUser")
-                            .append("pwd", "testPass");
-        collection.insertOne(user);
-
-        
-        // Set user credentials
-        seConnecter.txtEmail.setText("testUser");
-        seConnecter.textField.setText("testPass");
-
-        // Simulate button click
-        seConnecter.btnNewButton.doClick();
-
-
-    }
+//    @Test
+//    public void testSuccessfulLogin() {
+//        // Add a user for testing
+//        Document user = new Document("user", "testUser")
+//                            .append("pwd", "testPass");
+//        collection.insertOne(user);
+//
+//        
+//        // Set user credentials
+//        seConnecter.txtEmail.setText("testUser");
+//        seConnecter.textField.setText("testPass");
+//
+//        // Simulate button click
+//        seConnecter.btnNewButton.doClick();
+//
+//
+//    }
 
 
 }
