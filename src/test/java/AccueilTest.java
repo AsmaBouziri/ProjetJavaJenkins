@@ -3,6 +3,7 @@ package test.java;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,5 +37,15 @@ public class AccueilTest {
         assertEquals("Annuler RDV", button.getText(), "Button text should be 'text button'");
         button.doClick();
         Mockito.verify(mockActionListener, Mockito.times(1)).actionPerformed(Mockito.any());
+    }
+    
+   @Test 
+    private GridBagConstraints getGridBagConstraints(JPanel panel, JLabel label) {
+        for (java.awt.Component comp : panel.getComponents()) {
+            if (comp instanceof JLabel && comp == label) {
+                return ((GridBagConstraints) ((GridBagLayout) panel.getLayout()).getConstraints(comp));
+            }
+        }
+        return null;
     }
 }
