@@ -33,12 +33,7 @@ class SeConnecterTest {
         // Set up MongoDB client and database
     	database = MongoDBUtil.getDatabase("CabinetDent");
         collection = database.getCollection("LogIn");
-
-        // Add a user for testing
-        Document user = new Document("user", "testUser")
-                            .append("pwd", "testPass");
-        collection.insertOne(user);
-
+        
         // Initialize the SeConnecter instance
         seConnecter = new SeConnecter();
         seConnecter.setSize(800, 450);
@@ -61,6 +56,12 @@ class SeConnecterTest {
 
     @Test
     public void testSuccessfulLogin() {
+        // Add a user for testing
+        Document user = new Document("user", "testUser")
+                            .append("pwd", "testPass");
+        collection.insertOne(user);
+
+        
         // Set user credentials
         seConnecter.txtEmail.setText("testUser");
         seConnecter.textField.setText("testPass");
