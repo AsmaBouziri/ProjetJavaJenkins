@@ -5,7 +5,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Acceuil extends JFrame {
-
+	public  JButton CButton; 
+	
+	
+	
     public Acceuil() {
         setTitle("Cabinet Dentaire : Assistant");
         setSize(800, 600);
@@ -28,7 +31,7 @@ public class Acceuil extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(lblNewLabel_8, gbc);
 
-        JButton CButton = new JButton("");
+         CButton = new JButton("");
         ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("./images/icons8-logout-25.png"));
         if (logoutIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
             CButton.setIcon(logoutIcon);
