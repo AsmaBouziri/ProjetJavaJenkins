@@ -45,7 +45,7 @@ class SeConnecterTest {
     public void testComponentsInitialization() {
         assertNotNull(seConnecter.txtEmail, "txtEmail should not be null");
         assertNotNull(seConnecter.textField, "textField should not be null");
-        assertNotNull(seConnecter.btnNewButton, "btnNewButton should not be null");
+        assertNotNull(seConnecter.btnSeConnecter, "btnNewButton should not be null");
     }
 
 //    @Test
