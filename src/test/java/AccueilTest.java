@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.Acceuil;
@@ -127,13 +128,22 @@ public class AccueilTest {
     
     @Test
     public void testButtonPresence() {
+        // Créez un nouveau panneau pour le test
         JPanel panel = (JPanel) this.panel.getComponent(0);
 
         // Assurez-vous que chaque bouton est présent dans le panneau
         for (int i = 0; i < panel.getComponentCount(); i++) {
             JPanel buttonPanel = (JPanel) panel.getComponent(i);
-            JButton button = (JButton) buttonPanel.getComponent(1);
-            assertNotNull(button, "Button should not be null in panel " + i);
+
+            // Vérifiez que le panneau a deux composants: JLabel et JButton
+            assertEquals(2, buttonPanel.getComponentCount(), "Button panel should have exactly 2 components");
+
+            // Vérifiez que le premier composant est un JLabel (icône)
+            assertTrue(buttonPanel.getComponent(0) instanceof JLabel, "First component should be a JLabel");
+            
+            // Vérifiez que le second composant est un JButton (bouton)
+            assertTrue(buttonPanel.getComponent(1) instanceof JButton, "Second component should be a JButton");
         }
     }
+
 }
