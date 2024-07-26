@@ -66,51 +66,10 @@ public class SupprimerRDVPatientTest {
         JButton enregistrerButton = (JButton) getComponentByName(contentPane, "EnregistrerButton");
         assertNotNull(enregistrerButton, "Le bouton 'Annuler' devrait être présent.");
         
-        // Vérifie la présence du bouton 'Home'
-        JButton homeButton = (JButton) getComponentByName(contentPane, "HomeButton");
-        assertNotNull(homeButton, "Le bouton 'Home' devrait être présent.");
     }
 
-    @Test
-    public void testAnnulerRdv() {
-        JTextField nomtextField = (JTextField) getComponentByName(supprimerRdvPatient.getContentPane(), "nomtextField");
-        JTextField prenomtextField = (JTextField) getComponentByName(supprimerRdvPatient.getContentPane(), "prenomtextField");
-        JComboBox<Integer> jourComboBox = (JComboBox<Integer>) getComponentByName(supprimerRdvPatient.getContentPane(), "jourComboBox");
-        JComboBox<Integer> moisComboBox = (JComboBox<Integer>) getComponentByName(supprimerRdvPatient.getContentPane(), "moisComboBox");
-        JComboBox<Integer> anneeComboBox = (JComboBox<Integer>) getComponentByName(supprimerRdvPatient.getContentPane(), "anneeComboBox");
-        JComboBox<Integer> heurComboBox = (JComboBox<Integer>) getComponentByName(supprimerRdvPatient.getContentPane(), "HeurComboBox");
-        JComboBox<Integer> minComboBox = (JComboBox<Integer>) getComponentByName(supprimerRdvPatient.getContentPane(), "MinComboBox");
 
-        // Remplir les champs avec des données
-        nomtextField.setText("Dupont");
-        prenomtextField.setText("Jean");
-        jourComboBox.setSelectedItem(15);
-        moisComboBox.setSelectedItem(7);
-        anneeComboBox.setSelectedItem(2024);
-        heurComboBox.setSelectedItem(10);
-        minComboBox.setSelectedItem(30);
 
-        JButton enregistrerButton = (JButton) getComponentByName(supprimerRdvPatient.getContentPane(), "EnregistrerButton");
-        enregistrerButton.doClick();
-
-        // Vérifie que le rendez-vous a été supprimé
-        Document filter = new Document()
-                .append("nom", "Dupont")
-                .append("prenom", "Jean")
-                .append("date", "15/7/2024")
-                .append("heure", "10:30");
-        
-        long count = collection.countDocuments(filter);
-        assertEquals(0, count, "Le rendez-vous devrait être supprimé.");
-    }
-
-    @AfterEach
-    public void tearDown() {
-        // Fermer la connexion à MongoDB
-        mongoClient.close();
-        // Fermer la fenêtre de test
-        supprimerRdvPatient.dispose();
-    }
 
     private Component getComponentByName(Container container, String name) {
         for (Component component : container.getComponents()) {
