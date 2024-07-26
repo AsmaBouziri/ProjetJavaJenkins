@@ -50,95 +50,78 @@ public class Acceuil extends JFrame {
         gbc.weightx = 1;
         gbc.weighty = 1;
 
-        JPanel panel1 = createButtonPanel("Ajouter Patient", "./images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Ajouter Patient", "./images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterPatient ajouterFrame = new AjouterPatient();
                 ajouterFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        panel.add(panel1, gbc);
+        }), createGbc(0, 1, gbc));
 
-        JPanel panel_1_1 = createButtonPanel("Rechercher Patient", "./images/icons8-find-user-male-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Rechercher Patient", "./images/icons8-find-user-male-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RechercherPatient rechFrame = new RechercherPatient();
                 rechFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        panel.add(panel_1_1, gbc);
+        }), createGbc(1, 1, gbc));
 
-        JPanel panel12 = createButtonPanel("Modifier Patient", "./images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Modifier Patient", "./images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ModifierFichePatient modifierFrame = new ModifierFichePatient();
                 modifierFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        panel.add(panel12, gbc);
+        }), createGbc(2, 1, gbc));
 
-        JPanel panel13 = createButtonPanel("Ajouter RDV", "./images/icons8-add-receipt-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Ajouter RDV", "./images/icons8-add-receipt-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterRDV ajouterRDVframe = new AjouterRDV();
                 ajouterRDVframe.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 3;
-        gbc.gridy = 1;
-        panel.add(panel13, gbc);
+        }), createGbc(3, 1, gbc));
 
-        JPanel panel14 = createButtonPanel("Modifier RDV", "./images/icons8-edit-property-64.png", new ActionListener() {
+        panel.add(createButtonPanel("Modifier RDV", "./images/icons8-edit-property-64.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ModifierRendezVous modifierRDVFrame = new ModifierRendezVous();
                 modifierRDVFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        panel.add(panel14, gbc);
+        }), createGbc(0, 2, gbc));
 
-        JPanel panel15 = createButtonPanel("Liste Patients", "./images/icons8-todo-list-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Liste Patients", "./images/icons8-todo-list-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ListePatients listeFrame = new ListePatients();
                 listeFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        panel.add(panel15, gbc);
+        }), createGbc(1, 2, gbc));
 
-        JPanel panel16 = createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
                 suppRDVFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 2;
-        gbc.gridy = 2;
-        panel.add(panel16, gbc);
+        }), createGbc(2, 2, gbc));
 
-        JPanel panel17 = createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerPatient suppFrame = new SupprimerPatient();
                 suppFrame.setVisible(true);
                 dispose();
             }
-        });
-        gbc.gridx = 3;
-        gbc.gridy = 2;
-        panel.add(panel17, gbc);
+        }), createGbc(3, 2, gbc));
 
         setVisible(true);
+    }
+
+    private GridBagConstraints createGbc(int x, int y, GridBagConstraints gbc) {
+        GridBagConstraints newGbc = (GridBagConstraints) gbc.clone();
+        newGbc.gridx = x;
+        newGbc.gridy = y;
+        return newGbc;
     }
 
     public static JPanel createButtonPanel(String buttonText, String iconPath, ActionListener actionListener) {
@@ -146,7 +129,6 @@ public class Acceuil extends JFrame {
         panel.setLayout(new GridBagLayout());
         var gbc = new GridBagConstraints();
 
-        // Initialize the icon label
         var iconLabel = new JLabel();
         java.net.URL imgURL = Acceuil.class.getResource(iconPath);
         if (imgURL != null) {
@@ -164,7 +146,6 @@ public class Acceuil extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         panel.add(iconLabel, gbc);
 
-        // Initialize the button
         var button = new JButton(buttonText);
         button.setFont(new Font("Tahoma", Font.ITALIC, 18));
         button.addActionListener(actionListener);
@@ -176,8 +157,9 @@ public class Acceuil extends JFrame {
         return panel;
     }
 
-
     public static void main(String[] args) {
-        Acceuil frame = new Acceuil();
+        SwingUtilities.invokeLater(() -> {
+            new Acceuil();
+        });
     }
 }
