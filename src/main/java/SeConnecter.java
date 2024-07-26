@@ -28,6 +28,7 @@ public class SeConnecter extends JFrame{
 	private JPanel contentPane;
 	public JTextField txtEmail;
 	public  JTextField textField;
+	public final JButton btnNewButton ;
 	private MongoDatabase database;
 
 
@@ -97,7 +98,7 @@ public class SeConnecter extends JFrame{
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		final JButton btnNewButton = new JButton("Se Connecter");
+		btnNewButton = new JButton("Se Connecter");
 		btnNewButton.setBackground(SystemColor.activeCaption);
 
 		btnNewButton.addActionListener(new ActionListener() {
