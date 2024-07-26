@@ -108,8 +108,6 @@ public class AccueilTest {
 
         JButton button = (JButton) buttonPanel.getComponent(1);
         assertEquals(expectedText, button.getText(), "Button text should be '" + expectedText + "'");
-        //assertNotNull(button.getIcon(), "Button should have an icon");
-        //assertTrue(button.getIcon().toString().contains(expectedIconPath), "Button icon should be '" + expectedIconPath + "'");
 
         GridBagConstraints gbc = getGridBagConstraints(panel, buttonPanel);
         assertNotNull(gbc, "GridBagConstraints should not be null");
@@ -124,5 +122,18 @@ public class AccueilTest {
             }
         }
         return null;
+    }
+    
+    
+    @Test
+    public void testButtonPresence() {
+        JPanel panel = (JPanel) this.panel.getComponent(0);
+
+        // Assurez-vous que chaque bouton est présent dans le panneau
+        for (int i = 0; i < panel.getComponentCount(); i++) {
+            JPanel buttonPanel = (JPanel) panel.getComponent(i);
+            JButton button = (JButton) buttonPanel.getComponent(1);
+            assertNotNull(button, "Button should not be null in panel " + i);
+        }
     }
 }
