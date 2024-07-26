@@ -13,19 +13,21 @@ import java.util.Calendar;
 public class AjouterRDV extends JFrame {
 
     private JPanel contentPane;
+    private MongoDatabase database;
     public JTextField nomtextField;
     public JTextField prenomtextField;
-    private MongoDatabase database;
     public JComboBox<Integer> jourComboBox;
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public JComboBox<Integer> heurComboBox;
     public JComboBox<Integer> minComboBox;
+    public JButton enregistrerButton;
+    public JButton annulerButton;
 
     public static void main(String[] args) {
         AjouterRDV frame = new AjouterRDV();
-        frame.setVisible(true);
         frame.setSize(800, 600);
+        frame.setVisible(true);
     }
 
     public AjouterRDV() {
@@ -48,17 +50,16 @@ public class AjouterRDV extends JFrame {
         contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(240, 240, 240));
         panel.setBounds(135, 11, 431, 358);
         contentPane.add(panel);
         panel.setLayout(null);
+        panel.setBackground(new Color(240, 240, 240));
 
-        JLabel Titre = new JLabel("Ajouter RDV");
-        Titre.setForeground(SystemColor.windowBorder);
-        Titre.setBackground(SystemColor.windowBorder);
-        Titre.setFont(new Font("Tahoma", Font.BOLD, 25));
-        Titre.setBounds(132, 11, 319, 28);
-        panel.add(Titre);
+        JLabel titreLabel = new JLabel("Ajouter RDV");
+        titreLabel.setForeground(SystemColor.windowBorder);
+        titreLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+        titreLabel.setBounds(132, 11, 319, 28);
+        panel.add(titreLabel);
 
         nomtextField = new JTextField();
         nomtextField.setBounds(191, 86, 162, 28);
@@ -108,24 +109,25 @@ public class AjouterRDV extends JFrame {
             minComboBox.addItem(i);
         }
 
-        JLabel lblNewLabel = new JLabel("Nom");
-        lblNewLabel.setBounds(47, 93, 46, 14);
-        panel.add(lblNewLabel);
+        JLabel lblNom = new JLabel("Nom :");
+        lblNom.setBounds(47, 93, 46, 14);
+        panel.add(lblNom);
 
-        JLabel lblNewLabel_1 = new JLabel("Prénom");
-        lblNewLabel_1.setBounds(47, 132, 46, 14);
-        panel.add(lblNewLabel_1);
+        JLabel lblPrenom = new JLabel("Prénom :");
+        lblPrenom.setBounds(47, 132, 46, 14);
+        panel.add(lblPrenom);
 
-        JLabel lblNewLabel_2 = new JLabel("Date");
-        lblNewLabel_2.setBounds(47, 168, 46, 14);
-        panel.add(lblNewLabel_2);
+        JLabel lblDate = new JLabel("Date :");
+        lblDate.setBounds(47, 168, 46, 14);
+        panel.add(lblDate);
 
-        JLabel lblNewLabel_3 = new JLabel("Heure");
-        lblNewLabel_3.setBounds(47, 201, 46, 14);
-        panel.add(lblNewLabel_3);
+        JLabel lblHeure = new JLabel("Heure :");
+        lblHeure.setBounds(47, 201, 46, 14);
+        panel.add(lblHeure);
 
-        JButton enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.setBounds(147, 307, 139, 40);
+        enregistrerButton.setBackground(SystemColor.activeCaption);
         panel.add(enregistrerButton);
         enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -163,6 +165,23 @@ public class AjouterRDV extends JFrame {
                     heurComboBox.setSelectedIndex(0);
                     minComboBox.setSelectedIndex(0);
                 }
+            }
+        });
+
+        annulerButton = new JButton("Annuler");
+        annulerButton.setBounds(312, 307, 139, 40);
+        annulerButton.setBackground(SystemColor.activeCaption);
+        panel.add(annulerButton);
+        annulerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Effacer les champs de saisie
+                nomtextField.setText("");
+                prenomtextField.setText("");
+                jourComboBox.setSelectedIndex(0);
+                moisComboBox.setSelectedIndex(0);
+                anneeComboBox.setSelectedIndex(0);
+                heurComboBox.setSelectedIndex(0);
+                minComboBox.setSelectedIndex(0);
             }
         });
 
