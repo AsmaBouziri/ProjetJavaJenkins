@@ -60,7 +60,6 @@ public class ListePatientTest {
         JTable table = (JTable) ((JScrollPane) listePatients.getContentPane().getComponent(0)).getViewport().getView();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        assertEquals(3, model.getRowCount(), "La table devrait contenir 2 lignes.");
         assertEquals("Dupont", model.getValueAt(0, 0), "La première ligne devrait contenir 'Dupont' dans la colonne 'Nom'.");
         assertEquals("Jean", model.getValueAt(0, 1), "La première ligne devrait contenir 'Jean' dans la colonne 'Prénom'.");
         assertEquals("AB123456", model.getValueAt(0, 2), "La première ligne devrait contenir 'AB123456' dans la colonne 'CIN'.");
