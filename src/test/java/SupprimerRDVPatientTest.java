@@ -52,40 +52,19 @@ public class SupprimerRDVPatientTest {
         JPanel contentPane = (JPanel) supprimerRdvPatient.getContentPane();
         
         // Vérifie la présence des champs de texte
-        assertNotNull(getComponentByName(contentPane, "nomtextField"), "Le champ 'Nom' devrait être présent.");
-        assertNotNull(getComponentByName(contentPane, "prenomtextField"), "Le champ 'Prénom' devrait être présent.");
+	   	 assertNotNull(supprimerRdvPatient.nomtextField);
+	     assertNotNull(supprimerRdvPatient.prenomtextField);
+	     assertNotNull(supprimerRdvPatient.HeurComboBox);
+	     assertNotNull(supprimerRdvPatient.MinComboBox);
+	     assertNotNull(supprimerRdvPatient.jourComboBox);
+	     assertNotNull(supprimerRdvPatient.moisComboBox);
+	     assertNotNull(supprimerRdvPatient.anneeComboBox);
+	     assertNotNull(supprimerRdvPatient.EnregistrerButton);
+	        
 
-        // Vérifie la présence des JComboBox
-        assertNotNull(getComponentByName(contentPane, "jourComboBox"), "Le JComboBox 'Jour' devrait être présent.");
-        assertNotNull(getComponentByName(contentPane, "moisComboBox"), "Le JComboBox 'Mois' devrait être présent.");
-        assertNotNull(getComponentByName(contentPane, "anneeComboBox"), "Le JComboBox 'Année' devrait être présent.");
-        assertNotNull(getComponentByName(contentPane, "HeurComboBox"), "Le JComboBox 'Heure' devrait être présent.");
-        assertNotNull(getComponentByName(contentPane, "MinComboBox"), "Le JComboBox 'Minute' devrait être présent.");
-        
-        // Vérifie la présence du bouton 'Annuler'
-        JButton enregistrerButton = (JButton) getComponentByName(contentPane, "EnregistrerButton");
-        assertNotNull(enregistrerButton, "Le bouton 'Annuler' devrait être présent.");
+        assertNotNull(supprimerRdvPatient.EnregistrerButton, "Le bouton 'Annuler' devrait être présent.");
         
     }
 
 
-
-
-    private Component getComponentByName(Container container, String name) {
-        for (Component component : container.getComponents()) {
-            if (component instanceof JComponent) {
-                JComponent jComponent = (JComponent) component;
-                if (name.equals(jComponent.getName())) {
-                    return jComponent;
-                }
-            }
-            if (component instanceof Container) {
-                Component found = getComponentByName((Container) component, name);
-                if (found != null) {
-                    return found;
-                }
-            }
-        }
-        return null;
-    }
 }

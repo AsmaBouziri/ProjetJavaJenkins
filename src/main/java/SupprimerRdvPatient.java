@@ -16,6 +16,12 @@ public class SupprimerRdvPatient extends JFrame {
     private JPanel contentPane;
     public JTextField nomtextField;
     public JTextField prenomtextField;
+    public  JButton EnregistrerButton;
+    public final JComboBox<Integer> jourComboBox ;
+    public final JComboBox<Integer> moisComboBox ;
+    public final JComboBox<Integer> anneeComboBox;
+    public final JComboBox<Integer> HeurComboBox ;
+    public final JComboBox<Integer> MinComboBox;
     private MongoDatabase database;
 
     public static void main(String[] args) {
@@ -57,35 +63,35 @@ public class SupprimerRdvPatient extends JFrame {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
 
-        final JComboBox<Integer> jourComboBox = new JComboBox<>();
+        jourComboBox = new JComboBox<>();
         jourComboBox.setBounds(191, 164, 50, 22);
         panel.add(jourComboBox);
         for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> moisComboBox = new JComboBox<>();
+        moisComboBox = new JComboBox<>();
         moisComboBox.setBounds(290, 164, 100, 22);
         panel.add(moisComboBox);
         for (int i = currentYear - 100; i <= currentYear; i++) {
             moisComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> anneeComboBox = new JComboBox<>();
+        anneeComboBox = new JComboBox<>();
         anneeComboBox.setBounds(240, 164, 50, 22);
         panel.add(anneeComboBox);
         for (int i = 1; i <= 12; i++) {
             anneeComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> HeurComboBox = new JComboBox<>();
+        HeurComboBox = new JComboBox<>();
         HeurComboBox.setBounds(191, 197, 50, 22);
         panel.add(HeurComboBox);
         for (int i = 9; i <= 15; i++) {
             HeurComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> MinComboBox = new JComboBox<>();
+         MinComboBox = new JComboBox<>();
         MinComboBox.setBounds(271, 197, 50, 22);
         panel.add(MinComboBox);
         for (int i = 0; i <= 59; i = i + 15) {
@@ -108,7 +114,7 @@ public class SupprimerRdvPatient extends JFrame {
         lblNewLabel_3.setBounds(47, 201, 46, 14);
         panel.add(lblNewLabel_3);
 
-        final JButton EnregistrerButton = new JButton("Annuler");
+        EnregistrerButton = new JButton("Annuler");
         EnregistrerButton.setBounds(147, 307, 139, 40);
         panel.add(EnregistrerButton);
         EnregistrerButton.addActionListener(new ActionListener() {
