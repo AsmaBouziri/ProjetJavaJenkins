@@ -26,8 +26,8 @@ import com.mongodb.client.MongoDatabase;
 
 public class SeConnecter extends JFrame{
 	private JPanel contentPane;
-	private JTextField txtEmail;
-	private JTextField textField;
+	public JTextField txtEmail;
+	public  JTextField textField;
 	private MongoDatabase database;
 
 

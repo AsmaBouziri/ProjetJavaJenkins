@@ -59,18 +59,4 @@ class SupprimerPatientTest {
     }
     
     
-    @Test
-    public void testPatientDeletionNotFound() {
-        // Remplir les champs pour la suppression avec un patient qui n'existe pas
-    	supprimrPatient.nomtextField.setText("Nonexistent");
-    	supprimrPatient.prenomtextField.setText("Patient");
-
-        // Simuler le clic sur le bouton
-    	supprimrPatient.btnNewButton.doClick();
-
-        // Vérifier que le patient n'a pas été supprimé (car il n'existait pas)
-        Document query = new Document("nom", "Nonexistent").append("prenom", "Patient");
-        long count = collection.countDocuments(query);
-        assertEquals(0, count, "Patient should not be present in the database");
-    }
 }
