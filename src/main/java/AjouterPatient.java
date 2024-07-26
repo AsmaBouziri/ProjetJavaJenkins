@@ -215,19 +215,6 @@ public class AjouterPatient extends JFrame {
         });
         enregistrerButton.setBounds(95, 380, 130, 37);
         contentPane.add(enregistrerButton);
-        
-        
-        JButton homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        homeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(homeButton);
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
 
 
     }
