@@ -2,9 +2,9 @@ package main.java;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import org.bson.Document;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -16,6 +16,11 @@ public class AjouterRDV extends JFrame {
     public JTextField nomtextField;
     public JTextField prenomtextField;
     private MongoDatabase database;
+    private JComboBox<Integer> jourComboBox;
+    private JComboBox<Integer> moisComboBox;
+    private JComboBox<Integer> anneeComboBox;
+    private JComboBox<Integer> heurComboBox;
+    private JComboBox<Integer> minComboBox;
 
     public static void main(String[] args) {
         AjouterRDV frame = new AjouterRDV();
@@ -24,10 +29,23 @@ public class AjouterRDV extends JFrame {
     }
 
     public AjouterRDV() {
-    	this.database = MongoDBUtil.getDatabase("CabinetDent");
-    	MongoCollection<Document> collection = database.getCollection("RendezVous");
-    	contentPane = new JPanel();
-    	new FrameConf().configure(this, contentPane, "Ajouter Rendez-Vous");
+        try {
+            this.database = MongoDBUtil.getDatabase("CabinetDent");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        MongoCollection<Document> collection = database.getCollection("RendezVous");
+
+        setBackground(new Color(255, 255, 255));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 800, 600);
+        setTitle("Ajouter Rendez-Vous");
+        contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.activeCaption);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(240, 240, 240));
@@ -55,38 +73,38 @@ public class AjouterRDV extends JFrame {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
 
-        final JComboBox<Integer> jourComboBox = new JComboBox<>();
+        jourComboBox = new JComboBox<>();
         jourComboBox.setBounds(191, 164, 50, 22);
         panel.add(jourComboBox);
         for (int i = 1; i <= 31; i++) {
             jourComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> moisComboBox = new JComboBox<>();
+        moisComboBox = new JComboBox<>();
         moisComboBox.setBounds(290, 164, 100, 22);
         panel.add(moisComboBox);
         for (int i = 1; i <= 12; i++) {
             moisComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> anneeComboBox = new JComboBox<>();
+        anneeComboBox = new JComboBox<>();
         anneeComboBox.setBounds(240, 164, 50, 22);
         panel.add(anneeComboBox);
         for (int i = currentYear - 2; i <= currentYear + 5; i++) {
             anneeComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> heurComboBox = new JComboBox<>();
+        heurComboBox = new JComboBox<>();
         heurComboBox.setBounds(191, 197, 50, 22);
         panel.add(heurComboBox);
         for (int i = 9; i <= 15; i++) {
             heurComboBox.addItem(i);
         }
 
-        final JComboBox<Integer> minComboBox = new JComboBox<>();
+        minComboBox = new JComboBox<>();
         minComboBox.setBounds(271, 197, 50, 22);
         panel.add(minComboBox);
-        for (int i = 0; i <= 59; i = i + 15) {
+        for (int i = 0; i <= 59; i += 15) {
             minComboBox.addItem(i);
         }
 
@@ -106,10 +124,10 @@ public class AjouterRDV extends JFrame {
         lblNewLabel_3.setBounds(47, 201, 46, 14);
         panel.add(lblNewLabel_3);
 
-        final JButton EnregistrerButton = new JButton("Enregistrer");
-        EnregistrerButton.setBounds(147, 307, 139, 40);
-        panel.add(EnregistrerButton);
-        EnregistrerButton.addActionListener(new ActionListener() {
+        JButton enregistrerButton = new JButton("Enregistrer");
+        enregistrerButton.setBounds(147, 307, 139, 40);
+        panel.add(enregistrerButton);
+        enregistrerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nom = nomtextField.getText().trim();
                 String prenom = prenomtextField.getText().trim();
@@ -119,33 +137,40 @@ public class AjouterRDV extends JFrame {
                 int heure = (int) heurComboBox.getSelectedItem();
                 int minute = (int) minComboBox.getSelectedItem();
 
+                // Vérification de la validité des champs de saisie
                 if (nom.isEmpty() || prenom.isEmpty()) {
-                    JOptionPane.showMessageDialog(EnregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Construction du document à insérer dans la base de données MongoDB
-                    Document rendezVous = new Document()
-                            .append("nom", nom)
+                    String date = jour + "/" + mois + "/" + annee;
+                    String heureComplete = heure + ":" + minute;
+
+                    Document rendezVous = new Document("nom", nom)
                             .append("prenom", prenom)
-                            .append("date", jour + "/" + mois + "/" + annee)
-                            .append("heure", heure + ":" + minute);
+                            .append("date", date)
+                            .append("heure", heureComplete);
 
                     // Insertion du document dans la collection MongoDB
                     collection.insertOne(rendezVous);
-
-                    JOptionPane.showMessageDialog(EnregistrerButton, "Le rendez-vous a été enregistré avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(enregistrerButton, "Le rendez-vous a été enregistré avec succès.", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
                     // Effacement des champs de saisie
                     nomtextField.setText("");
                     prenomtextField.setText("");
+                    jourComboBox.setSelectedIndex(0);
+                    moisComboBox.setSelectedIndex(0);
+                    anneeComboBox.setSelectedIndex(0);
+                    heurComboBox.setSelectedIndex(0);
+                    minComboBox.setSelectedIndex(0);
                 }
             }
         });
 
-        final JButton HomeButton = new JButton("");
-        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
-        HomeButton.setBounds(679, 11, 48, 41);
-        contentPane.add(HomeButton);
-        HomeButton.addActionListener(new ActionListener() {
+        JButton homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
+        homeButton.setBounds(679, 11, 48, 41);
+        contentPane.add(homeButton);
+        homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Acceuil acc = new Acceuil();
                 setVisible(false);
