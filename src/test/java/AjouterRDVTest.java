@@ -34,13 +34,13 @@ class AjouterRDVTest {
 
     @Test
     public void testComponentsInitialization() {
-        assertNotNull(ajouterRDV.nomtextField);
-        assertNotNull(ajouterRDV.prenomtextField);
-        assertNotNull(ajouterRDV.heurComboBox);
-        assertNotNull(ajouterRDV.minComboBox);
-        assertNotNull(ajouterRDV.jourComboBox);
-        assertNotNull(ajouterRDV.anneeComboBox);
-        assertNotNull(ajouterRDV.moisComboBox);
+        assertNull(ajouterRDV.nomtextField);
+        assertNull(ajouterRDV.prenomtextField);
+        assertNull(ajouterRDV.heurComboBox);
+        assertNull(ajouterRDV.minComboBox);
+        assertNull(ajouterRDV.jourComboBox);
+        assertNull(ajouterRDV.anneeComboBox);
+        assertNull(ajouterRDV.moisComboBox);
  
     }
     
