@@ -64,6 +64,13 @@ class SeConnecterTest {
 
     @Test
     public void testFailedLogin() {
+    	
+    	  // Add a user for testing
+        Document user = new Document("user", "testUser")
+                            .append("pwd", "testPass");
+        collection.insertOne(user);
+
+        
         // Set invalid user credentials
         seConnecter.txtEmail.setText("invalidUser");
         seConnecter.textField.setText("invalidPass");
