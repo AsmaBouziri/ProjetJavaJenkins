@@ -1,5 +1,7 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD \target\test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
+FROM openjdk:11
 
-ENTRYPOINT ["java", "-jar", "test-jenkins-1.0-SNAPSHOT.jar0"]
+EXPOSE 8080
+
+COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
+
+ENTRYPOINT ["java", "-jar", "/app/projetjavajenkins.jar"]
