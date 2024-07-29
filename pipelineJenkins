@@ -98,6 +98,28 @@ pipeline {
             }
         }
         
+ stage('Build Docker Image') {
+            steps {
+                script {
+                    // Assurez-vous que vous êtes dans le bon répertoire
+                   dir('C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins') {
+                        // Construire l'image Docker
+                        bat "docker build -t asmabouziri/projetjavajenkins:123 ."
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image to DockerHub') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: '588c9382-c2fc-4389-9934-5b27f0237248') {
+                        bat "docker push asmabouziri/projetjavajenkins:123"
+                    }
+                }
+            }
+        }
+        
+
         stage('Email Notification') {
             steps {
                 mail bcc: '',
