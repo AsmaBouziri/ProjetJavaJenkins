@@ -1,7 +1,19 @@
 FROM openjdk:11
 
-EXPOSE 8080
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    x11vnc \
+    fluxbox \
+    && rm -rf /var/lib/apt/lists/*
 
+# Copier l'application Java Swing dans le conteneur
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-ENTRYPOINT ["java", "-jar", "/app/projetjavajenkins.jar"]
+# Exposer le port VNC
+EXPOSE 5900
+
+# Script de démarrage pour Xvfb et x11vnc
+COPY start.sh /opt/myapp/start.sh
+RUN chmod +x /opt/myapp/start.sh
+
+ENTRYPOINT ["/opt/myapp/start.sh"]

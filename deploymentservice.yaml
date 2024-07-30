@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-swing-deployment
+spec:
+  selector:
+    matchLabels:
+      app: java-swing
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: java-swing
+    spec:
+      containers:
+        - name: jenkins-java-swing
+          image: asmabouziri/projetjavajenkins:123
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5900 # Port VNC
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-swing-svc
+spec:
+  selector:
+    app: java-swing
+  ports:
+    - protocol: "TCP"
+      port: 5900
+      targetPort: 5900
+  type: NodePort
