@@ -17,7 +17,7 @@ spec:
           image: asmabouziri/projetjavajenkins:123
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 5900 # Port VNC
+            - containerPort: 8080
 
 ---
 
@@ -30,6 +30,6 @@ spec:
     app: java-swing
   ports:
     - protocol: "TCP"
-      port: 5900
-      targetPort: 5900
+      port: 80
+      targetPort: 8080
   type: NodePort
