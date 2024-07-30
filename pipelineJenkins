@@ -18,21 +18,28 @@ pipeline {
 
         stage('Maven Clean Compile') {
             steps {
-                bat 'mvn clean'
-                echo 'Running Maven Compile'
-                bat 'mvn compile'
+                dir('C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins') {
+                    bat 'C:\\apache-maven-3.9.8\\bin\\mvn clean'
+                    bat 'C:\\apache-maven-3.9.8\\bin\\mvn compile'
+                }
             }
         }
 
         stage('Tests - JUnit/Mockito') {
             steps {
-                bat 'mvn test'
+                dir('C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins') {
+                    bat 'C:\\apache-maven-3.9.8\\bin\\mvn test'
+                }
             }
         }
+        
+        
 
         stage('Build package') {
             steps {
-                bat 'mvn package'
+                dir('C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins') {
+                    bat 'C:\\apache-maven-3.9.8\\bin\\mvn package'
+                }
             }
         }
 
@@ -97,6 +104,7 @@ pipeline {
                 }
             }
         }
+
         
  stage('Build Docker Image') {
             steps {
