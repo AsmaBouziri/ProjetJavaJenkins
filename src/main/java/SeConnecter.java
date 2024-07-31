@@ -17,14 +17,14 @@ public class SeConnecter extends JFrame {
     private MongoCollection<Document> collection;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
+       
             try {
                 SeConnecter frame = new SeConnecter();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        });
+        
     }
 
     public SeConnecter() {
