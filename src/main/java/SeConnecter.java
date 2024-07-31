@@ -64,7 +64,7 @@ public class SeConnecter extends JFrame {
         panel_1.setLayout(null);
 
         JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setIcon(new ImageIcon(SeConnecter.class.getResource("/main/java/images/loginimg.png")));
+        //lblNewLabel_3.setIcon(new ImageIcon(SeConnecter.class.getResource("/main/java/images/loginimg.png")));
         lblNewLabel_3.setBounds(40, 26, 272, 277);
         panel_1.add(lblNewLabel_3);
 
