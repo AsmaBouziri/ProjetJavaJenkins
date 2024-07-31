@@ -13,7 +13,7 @@ public class MongoDBUtil {
 
     public static MongoDatabase getDatabase(String dbName) {
         if (mongoClient == null) {
-                    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017");
+                    MongoClientURI uri = new MongoClientURI("mongodb+srv://testb8835:pEgxGH7MaUleOFlx@cluster0.ogaz79o.mongodb.net/?retryWrites=true&w=majority");
                     mongoClient = new MongoClient(uri);
                 }
             
