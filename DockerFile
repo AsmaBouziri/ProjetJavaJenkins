@@ -29,6 +29,7 @@ RUN mvn dependency:copy-dependencies
 # Copie les fichiers sources et le fichier JAR
 COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
+COPY src/main/java/images /app/images
 
 ENV DISPLAY=192.168.1.28:1.0
 
