@@ -30,7 +30,7 @@ RUN mvn dependency:copy-dependencies
 COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-ENV DISPLAY=192.168.1.28:0
+ENV DISPLAY=host.docker.internal
 
 # Exécute l'application
 ENTRYPOINT ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
