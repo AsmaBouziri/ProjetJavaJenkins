@@ -1,9 +1,23 @@
 FROM openjdk:11
 
-# Installe Maven
+# Installe Maven et les dépendances pour X11
 RUN apt-get update && \
-    apt-get install -y maven && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y maven \
+                       libxext-dev \
+                       libxrender-dev \
+                       libxi-dev \
+                       libxtst-dev \
+                       libxrandr-dev \
+                       libxss-dev \
+                       libxt-dev \
+                       libglu1-mesa \
+                       libxi6 \
+                       libxrender1 \
+                       libxtst6 \
+                       libxrandr2 \
+                       libxss1 \
+                       libglu1-mesa \
+                       && rm -rf /var/lib/apt/lists/*
 
 # Crée le répertoire de travail
 WORKDIR /app
@@ -16,8 +30,5 @@ RUN mvn dependency:copy-dependencies
 COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-# Définit la variable DISPLAY
-ENV DISPLAY=host.docker.internal:0
-
-# Exécute l'application Java
-CMD ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
+# Exécute l'application
+ENTRYPOINT ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
