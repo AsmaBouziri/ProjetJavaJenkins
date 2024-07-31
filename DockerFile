@@ -9,12 +9,20 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copie le pom.xml et télécharge les dépendances
-COPY pom.xml /app
+COPY pom.xml /app/
 RUN mvn dependency:copy-dependencies
 
-# Copie les fichiers sources et le fichier JAR
+# Copie les fichiers sources
 COPY src /app/src
+
+# Compile le projet et crée le JAR
+RUN mvn package
+
+# Expose le port que votre application utilise
+EXPOSE 8080
+
+# Copie le fichier JAR compilé
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-# Exécute l'application
-ENTRYPOINT ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
+# Définit le point d'entrée pour l'exécution
+ENTRYPOINT ["java", "-Djava.awt.headless=true", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
