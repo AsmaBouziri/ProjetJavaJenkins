@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="test.java.AjouterSoinsTest" time="0.557" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="test.java.AjouterSoinsTest" time="0.626" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11\bin"/>
-    <property name="sun.java.command" value="C:\WINDOWS\TEMP\surefire11231819351686351988\surefirebooter5340547270217084576.jar C:\Windows\Temp\surefire11231819351686351988 2024-07-31T09-12-54_969-jvmRun1 surefire15280636366213864898tmp surefire_08660978527085326154tmp"/>
+    <property name="sun.java.command" value="C:\WINDOWS\TEMP\surefire13950109575239837478\surefirebooter6066550715404424331.jar C:\Windows\Temp\surefire13950109575239837478 2024-07-31T09-22-09_730-jvmRun1 surefire688581643276898975tmp surefire_017198027846792189220tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Asma\Desktop\ProjetJavaJenkins\target\test-classes;C:\Users\Asma\Desktop\ProjetJavaJenkins\target\classes;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.1\junit-jupiter-5.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\mongodb\mongo-java-driver\3.11.2\mongo-java-driver-3.11.2.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\mockito\mockito-core\5.4.0\mockito-core-5.4.0.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\net\bytebuddy\byte-buddy\1.14.5\byte-buddy-1.14.5.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar;C:\WINDOWS\system32\config\systemprofile\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\WINDOWS\TEMP\surefire11231819351686351988\surefirebooter5340547270217084576.jar"/>
+    <property name="surefire.real.class.path" value="C:\WINDOWS\TEMP\surefire13950109575239837478\surefirebooter6066550715404424331.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.22+9-LTS-219"/>
@@ -62,6 +62,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testAddSoin" classname="test.java.AjouterSoinsTest" time="0.436"/>
-  <testcase name="testComponentsInitialization" classname="test.java.AjouterSoinsTest" time="0.118"/>
+  <testcase name="testAddSoin" classname="test.java.AjouterSoinsTest" time="0.543"/>
+  <testcase name="testComponentsInitialization" classname="test.java.AjouterSoinsTest" time="0.081"/>
 </testsuite>
