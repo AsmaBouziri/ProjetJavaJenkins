@@ -1,5 +1,10 @@
 FROM openjdk:11
 
+# Installe Maven
+RUN apt-get update && \
+    apt-get install -y maven && \
+    rm -rf /var/lib/apt/lists/*
+
 EXPOSE 8080
 
 COPY pom.xml ./
