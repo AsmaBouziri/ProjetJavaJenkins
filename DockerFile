@@ -16,5 +16,8 @@ RUN mvn dependency:copy-dependencies
 COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-# Exécute l'application
-ENTRYPOINT ["java", "-Djava.awt.headless=true", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
+# Définit la variable DISPLAY
+ENV DISPLAY=host.docker.internal:0
+
+# Exécute l'application Java
+CMD ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
