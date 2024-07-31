@@ -2,8 +2,8 @@ FROM openjdk:11
 
 # Installe Maven et les dépendances pour X11
 RUN apt-get update && \
-apt-get install -y xvfb maven && \
-rm -rf /var/lib/apt/lists/*
+    apt-get install -y xvfb maven libxrender1 libxtst6 libxi6 libxext6 && \
+    rm -rf /var/lib/apt/lists/*
 
 
 # Crée le répertoire de travail
@@ -19,5 +19,5 @@ COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
 ENV DISPLAY =:0.0
 
-# Exécute l'application
+# Lancez Xvfb en arrière-plan et exécutez votre application Java
 ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x24 & java -Djava.awt.headless=false -Djava.awt.display=:99 -cp projetjavajenkins.jar:dependency/* main.java.SeConnecter"]
