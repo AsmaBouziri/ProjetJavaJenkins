@@ -5,11 +5,16 @@ RUN apt-get update && \
     apt-get install -y maven && \
     rm -rf /var/lib/apt/lists/*
 
-EXPOSE 8080
+# Crée le répertoire de travail
+WORKDIR /app
 
-COPY pom.xml ./
+# Copie le pom.xml et télécharge les dépendances
+COPY pom.xml /app
 RUN mvn dependency:copy-dependencies
 
+# Copie les fichiers sources et le fichier JAR
+COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 
-ENTRYPOINT ["java", "-jar", "/app/projetjavajenkins.jar"]
+# Exécute l'application
+ENTRYPOINT ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]
