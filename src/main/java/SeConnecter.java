@@ -5,6 +5,9 @@ import javax.swing.border.EmptyBorder;
 import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import main.java.Acceuil;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -109,7 +112,8 @@ public class SeConnecter extends JFrame {
         if (found != null) {
             JOptionPane.showMessageDialog(btnSeConnecter, "Connexion réussie!", "Succès", JOptionPane.INFORMATION_MESSAGE);
             dispose(); // Close the current login window
-            // Implement redirection logic here
+            Acceuil acc = new Acceuil();
+            acc.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(btnSeConnecter, "Nom d'utilisateur ou mot de passe incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
