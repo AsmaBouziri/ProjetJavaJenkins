@@ -174,7 +174,7 @@ Final Report: The pipeline has completed successfully. No action required.''',
                      subject: 'Succès de la pipeline',
                      to: 'asmabouziri299@gmail.com'
             }
-        }
+        
     }
     
     post {
