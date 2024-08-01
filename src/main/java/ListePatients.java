@@ -63,7 +63,7 @@ public class ListePatients extends JFrame {
         panelButtons.setBackground(SystemColor.activeCaption);
 
 //        var homeButton = new JButton("");
-//        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("./images/home.png")));
+//        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
 //        panelButtons.add(homeButton);
 //        homeButton.addActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent e) {

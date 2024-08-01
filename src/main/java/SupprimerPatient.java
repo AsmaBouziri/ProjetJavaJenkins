@@ -88,7 +88,7 @@ public class SupprimerPatient extends JFrame {
         panel.add(lblNewLabel_1);
 
 //        final JButton HomeButton = new JButton("");
-//        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("./images/home.png")));
+//        HomeButton.setIcon(new ImageIcon(AjouterPatient.class.getResource("/images/home.png")));
 //        HomeButton.setBounds(679, 11, 48, 41);
 //        contentPane.add(HomeButton);
 //        HomeButton.addActionListener(new ActionListener() {
