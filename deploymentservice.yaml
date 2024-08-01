@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jenkins-java-swing
-          image: asmabouziri/projetjavajenkins:latest
+          image: asmabouziri/projetjavajenkins:123
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
