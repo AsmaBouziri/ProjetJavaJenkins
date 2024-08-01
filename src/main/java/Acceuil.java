@@ -7,8 +7,6 @@ import javax.swing.*;
 public class Acceuil extends JFrame {
 	public  JButton CButton; 
 	
-	
-	
     public Acceuil() {
         setTitle("Cabinet Dentaire : Assistant");
         setSize(800, 600);
