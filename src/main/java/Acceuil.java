@@ -30,7 +30,7 @@ public class Acceuil extends JFrame {
         panel.add(lblNewLabel_8, gbc);
 
          CButton = new JButton("");
-        ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("src\\main\\java\\images\\icons8-logout-25.png"));
+        ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("/images/icons8-logout-25.png"));
         if (logoutIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
             CButton.setIcon(logoutIcon);
         }
