@@ -18,18 +18,10 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-          env:
-            - name: DISPLAY
-              value: "192.168.1.9:0.0" 
-            - name: x11-unix
-              mountPath: /tmp/.X11-unix
-      volumes:
-        - name: x11-unix
-          hostPath:
-            path: C:/x11-unix 
-            type: Directory
+
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
