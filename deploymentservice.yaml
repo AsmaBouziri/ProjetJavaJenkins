@@ -22,14 +22,7 @@ spec:
           env:
             - name: DISPLAY
               value: "192.168.110.134:0.0"
-          volumeMounts:
-            - mountPath: C:\x11-unix
-              name: x11-unix
-      volumes:
-        - name: x11-unix
-          hostPath:
-            path: C:\x11-unix
-            type: Directory
+
 ---
 apiVersion: v1
 kind: Service
