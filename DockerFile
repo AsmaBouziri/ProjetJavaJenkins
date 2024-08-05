@@ -31,7 +31,7 @@ COPY src /app/src
 COPY target/test-jenkins-1.0-SNAPSHOT.jar /app/projetjavajenkins.jar
 COPY src/main/java/images /app/images
 
-ENV DISPLAY=192.168.1.9:0.0
+ENV DISPLAY=192.168.110.134:0.0
 
 # Exécute l'application
 ENTRYPOINT ["java", "-cp", "projetjavajenkins.jar:dependency/*", "main.java.SeConnecter"]

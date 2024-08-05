@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: java-swing-deployment
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -20,26 +21,26 @@ spec:
             - containerPort: 8080
           env:
             - name: DISPLAY
-              value: "192.168.1.9:0.0" 
-            - name: x11-unix
-              mountPath: /tmp/.X11-unix
+              value: "192.168.110.134:0.0"
+          volumeMounts:
+            - mountPath: /tmp/.X11-unix
+              name: x11-unix
       volumes:
         - name: x11-unix
           hostPath:
-            path: C:/x11-unix 
+            path: /tmp/.X11-unix
             type: Directory
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: java-swing-svc
+  namespace: default
 spec:
   selector:
     app: java-swing
   ports:
-    - protocol: "TCP"
+    - protocol: TCP
       port: 80
       targetPort: 8080
   type: NodePort
