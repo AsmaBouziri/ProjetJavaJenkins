@@ -23,12 +23,12 @@ spec:
             - name: DISPLAY
               value: "192.168.110.134:0.0"
           volumeMounts:
-            - mountPath: /tmp/.X11-unix
+            - mountPath: C:\x11-unix
               name: x11-unix
       volumes:
         - name: x11-unix
           hostPath:
-            path: /tmp/.X11-unix
+            path: C:\x11-unix
             type: Directory
 ---
 apiVersion: v1
