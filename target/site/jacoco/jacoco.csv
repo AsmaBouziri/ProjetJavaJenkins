@@ -27,7 +27,7 @@ test-jenkins,main.java,ModifierFichePatient.new ActionListener() {...},128,6,10,
 test-jenkins,main.java,AjouterSoins,22,319,0,6,7,63,1,4,1,1
 test-jenkins,main.java,FrameConf,0,34,0,0,0,9,0,2,0,2
 test-jenkins,main.java,AjouterPatient,22,528,0,6,7,103,1,4,1,1
-test-jenkins,main.java,SeConnecter,71,250,2,0,21,54,3,3,2,3
+test-jenkins,main.java,SeConnecter,321,0,2,0,75,0,6,0,5,0
 test-jenkins,main.java,SupprimerRdvPatient,12,364,0,10,4,68,1,6,1,1
 test-jenkins,main.java,SupprimerRdvPatient.new ActionListener() {...},118,9,6,0,21,1,4,1,1,1
 test-jenkins,main.java,RechercherPatient,12,271,0,0,4,55,1,1,1,1
