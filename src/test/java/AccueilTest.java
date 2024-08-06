@@ -26,6 +26,8 @@ public class AccueilTest {
     public void setUp() {
         panel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
+        
+        accueil = new Acceuil();
 
         JPanel panel_1_1 = accueil.createButtonPanel("Rechercher Patient", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
