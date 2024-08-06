@@ -11,22 +11,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.Acceuil;
+import main.java.AjouterPatient;
 
 public class AccueilTest {
 
     private JPanel panel;
     private GridBagConstraints gbc;
+    private Acceuil accueil;
 
     @BeforeEach
     public void setUp() {
         panel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
 
-        JPanel panel_1_1 = Acceuil.createButtonPanel("Rechercher Patient", "./images/addRDV.png", new ActionListener() {
+        JPanel panel_1_1 = accueil.createButtonPanel("Rechercher Patient", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -35,7 +36,7 @@ public class AccueilTest {
         gbc.gridy = 1;
         panel.add(panel_1_1, gbc);
 
-        JPanel panel12 = Acceuil.createButtonPanel("Modifier Patient", "./images/addRDV.png", new ActionListener() {
+        JPanel panel12 = accueil.createButtonPanel("Modifier Patient", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -44,7 +45,7 @@ public class AccueilTest {
         gbc.gridy = 1;
         panel.add(panel12, gbc);
 
-        JPanel panel13 = Acceuil.createButtonPanel("Ajouter RDV", "./images/addRDV.png", new ActionListener() {
+        JPanel panel13 = accueil.createButtonPanel("Ajouter RDV", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -53,7 +54,7 @@ public class AccueilTest {
         gbc.gridy = 1;
         panel.add(panel13, gbc);
 
-        JPanel panel14 = Acceuil.createButtonPanel("Modifier RDV", "./images/addRDV.png", new ActionListener() {
+        JPanel panel14 = accueil.createButtonPanel("Modifier RDV", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -62,7 +63,7 @@ public class AccueilTest {
         gbc.gridy = 2;
         panel.add(panel14, gbc);
 
-        JPanel panel15 = Acceuil.createButtonPanel("Liste Patients", "./images/addRDV.png", new ActionListener() {
+        JPanel panel15 = accueil.createButtonPanel("Liste Patients", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -71,7 +72,7 @@ public class AccueilTest {
         gbc.gridy = 2;
         panel.add(panel15, gbc);
 
-        JPanel panel16 = Acceuil.createButtonPanel("Annuler RDV", "./images/addRDV.png", new ActionListener() {
+        JPanel panel16 = accueil.createButtonPanel("Annuler RDV", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
@@ -80,7 +81,7 @@ public class AccueilTest {
         gbc.gridy = 2;
         panel.add(panel16, gbc);
 
-        JPanel panel17 = Acceuil.createButtonPanel("Supprimer Patient", "./images/addRDV.png", new ActionListener() {
+        JPanel panel17 = accueil.createButtonPanel("Supprimer Patient", "./images/addRDV.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Mock implementation for test
             }
