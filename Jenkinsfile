@@ -109,7 +109,9 @@ pipeline {
  stage('Build Docker Image') {
             steps {
                 script {
+                    // Assurez-vous que vous êtes dans le bon répertoire
                    dir('C:\\Users\\Asma\\Desktop\\ProjetJavaJenkins') {
+                        // Construire l'image Docker
                         bat "docker build -t asmabouziri/projetjavajenkins:123 ."
                     }
                 }
