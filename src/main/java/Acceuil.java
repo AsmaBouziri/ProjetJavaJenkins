@@ -30,7 +30,7 @@ public class Acceuil extends JFrame {
         panel.add(lblNewLabel_8, gbc);
 
          CButton = new JButton("");
-        ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("/images/icons8-logout-25.png"));
+        ImageIcon logoutIcon = new ImageIcon(Acceuil.class.getResource("./images/icons8-logout-25.png"));
         if (logoutIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
             CButton.setIcon(logoutIcon);
         }
@@ -51,7 +51,7 @@ public class Acceuil extends JFrame {
         gbc.weightx = 1;
         gbc.weighty = 1;
 
-        panel.add(createButtonPanel("Ajouter Patient", "/images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Ajouter Patient", "./images/icons8-add-user-group-woman-man-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterPatient ajouterFrame = new AjouterPatient();
                 ajouterFrame.setVisible(true);
@@ -59,7 +59,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(0, 1, gbc));
 
-        panel.add(createButtonPanel("Rechercher Patient", "/images/icons8-find-user-male-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Rechercher Patient", "./images/icons8-find-user-male-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RechercherPatient rechFrame = new RechercherPatient();
                 rechFrame.setVisible(true);
@@ -67,7 +67,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(1, 1, gbc));
 
-        panel.add(createButtonPanel("Modifier Patient", "/images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Modifier Patient", "./images/icons8-edit-profile-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ModifierFichePatient modifierFrame = new ModifierFichePatient();
                 modifierFrame.setVisible(true);
@@ -75,7 +75,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(2, 1, gbc));
 
-        panel.add(createButtonPanel("Ajouter RDV", "/images/icons8-add-receipt-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Ajouter RDV", "./images/icons8-add-receipt-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AjouterRDV ajouterRDVframe = new AjouterRDV();
                 ajouterRDVframe.setVisible(true);
@@ -91,7 +91,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(0, 2, gbc));
 
-        panel.add(createButtonPanel("Liste Patients", "/images/icons8-todo-list-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Liste Patients", "./images/icons8-todo-list-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ListePatients listeFrame = new ListePatients();
                 listeFrame.setVisible(true);
@@ -99,7 +99,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(1, 2, gbc));
 
-        panel.add(createButtonPanel("Annuler RDV", "/images/icons8-delete-document-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Annuler RDV", "./images/icons8-delete-document-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerRdvPatient suppRDVFrame = new SupprimerRdvPatient();
                 suppRDVFrame.setVisible(true);
@@ -107,7 +107,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(2, 2, gbc));
 
-        panel.add(createButtonPanel("Supprimer Patient", "/images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerPatient suppFrame = new SupprimerPatient();
                 suppFrame.setVisible(true);
