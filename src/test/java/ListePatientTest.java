@@ -61,6 +61,7 @@ public class ListePatientTest {
      @AfterEach
     public void cleanUp() {
         collection.deleteOne(new Document("nom", "Dupont"));
+        collection.deleteOne(new Document("nom", "Martin"));
     }
 
 
