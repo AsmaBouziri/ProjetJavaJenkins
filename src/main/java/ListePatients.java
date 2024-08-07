@@ -9,16 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ListePatients extends JFrame {
-    public  JTable table;
+    public JTable table;
     private DefaultTableModel model;
     private MongoDatabase database;
-
 
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
         frame.setVisible(true);
         frame.setSize(800, 600);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  
     }
 
     public ListePatients() {
@@ -59,13 +58,14 @@ public class ListePatients extends JFrame {
         var scrollPane = new JScrollPane(table);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        // Création d'un JPanel pour contenir le bouton Home avec un FlowLayout aligné à droite
         var panelButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelButtons.setBackground(SystemColor.activeCaption);
         contentPane.add(panelButtons, BorderLayout.NORTH);
-       var homeButton = new JButton("");
+
+        var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
-        contentPane.add(homeButton);
+        panelButtons.add(homeButton);  
+
         homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Acceuil acc = new Acceuil();
@@ -73,7 +73,5 @@ public class ListePatients extends JFrame {
                 acc.setVisible(true);
             }
         });
-
-        
     }
 }
