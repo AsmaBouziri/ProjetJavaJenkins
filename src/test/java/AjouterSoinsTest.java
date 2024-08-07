@@ -58,22 +58,7 @@ public class AjouterSoinsTest {
 
         // Simulate the button click to add a soin
         ajouterSoins.enregistrerButton.doClick();
-//
-//        // Check if the data was added to MongoDB
-//        Document patient = collection.find(Filters.eq("nom", "test")).first();
-//        assertNotNull(patient);
-//        List<Document> soins = patient.getList("soins", Document.class);
-//
-//        // Find the matching soin
-//        Document foundSoin = soins.stream()
-//            .filter(doc -> doc.getString("soin").equals("détartrage") &&
-//                           doc.getString("date").equals("15/7/2024"))
-//            .findFirst()
-//            .orElse(null);
-//
-//        // Check if the found soin is not null (i.e., it exists)
-//        assertEquals("détartrage", foundSoin != null ? foundSoin.getString("soin") : null);
-//        assertEquals("15/7/2024", foundSoin != null ? foundSoin.getString("date") : null);
+
    }
 
 }

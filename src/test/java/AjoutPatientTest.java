@@ -3,6 +3,7 @@ package test.java;
 import main.java.AjouterPatient;
 import main.java.MongoDBUtil;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +69,13 @@ public class AjoutPatientTest {
         Document found = collection.find(new Document("nom", "ali")).first();
         assertNotNull(found, "Patient 'ali' should be found");
         assertEquals("ali", found.getString("nom"));
+
+
+    }
+
+     @AfterEach
+    public void cleanUp() {
+        collection.deleteOne(new Document("nom", "ali"));
     }
 
 }

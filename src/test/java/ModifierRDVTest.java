@@ -43,20 +43,6 @@ public class ModifierRDVTest {
 
     }
     
-//    
-//    @Test
-//    public void testEnregistrerRendezVous() {
-//
-//        modifierRendezVous.nomtextField.setText("Dupont");
-//        modifierRendezVous.prenomtextField.setText("Jean");
-//        modifierRendezVous.jourComboBox.setSelectedItem(15);
-//        modifierRendezVous.moisComboBox.setSelectedItem(9);
-//        modifierRendezVous.anneeComboBox.setSelectedItem(2024);
-//        modifierRendezVous.heuretextField.setText("15:00");
-//        
-//        modifierRendezVous.enregistrerButton.doClick();
-//
-//    }
 
     
     
