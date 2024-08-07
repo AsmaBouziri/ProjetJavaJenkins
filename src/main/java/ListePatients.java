@@ -17,7 +17,6 @@ public class ListePatients extends JFrame {
         ListePatients frame = new ListePatients();
         frame.setVisible(true);
         frame.setSize(800, 600);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);  
     }
 
     public ListePatients() {
