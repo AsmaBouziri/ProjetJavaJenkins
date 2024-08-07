@@ -40,7 +40,6 @@ public class AjouterRDV extends JFrame {
             this.database = MongoDBUtil.getDatabase("CabinetDent");
             this.collection = database.getCollection("RendezVous");
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             return; // Ne pas continuer si la connexion échoue
         }
