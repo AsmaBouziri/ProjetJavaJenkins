@@ -2,6 +2,8 @@ package test.java;
 
 import org.bson.Document;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -62,7 +64,5 @@ class LoginTest {
         assertNotEquals("123", found.getString("pwd"));
 
     }
-
-
 
 }

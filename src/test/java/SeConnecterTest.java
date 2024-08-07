@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import org.bson.Document;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,21 +40,5 @@ class SeConnecterTest {
         assertNotNull(seConnecter.btnSeConnecter, "btnNewButton should not be null");
     }
 
-//    @Test
-//    public void testSuccessfulLogin() {
-//        // Add a user for testing
-//        Document user = new Document("user", "testUser")
-//                            .append("pwd", "testPass");
-//        collection.insertOne(user);
-//
-//        
-//        // Set user credentials
-//        seConnecter.txtEmail.setText("testUser");
-//        seConnecter.textField.setText("testPass");
-//
-//        // Simulate button click
-//        seConnecter.btnSeConnecter.doClick();
-//
-//
-//    }
+
 }
