@@ -25,6 +25,7 @@ public class SeConnecter extends JFrame {
                 SeConnecter frame = new SeConnecter();
                 frame.setVisible(true);
             } catch (Exception e) {
+                e.printStackTrace();
             }
         
     }
@@ -39,6 +40,7 @@ public class SeConnecter extends JFrame {
             this.database = MongoDBUtil.getDatabase("CabinetDent");
             this.collection = database.getCollection("LogIn");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
