@@ -107,7 +107,7 @@ public class Acceuil extends JFrame {
             }
         }), createGbc(2, 2, gbc));
 
-        panel.add(createButtonPanel("Supprimer Patient", "./images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
+        panel.add(createButtonPanel("Supprimer Patient", "/images/icons8-unfriend-skin-type-7-48.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SupprimerPatient suppFrame = new SupprimerPatient();
                 suppFrame.setVisible(true);
