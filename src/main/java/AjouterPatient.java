@@ -215,9 +215,14 @@ public class AjouterPatient extends JFrame {
         enregistrerButton.setBounds(95, 380, 130, 37);
         contentPane.add(enregistrerButton);
 
+        // Création d'un panneau pour le bouton Home
+        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        homePanel.setBounds(10, 500, 100, 50); // Ajustez ces valeurs selon vos besoins
+        contentPane.add(homePanel);
+
         var homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
-        contentPane.add(homeButton);  
+        homePanel.add(homeButton);  
 
         homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -226,7 +231,5 @@ public class AjouterPatient extends JFrame {
                 acc.setVisible(true);
             }
         });
-
-
     }
 }
