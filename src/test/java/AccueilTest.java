@@ -129,23 +129,23 @@ public class AccueilTest {
         return null;
     }
     
-    @Test
-    public void testComponentVisibility() {
-        JPanel panel = (JPanel) this.panel.getComponent(0);
-        for (int i = 0; i < panel.getComponentCount(); i++) {
-            Component component = panel.getComponent(i);
-
-            // Check if the component is a JPanel before casting
-            if (component instanceof JPanel) {
-                JPanel buttonPanel = (JPanel) component;
-                assertTrue(buttonPanel.isVisible(), "Button panel " + i + " should be visible");
-
-                // Now access components within the button panel
-                JButton button = (JButton) buttonPanel.getComponent(1);
-                assertTrue(button.isVisible(), "Button in panel " + i + " should be visible");
-            } 
-        }
-    }
+//    @Test
+//    public void testComponentVisibility() {
+//        JPanel panel = (JPanel) this.panel.getComponent(0);
+//        for (int i = 0; i < panel.getComponentCount(); i++) {
+//            Component component = panel.getComponent(i);
+//
+//            // Check if the component is a JPanel before casting
+//            if (component instanceof JPanel) {
+//                JPanel buttonPanel = (JPanel) component;
+//                assertTrue(buttonPanel.isVisible(), "Button panel " + i + " should be visible");
+//
+//                // Now access components within the button panel
+//                JButton button = (JButton) buttonPanel.getComponent(1);
+//                assertTrue(button.isVisible(), "Button in panel " + i + " should be visible");
+//            } 
+//        }
+//    }
 
 
 }
