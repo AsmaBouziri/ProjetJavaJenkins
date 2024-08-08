@@ -12,7 +12,7 @@ public class ListePatients extends JFrame {
     public JTable table;
     private DefaultTableModel model;
     private MongoDatabase database;
-
+    public JButton homeButton;
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
         frame.setVisible(true);
@@ -61,7 +61,7 @@ public class ListePatients extends JFrame {
         panelButtons.setBackground(SystemColor.activeCaption);
         contentPane.add(panelButtons, BorderLayout.NORTH);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         panelButtons.add(homeButton);  
 
