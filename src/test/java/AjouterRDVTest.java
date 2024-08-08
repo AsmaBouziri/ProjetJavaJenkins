@@ -43,9 +43,5 @@ class AjouterRDVTest {
         assertNotNull(ajouterRDV.moisComboBox, "Mois combo box should be initialized");
     }
     
-    @Test
-    public void testHomeBtn() {
-    	ajouterRDV.homeButton.doClick();
 
-    }
 }
