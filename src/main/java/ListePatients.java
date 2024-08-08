@@ -13,6 +13,7 @@ public class ListePatients extends JFrame {
     private DefaultTableModel model;
     private MongoDatabase database;
     public JButton homeButton;
+
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
         frame.setVisible(true);
@@ -55,9 +56,12 @@ public class ListePatients extends JFrame {
         table = new JTable(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         var scrollPane = new JScrollPane(table);
+
+        // Ajout du tableau dans la région centrale
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
+        // Créer et ajouter le panneau du bouton "home" dans la région nord
         JPanel homePanel = new FrameConf().createHomePanel(this);
-        contentPane.add(homePanel);
+        contentPane.add(homePanel, BorderLayout.NORTH); // Spécification de la région nord pour éviter les conflits
     }
 }
