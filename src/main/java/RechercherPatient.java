@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import org.bson.Document;
 import com.mongodb.client.*;
+import main.java.FrameConf;
 
 public class RechercherPatient extends JFrame {
 
@@ -121,21 +122,9 @@ public class RechercherPatient extends JFrame {
 
         panel.add(modifierButton);
 
-        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        homePanel.setBounds(650, 10, 100, 50); 
-        homePanel.setBackground(SystemColor.activeCaption);
+        
+        JPanel homePanel = new FrameConf().createHomePanel(this);
         contentPane.add(homePanel);
 
-        homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
-        homePanel.add(homeButton);  
-
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
    }
 }

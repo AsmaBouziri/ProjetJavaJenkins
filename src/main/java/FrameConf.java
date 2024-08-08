@@ -1,7 +1,11 @@
 package main.java;
 
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,4 +20,24 @@ public class FrameConf {
         frame.setContentPane(contentPane);
         contentPane.setLayout(null);
     }
+	
+	public JPanel createHomePanel(JFrame frame) {
+	    JPanel homePanel = new JPanel();
+	    homePanel.setBounds(650, 10, 100, 50); 
+	    homePanel.setBackground(SystemColor.activeCaption);
+
+	    var homeButton = new JButton("");
+	    homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
+	    homePanel.add(homeButton);  
+
+        homeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Acceuil acc = new Acceuil();
+                acc.setVisible(true);
+            }
+        });
+
+	    return homePanel;
+	}
+
 }
