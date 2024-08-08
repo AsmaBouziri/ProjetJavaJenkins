@@ -177,7 +177,7 @@ public class AjouterPatient extends JFrame {
                 String profession = professionTextField.getText();
                 String telephone = telTextField.getText();
 
-                // Vérification de la validité des champs de saisie
+
                 if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || adresse.isEmpty() || profession.isEmpty() || telephone.isEmpty()) {
                     JOptionPane.showMessageDialog(enregistrerButton, "Tous les champs sont obligatoires.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else if (telephone.length() != 8) {
@@ -185,7 +185,6 @@ public class AjouterPatient extends JFrame {
                 } else if (cin.length() != 8) {
                     JOptionPane.showMessageDialog(enregistrerButton, "Le numéro CIN doit comporter 8 chiffres.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // Enregistrement des données dans un fichier texte
                     String dataNaiss = jourNaissance + "/" + moisNaissance + "/" + anneeNaissance;
 
                     Document document = new Document("nom", nom)
@@ -198,7 +197,6 @@ public class AjouterPatient extends JFrame {
                             .append("profession", profession);
 
                     collection.insertOne(document);
-                    // Effacement des champs de saisie
                     nomTextField.setText("");
                     prenomTextField.setText("");
                     cinTextField.setText("");
@@ -215,9 +213,9 @@ public class AjouterPatient extends JFrame {
         enregistrerButton.setBounds(95, 380, 130, 37);
         contentPane.add(enregistrerButton);
 
-        // Création d'un panneau pour le bouton Home
+        
         JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        homePanel.setBounds(10, 500, 100, 50); // Ajustez ces valeurs selon vos besoins
+        homePanel.setBounds(650, 10, 100, 50); 
         contentPane.add(homePanel);
 
         var homeButton = new JButton("");
