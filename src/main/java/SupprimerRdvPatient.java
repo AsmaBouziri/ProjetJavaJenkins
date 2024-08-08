@@ -137,7 +137,6 @@ public class SupprimerRdvPatient extends JFrame {
                             .append("date", jour + "/" + mois + "/" + annee)
                             .append("heure", heure + ":" + minute);
 
-                    // Suppression du document correspondant dans la collection MongoDB
                     DeleteResult deleteResult = collection.deleteOne(filter);
 
                     if (deleteResult.getDeletedCount() > 0) {
@@ -153,21 +152,7 @@ public class SupprimerRdvPatient extends JFrame {
             }
         });
 
-        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        homePanel.setBounds(650, 10, 100, 50); 
-        homePanel.setBackground(SystemColor.activeCaption);
+        JPanel homePanel = new FrameConf().createHomePanel(this);
         contentPane.add(homePanel);
-
-        var homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
-        homePanel.add(homeButton);  
-
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
    }
 }
