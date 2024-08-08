@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 test-jenkins,main.java,Acceuil.new ActionListener() {...},11,6,0,0,4,1,1,1,1,1
-test-jenkins,main.java,ListePatients,15,167,0,2,5,34,1,2,1,1
+test-jenkins,main.java,ListePatients,18,167,0,2,6,34,1,2,1,1
 test-jenkins,main.java,ModifierRendezVous.new ActionListener() {...},141,6,8,0,25,1,5,1,1,1
 test-jenkins,main.java,Acceuil.new ActionListener() {...},11,6,0,0,4,1,1,1,1,1
 test-jenkins,main.java,ModifierRendezVous.new ActionListener() {...},118,6,2,0,26,1,2,1,1,1

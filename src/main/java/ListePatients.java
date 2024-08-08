@@ -14,10 +14,8 @@ public class ListePatients extends JFrame {
 
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
-        frame.setSize(800, 600);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Plein écran
-        frame.setLocationRelativeTo(null); // Centre la fenêtre à l'écran
         frame.setVisible(true);
+        frame.setSize(800, 600);
     }
 
     public ListePatients() {
