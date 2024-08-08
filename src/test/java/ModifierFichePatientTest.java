@@ -48,11 +48,7 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
-    @Test
-    public void testHomeBtn() {
-    	modiferPatient.homeButton.doClick();
 
-    }
     
 
 

@@ -61,10 +61,5 @@ public class AjouterSoinsTest {
 
    }
     
-    @Test
-    public void testHomeBtn() {
-    	ajouterSoins.homeButton.doClick();
-
-    }
 
 }

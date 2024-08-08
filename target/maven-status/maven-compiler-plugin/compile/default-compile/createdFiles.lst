@@ -3,7 +3,6 @@ main\java\AjouterPatient$1.class
 main\java\AjouterPatient.class
 main\java\ModifierFichePatient$3.class
 main\java\Acceuil$4.class
-main\java\AjouterRDV$3.class
 main\java\ModifierRendezVous$2.class
 main\java\SupprimerPatient$1.class
 main\java\SupprimerRdvPatient$1.class
@@ -11,15 +10,14 @@ main\java\Acceuil$7.class
 main\java\ModifierRendezVous$3.class
 main\java\SupprimerPatient.class
 main\java\Acceuil$8.class
+main\java\FrameConf$1.class
 main\java\MongoDBUtil.class
-main\java\AjouterPatient$2.class
 main\java\RechercherPatient.class
 main\java\Acceuil$1.class
 main\java\AjouterSoins$1.class
 main\java\ModifierFichePatient$1.class
 main\java\FrameConf.class
 main\java\ModifierFichePatient$4.class
-main\java\RechercherPatient$2.class
 main\java\AjouterRDV$1.class
 main\java\SupprimerRdvPatient.class
 main\java\Acceuil$9.class

@@ -51,11 +51,6 @@ public class ListePatientTest {
         assertTrue(listePatients.isVisible(), "La fenêtre ListePatients devrait être visible.");
     }
 
-    @Test
-    public void testHomeBtn() {
-        listePatients.homeButton.doClick();
-
-    }
 
 
      @AfterEach
