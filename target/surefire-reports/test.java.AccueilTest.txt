@@ -1,12 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: test.java.AccueilTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.832 s <<< FAILURE! - in test.java.AccueilTest
-testComponentVisibility  Time elapsed: 0.749 s  <<< ERROR!
-java.lang.NullPointerException
-	at test.java.AccueilTest.setUp(AccueilTest.java:30)
-
-testPanelConfigurations  Time elapsed: 0.012 s  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.539 s <<< FAILURE! - in test.java.AccueilTest
+testPanelConfigurations  Time elapsed: 0.498 s  <<< ERROR!
 java.lang.NullPointerException
 	at test.java.AccueilTest.setUp(AccueilTest.java:30)
 
