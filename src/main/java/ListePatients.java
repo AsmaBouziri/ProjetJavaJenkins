@@ -5,8 +5,6 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 import com.mongodb.client.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ListePatients extends JFrame {
     public JTable table;
@@ -16,9 +14,10 @@ public class ListePatients extends JFrame {
 
     public static void main(String[] args) {
         ListePatients frame = new ListePatients();
-        frame.setVisible(true);
         frame.setSize(800, 600);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Plein écran
+        frame.setLocationRelativeTo(null); // Centre la fenêtre à l'écran
+        frame.setVisible(true);
     }
 
     public ListePatients() {
@@ -58,11 +57,12 @@ public class ListePatients extends JFrame {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         var scrollPane = new JScrollPane(table);
 
-        // Ajout du tableau dans la région centrale
+
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        // Créer et ajouter le panneau du bouton "home" dans la région nord
+
         JPanel homePanel = new FrameConf().createHomePanel(this);
-        contentPane.add(homePanel, BorderLayout.NORTH); // Spécification de la région nord pour éviter les conflits
+        contentPane.add(homePanel, BorderLayout.NORTH); 
+
     }
 }
