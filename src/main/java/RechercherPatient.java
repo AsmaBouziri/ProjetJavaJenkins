@@ -126,7 +126,7 @@ public class RechercherPatient extends JFrame {
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: test.java.RechercherPatientTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in test.java.RechercherPatientTest
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.048 s <<< FAILURE! - in test.java.RechercherPatientTest
+testHomeBtn  Time elapsed: 0.037 s  <<< ERROR!
+java.lang.NullPointerException
+	at test.java.RechercherPatientTest.testHomeBtn(RechercherPatientTest.java:42)
+
