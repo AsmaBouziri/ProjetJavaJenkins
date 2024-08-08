@@ -24,7 +24,6 @@ public class ModifierFichePatient extends JFrame {
     public JButton rechercherButton;
     public JButton modifierButton;
     public JButton annulerButton;
-    public JButton homeButton;
     public JComboBox<Integer> jourComboBox;
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
