@@ -120,16 +120,21 @@ public class RechercherPatient extends JFrame {
 
         panel.add(modifierButton);
 
-//        var homeButton = new JButton("");
-//        homeButton.setIcon(new ImageIcon(RechercherPatient.class.getResource("/images/home.png")));
-//        homeButton.setBounds(679, 11, 48, 41);
-//        contentPane.add(homeButton);
-//        homeButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                Acceuil acc = new Acceuil();
-//                setVisible(false);
-//                acc.setVisible(true);
-//            }
-//        });
+        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        homePanel.setBounds(650, 10, 100, 50); 
+        homePanel.setBackground(SystemColor.activeCaption);
+        contentPane.add(homePanel);
+
+        var homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
+        homePanel.add(homeButton);  
+
+        homeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Acceuil acc = new Acceuil();
+                setVisible(false);
+                acc.setVisible(true);
+            }
+        });
    }
 }

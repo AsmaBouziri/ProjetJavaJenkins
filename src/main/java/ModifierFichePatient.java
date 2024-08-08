@@ -281,6 +281,24 @@ public class ModifierFichePatient extends JFrame {
         annulerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         annulerButton.setBounds(503, 346, 114, 23);
         panel.add(annulerButton);
+
+
+        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        homePanel.setBounds(650, 10, 100, 50); 
+        homePanel.setBackground(SystemColor.activeCaption);
+        contentPane.add(homePanel);
+
+        var homeButton = new JButton("");
+        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
+        homePanel.add(homeButton);  
+
+        homeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Acceuil acc = new Acceuil();
+                setVisible(false);
+                acc.setVisible(true);
+            }
+        });
     }
 
     // Méthode pour initialiser la base de données pour les tests
@@ -288,4 +306,6 @@ public class ModifierFichePatient extends JFrame {
         this.database = database;
         this.collection = database.getCollection("Patient");
     }
+
+
 }
