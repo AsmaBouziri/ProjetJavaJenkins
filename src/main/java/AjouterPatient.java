@@ -216,6 +216,7 @@ public class AjouterPatient extends JFrame {
         
         JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         homePanel.setBounds(650, 10, 100, 50); 
+        homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
         var homeButton = new JButton("");
