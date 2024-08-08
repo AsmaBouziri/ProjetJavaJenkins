@@ -15,6 +15,7 @@ public class RechercherPatient extends JFrame {
     public JTextArea textArea;
     public JLabel labelResultat;
     public JButton modifierButton;
+    public JButton  homeButton;
     private MongoDatabase database;
 
     public static void main(String[] args) {

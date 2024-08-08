@@ -24,6 +24,7 @@ public class ModifierFichePatient extends JFrame {
     public JButton rechercherButton;
     public JButton modifierButton;
     public JButton annulerButton;
+    public JButton homeButton;
     public JComboBox<Integer> jourComboBox;
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
@@ -288,7 +289,7 @@ public class ModifierFichePatient extends JFrame {
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 

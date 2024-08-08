@@ -72,6 +72,12 @@ public class AjoutPatientTest {
 
 
     }
+    
+    @Test
+    public void testHomeBtn() {
+    	ajouterPatient.homeButton.doClick();
+
+    }
 
      @AfterEach
     public void cleanUp() {

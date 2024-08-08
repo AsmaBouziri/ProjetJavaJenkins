@@ -5,23 +5,17 @@ import main.java.MongoDBUtil;
 import org.bson.Document;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ListePatientTest {
     private ListePatients listePatients;
-    private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
@@ -47,7 +41,7 @@ public class ListePatientTest {
                 .append("tel", "0607080901");
         collection.insertMany(List.of(patient1, patient2));
 
-        // Créer une instance de ListePatients
+
         listePatients = new ListePatients();
         listePatients.setVisible(true);
     }

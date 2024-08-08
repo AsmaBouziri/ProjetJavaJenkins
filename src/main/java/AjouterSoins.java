@@ -21,6 +21,7 @@ public class AjouterSoins extends JFrame {
     public JComboBox<Integer> moisComboBox;
     public JComboBox<Integer> anneeComboBox;
     public JButton enregistrerButton;
+    public JButton homeButton;
 
     public static void main(String[] args) {
         AjouterSoins frame = new AjouterSoins();
@@ -148,7 +149,7 @@ public class AjouterSoins extends JFrame {
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 

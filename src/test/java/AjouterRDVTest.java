@@ -6,7 +6,7 @@ import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.mongodb.client.MongoClient;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -41,5 +41,11 @@ class AjouterRDVTest {
         assertNotNull(ajouterRDV.jourComboBox, "Jour combo box should be initialized");
         assertNotNull(ajouterRDV.anneeComboBox, "Année combo box should be initialized");
         assertNotNull(ajouterRDV.moisComboBox, "Mois combo box should be initialized");
+    }
+    
+    @Test
+    public void testHomeBtn() {
+    	ajouterRDV.homeButton.doClick();
+
     }
 }

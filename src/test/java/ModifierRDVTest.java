@@ -43,6 +43,12 @@ public class ModifierRDVTest {
 
     }
     
+    @Test
+    public void testHomeBtn() {
+    	modifierRendezVous.homeButton.doClick();
+
+    }
+    
 
     
     

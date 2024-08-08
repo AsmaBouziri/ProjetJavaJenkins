@@ -25,6 +25,7 @@ public class AjouterRDV extends JFrame {
     public JComboBox<Integer> minComboBox;
     public JButton enregistrerButton;
     public JButton annulerButton;
+    public JButton homeButton ;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -192,7 +193,7 @@ public class AjouterRDV extends JFrame {
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 

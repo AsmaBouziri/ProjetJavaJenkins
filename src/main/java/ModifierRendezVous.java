@@ -22,6 +22,7 @@ public class ModifierRendezVous extends JFrame {
     public JComboBox<Integer> anneeComboBox;
     public  JButton rechercherButton;
     public  JButton enregistrerButton;
+    public JButton  homeButton;
     public JTextField heuretextField;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
@@ -204,7 +205,7 @@ public class ModifierRendezVous extends JFrame {
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 

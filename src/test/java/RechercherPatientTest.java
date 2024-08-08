@@ -36,5 +36,11 @@ class RechercherPatientTest {
 	         assertNotNull(rechercherPatient.labelResultat);
 	         assertNotNull(rechercherPatient.modifierButton);
 	    }
+	    
+	    @Test
+	    public void testHomeBtn() {
+	    	rechercherPatient.homeButton.doClick();
+
+	    }
 
 }

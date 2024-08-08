@@ -60,5 +60,11 @@ public class AjouterSoinsTest {
         ajouterSoins.enregistrerButton.doClick();
 
    }
+    
+    @Test
+    public void testHomeBtn() {
+    	ajouterSoins.homeButton.doClick();
+
+    }
 
 }

@@ -24,6 +24,7 @@ public class AjouterPatient extends JFrame {
     public JRadioButton femmeRadioButton;
     public JButton enregistrerButton;
     public JButton annulerButton;
+    public JButton  homeButton;
     public JList<String> list;
     private DefaultListModel<String> listModel;
     public JComboBox<Integer> jourComboBox;
@@ -214,12 +215,12 @@ public class AjouterPatient extends JFrame {
         contentPane.add(enregistrerButton);
 
         
-        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        var homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         homePanel.setBounds(650, 10, 100, 50); 
         homePanel.setBackground(SystemColor.activeCaption);
         contentPane.add(homePanel);
 
-        var homeButton = new JButton("");
+        homeButton = new JButton("");
         homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
         homePanel.add(homeButton);  
 
