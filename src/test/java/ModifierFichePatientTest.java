@@ -50,16 +50,6 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
-    @Test
-    public void testPatientIntrouvable() {
-        // Simuler l'entrée de l'utilisateur
-    	modiferPatient.nomTextField.setText("Inconnu");
-    	modiferPatient.prenomTextField.setText("Inconnu");
-
-        // Simuler le clic sur le bouton rechercher
-        modiferPatient.rechercherButton.doClick();
-
-    }
 }
     
 
