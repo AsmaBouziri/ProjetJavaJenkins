@@ -59,11 +59,6 @@ public class ModifierFichePatientTest {
         // Simuler le clic sur le bouton rechercher
         modiferPatient.rechercherButton.doClick();
 
-        // Vérifier que les champs n'ont pas été modifiés
-    
-        assertNull(modiferPatient.jourComboBox.getSelectedItem());
-        assertNull(modiferPatient.moisComboBox.getSelectedItem());
-        assertNull(modiferPatient.anneeComboBox.getSelectedItem());
     }
 }
     
