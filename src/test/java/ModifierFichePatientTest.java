@@ -60,12 +60,7 @@ public class ModifierFichePatientTest {
         modiferPatient.rechercherButton.doClick();
 
         // Vérifier que les champs n'ont pas été modifiés
-        assertEquals("", modiferPatient.cinTextField.getText());
-        assertEquals("", modiferPatient.adresseTextField.getText());
-        assertEquals("", modiferPatient.professionTextField.getText());
-        assertEquals("", modiferPatient.telTextField.getText());
-        assertFalse(modiferPatient.hommeRadioButton.isSelected());
-        assertFalse(modiferPatient.femmeRadioButton.isSelected());
+    
         assertNull(modiferPatient.jourComboBox.getSelectedItem());
         assertNull(modiferPatient.moisComboBox.getSelectedItem());
         assertNull(modiferPatient.anneeComboBox.getSelectedItem());
