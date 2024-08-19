@@ -11,9 +11,11 @@ import org.junit.jupiter.api.Test;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 
 import org.bson.Document;
 
@@ -48,8 +50,27 @@ public class ModifierFichePatientTest {
         assertNotNull(modiferPatient.moisComboBox);
     }
     
+    @Test
+    public void testPatientIntrouvable() {
+        // Simuler l'entrée de l'utilisateur
+    	modiferPatient.nomTextField.setText("Inconnu");
+    	modiferPatient.prenomTextField.setText("Inconnu");
 
+        // Simuler le clic sur le bouton rechercher
+        modiferPatient.rechercherButton.doClick();
+
+        // Vérifier que les champs n'ont pas été modifiés
+        assertEquals("", modiferPatient.cinTextField.getText());
+        assertEquals("", modiferPatient.adresseTextField.getText());
+        assertEquals("", modiferPatient.professionTextField.getText());
+        assertEquals("", modiferPatient.telTextField.getText());
+        assertFalse(modiferPatient.hommeRadioButton.isSelected());
+        assertFalse(modiferPatient.femmeRadioButton.isSelected());
+        assertNull(modiferPatient.jourComboBox.getSelectedItem());
+        assertNull(modiferPatient.moisComboBox.getSelectedItem());
+        assertNull(modiferPatient.anneeComboBox.getSelectedItem());
+    }
+}
     
 
-
-}
+    
