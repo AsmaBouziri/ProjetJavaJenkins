@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: test.java.ModifierFichePatientTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.104 s <<< FAILURE! - in test.java.ModifierFichePatientTest
-testComponentsInitialization  Time elapsed: 0.101 s  <<< ERROR!
-java.lang.IllegalArgumentException: cannot add to layout: constraints must be a GridBagConstraint
-	at test.java.ModifierFichePatientTest.setUp(ModifierFichePatientTest.java:33)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 s - in test.java.ModifierFichePatientTest
