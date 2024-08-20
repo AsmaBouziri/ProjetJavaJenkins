@@ -285,7 +285,8 @@ public class ModifierFichePatient extends JFrame {
 
 
         JPanel homePanel = new FrameConf().createHomePanel(this);
-        contentPane.add(homePanel, BorderLayout.NORTH); 
+        panel.add(homePanel, BorderLayout.NORTH); 
+        
     }
 
     // Méthode pour initialiser la base de données pour les tests
