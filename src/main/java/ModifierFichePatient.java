@@ -284,22 +284,8 @@ public class ModifierFichePatient extends JFrame {
         panel.add(annulerButton);
 
 
-        JPanel homePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        homePanel.setBounds(650, 10, 100, 50); 
-        homePanel.setBackground(SystemColor.activeCaption);
-        contentPane.add(homePanel);
-
-        homeButton = new JButton("");
-        homeButton.setIcon(new ImageIcon(ListePatients.class.getResource("/images/home.png")));
-        homePanel.add(homeButton);  
-
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Acceuil acc = new Acceuil();
-                setVisible(false);
-                acc.setVisible(true);
-            }
-        });
+        JPanel homePanel = new FrameConf().createHomePanel(this);
+        contentPane.add(homePanel, BorderLayout.NORTH); 
     }
 
     // Méthode pour initialiser la base de données pour les tests
