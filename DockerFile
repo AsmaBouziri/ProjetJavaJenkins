@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-# Installe Maven et les dépendances pour X11
+# Installe Maven et les dépendances 
 RUN apt-get update && \
     apt-get install -y maven \
                        libxext-dev \
@@ -19,7 +19,7 @@ RUN apt-get update && \
                        libglu1-mesa \
                        && rm -rf /var/lib/apt/lists/*
 
-# Crée le répertoire de travail
+# Crée le répertoire
 WORKDIR /app
 
 # Copie le pom.xml et télécharge les dépendances

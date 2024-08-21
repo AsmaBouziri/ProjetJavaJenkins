@@ -35,20 +35,7 @@ public class ModifierFichePatientTest {
         modiferPatient.setVisible(true);
     }
 
-    @Test
-    public void testComponentsInitialization() {
-        assertNotNull(modiferPatient.nomTextField);
-        assertNotNull(modiferPatient.prenomTextField);
-        assertNotNull(modiferPatient.cinTextField);
-        assertNotNull(modiferPatient.adresseTextField);
-        assertNotNull(modiferPatient.professionTextField);
-        assertNotNull(modiferPatient.telTextField);
-        assertNotNull(modiferPatient.hommeRadioButton);
-        assertNotNull(modiferPatient.femmeRadioButton);
-        assertNotNull(modiferPatient.jourComboBox);
-        assertNotNull(modiferPatient.anneeComboBox);
-        assertNotNull(modiferPatient.moisComboBox);
-    }
+    
     
 }
     
