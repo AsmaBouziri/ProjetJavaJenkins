@@ -1,15 +1,15 @@
 package test.java;
 
 
-import main.java.ModifierFichePatient;
-import main.java.MongoDBUtil;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import main.java.ModifierFichePatient;
+import main.java.MongoDBUtil;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -35,8 +35,41 @@ public class ModifierFichePatientTest {
         modiferPatient.setVisible(true);
     }
 
+    @Test
+    public void testComponentsInitialization() {
+        assertNotNull(modiferPatient.nomTextField);
+        assertNotNull(modiferPatient.prenomTextField);
+        assertNotNull(modiferPatient.cinTextField);
+        assertNotNull(modiferPatient.adresseTextField);
+        assertNotNull(modiferPatient.professionTextField);
+        assertNotNull(modiferPatient.telTextField);
+        assertNotNull(modiferPatient.hommeRadioButton);
+        assertNotNull(modiferPatient.femmeRadioButton);
+        assertNotNull(modiferPatient.jourComboBox);
+        assertNotNull(modiferPatient.anneeComboBox);
+        assertNotNull(modiferPatient.moisComboBox);
+    }
     
-    
+    @Test
+    public void testPatientIntrouvable() {
+        // Simuler l'entrée de l'utilisateur
+    	modiferPatient.nomTextField.setText("Inconnu");
+    	modiferPatient.prenomTextField.setText("Inconnu");
+
+        // Simuler le clic sur le bouton rechercher
+        modiferPatient.rechercherButton.doClick();
+
+        // Vérifier que les champs n'ont pas été modifiés
+        assertEquals("", modiferPatient.cinTextField.getText());
+        assertEquals("", modiferPatient.adresseTextField.getText());
+        assertEquals("", modiferPatient.professionTextField.getText());
+        assertEquals("", modiferPatient.telTextField.getText());
+        assertFalse(modiferPatient.hommeRadioButton.isSelected());
+        assertFalse(modiferPatient.femmeRadioButton.isSelected());
+        assertNull(modiferPatient.jourComboBox.getSelectedItem());
+        assertNull(modiferPatient.moisComboBox.getSelectedItem());
+        assertNull(modiferPatient.anneeComboBox.getSelectedItem());
+    }
 }
     
 
