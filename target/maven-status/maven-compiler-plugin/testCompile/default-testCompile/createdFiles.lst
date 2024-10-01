@@ -9,7 +9,6 @@ test\java\PatientTest.class
 test\java\AccueilTest$2.class
 test\java\SeConnecterTest.class
 test\java\AccueilTest$7.class
-test\java\ModifierFichePatientTest.class
 test\java\AjoutPatientTest.class
 test\java\ModifierRDVTest.class
 test\java\AccueilTest$1.class
