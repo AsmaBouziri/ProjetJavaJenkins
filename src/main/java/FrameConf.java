@@ -32,6 +32,7 @@ public class FrameConf {
 
         homeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
                 Acceuil acc = new Acceuil();
                 acc.setVisible(true);
             }
