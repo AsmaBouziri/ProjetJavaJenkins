@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: test.java.AccueilTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.792 s - in test.java.AccueilTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.924 s - in test.java.AccueilTest
